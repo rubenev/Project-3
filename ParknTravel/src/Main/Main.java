@@ -15,7 +15,12 @@ import javafx.stage.Stage;
 
 public class Main extends Application{
     
-    Button button;
+    Button up_button;
+    Button down_button;
+    Button left_button;
+    Button right_button;
+    int map_x = -4000;
+    int map_y = -5700;
     public static void main(String[] args) {
         launch(args);
     }
@@ -27,14 +32,24 @@ public class Main extends Application{
         Scene theScene = new Scene( root );
         primaryStage.setScene( theScene );
 
-        Canvas canvas = new Canvas( 400, 400 );
-        root.getChildren().add( canvas );
+        up_button = new Button();
+        up_button.setText("Up");
         
+        up_button.setOnAction(e->{
+            map_x = map_x + 100;
+        });
+        
+        Canvas canvas = new Canvas( 1200, 800 );
+        root.getChildren().addAll( up_button,canvas );
+       
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        Image background = new Image("file:Images/reclame-ah.jpg");
+        Image background = new Image("file:Images/mapRotterdam.png");
         if(background!=null){     
-        gc.drawImage( background, 0, 0 );}
+        gc.drawImage( background, map_x, map_y );}
+        
+        
 
+  
 
         primaryStage.show();
 
