@@ -1,24 +1,17 @@
-/*
- * Project 3 - Halfvol
- * Hogeschool Rotterdam
- * INF1G
- */
+
 package Main.Stations;
 
 import Main.IStations;
 
-/**
- *
- * @author Halfvol
- */
- public class Tram implements IStations{
+
+    public class Bus implements IStations{
     private String Name = null;
     private String Description = null;
     private String Type = null;
-    private final String Tram_Img = null; // string naar de plek invullen blijft hetzelfde voor alle trams
+    private final String Bus_Img = null; // string naar de plek invullen blijft hetzelfde voor alle trams
     private double[] Location = new double[2];// longitude, latitude
     
-    public Tram (String Name, String Description,String Type, double longitude,double latitude)
+    public Bus (String Name, String Description,String Type, double longitude,double latitude)
     {
     this.Name = Name;
     this.Description = Description;
@@ -28,7 +21,7 @@ import Main.IStations;
     
     }
     
-    public String getTram_Img(){return Tram_Img;}
+    public String getTram_Img(){return Bus_Img;}
     
     @Override        
     public String[] getStation() {
@@ -80,7 +73,8 @@ import Main.IStations;
     
     @Override
     public double[] getLocation(){return this.Location;}
- }
- 
     
+   
+        
     
+}
