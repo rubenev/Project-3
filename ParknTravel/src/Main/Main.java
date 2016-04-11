@@ -32,23 +32,42 @@ public class Main extends Application{
         Scene theScene = new Scene( root );
         primaryStage.setScene( theScene );
 
-        up_button = new Button();
-        up_button.setText("Up");
-        
-        up_button.setOnAction(e->{
-            map_x = map_x + 100;
-        });
-        
         Canvas canvas = new Canvas( 1200, 800 );
         
        
         GraphicsContext gc = canvas.getGraphicsContext2D();
+        // Alle images worden later op andere manier getekend
         Image background = new Image("file:Images/mapRotterdam.png");
         Image up_image = new Image("file:Images/up_button.png");
+        Image down_image = new Image("file:Images/down_button.png");
+        Image left_image = new Image("file:Images/left_button.png");
+        Image right_image = new Image("file:Images/right_button.png");
+        Image menu_image = new Image("file:Images/menuimg.png");
+        Image metro_image = new Image("file:Images/metrolabel.png");
+        Image tram_image = new Image("file:Images/tramlabel.png");
+        Image bus_image = new Image("file:Images/buslabel.png");
+        Image looptijd_image = new Image("file:Images/looptijd.png");
+        Image loopafstand_image = new Image("file:Images/loopafstand.png");
+        
+        
         if(background!=null){     
         gc.drawImage( background, map_x, map_y );
-        gc.drawImage( up_image, 550, 10 );}
-        root.getChildren().addAll( up_button,canvas );
+        // All deze items zijn slechts images
+        gc.drawImage( up_image, 550, 10 );
+        gc.drawImage( down_image, 550, 730 );
+        gc.drawImage( left_image, 10, 380 );
+        gc.drawImage( right_image, 1130, 380 );
+        gc.drawImage( menu_image, 5, 0 );
+        gc.drawImage( metro_image, 10, 80 );
+        gc.drawImage( bus_image, 10, 180 );
+        gc.drawImage( tram_image, 10, 130 );
+        // All deze items worden objecten van hun class type (vesleepbaar en nieuwe locatie geeft een return aan de queries
+        gc.drawImage( loopafstand_image, 70, 260 );
+        gc.drawImage( looptijd_image, 130, 330 );
+
+        
+        }
+        root.getChildren().addAll( canvas );
         
 
   
