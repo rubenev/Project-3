@@ -44,8 +44,10 @@ public class Main extends Application{
        
         GraphicsContext gc = canvas.getGraphicsContext2D();
         Image background = new Image("file:Images/mapRotterdam.png");
+        Image up_image = new Image("file:Images/up_button.png");
         if(background!=null){     
-        gc.drawImage( background, map_x, map_y );}
+        gc.drawImage( background, map_x, map_y );
+        gc.drawImage( up_image, 550, 10 );}
         root.getChildren().addAll( up_button,canvas );
         
 
