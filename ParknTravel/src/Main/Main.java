@@ -3,6 +3,7 @@ package Main;
 
 // Commit test Selim Esengin 11:20
 
+import java.awt.event.MouseListener;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -11,16 +12,18 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 
 public class Main extends Application{
     
-    Button up_button;
-    Button down_button;
-    Button left_button;
-    Button right_button;
+    JButton testknop = new JButton();
+    
     int map_x = -4000;
     int map_y = -5700;
+    int canvas_x = 800;
+    int canvas_y = 1200;
     public static void main(String[] args) {
         launch(args);
     }
@@ -32,9 +35,12 @@ public class Main extends Application{
         Scene theScene = new Scene( root );
         primaryStage.setScene( theScene );
 
-        Canvas canvas = new Canvas( 1200, 800 );
+        Canvas canvas = new Canvas( canvas_y, canvas_x );
         
+       testknop.setIcon(new ImageIcon("file:Images/down_button.png"));
        
+        
+        
         GraphicsContext gc = canvas.getGraphicsContext2D();
         
         // Alle images worden later op andere manier getekend
@@ -49,16 +55,17 @@ public class Main extends Application{
         Image bus_image = new Image("file:Images/buslabel.png");
         Image looptijd_image = new Image("file:Images/looptijd.png");
         Image loopafstand_image = new Image("file:Images/loopafstand.png");
-        root.getChildren().addAll( canvas ); // maakt het frame
+        root.getChildren().addAll(canvas ); // maakt het frame
+        
         primaryStage.show();   // showed het frame     
         
         // images start draw
         gc.drawImage( background, map_x, map_y ); // coordinaten van background zijn variable ivm navigatie
         // all deze images zijn knoppen. maar dat moet dus nog op een manier waar gemaakt worden
-        gc.drawImage( up_image, 550, 10 );
-        gc.drawImage( down_image, 550, 730 );
-        gc.drawImage( left_image, 10, 380 );
-        gc.drawImage( right_image, 1130, 380 );
+        gc.drawImage( up_image, ((canvas_y/2)-20), 10 );
+        gc.drawImage( down_image, ((canvas_y/2)-20), (canvas_x-70) );
+        gc.drawImage( left_image, 10, ((canvas_x/2)-20) );
+        gc.drawImage( right_image, (canvas_y-70), ((canvas_x/2)-20) );
         // All deze items zijn slechts images
         gc.drawImage( menu_image, 5, 0 );
         gc.drawImage( metro_image, 10, 80 );
@@ -77,4 +84,5 @@ public class Main extends Application{
 
       
 }
+    
 }
