@@ -40,13 +40,13 @@ public class Main extends Application{
         });
         
         Canvas canvas = new Canvas( 1200, 800 );
-        root.getChildren().addAll( up_button,canvas );
+        
        
         GraphicsContext gc = canvas.getGraphicsContext2D();
         Image background = new Image("file:Images/mapRotterdam.png");
         if(background!=null){     
         gc.drawImage( background, map_x, map_y );}
-        
+        root.getChildren().addAll( up_button,canvas );
         
 
   
