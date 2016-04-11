@@ -34,21 +34,19 @@ public class Main extends Application{
         Group root = new Group();
         Scene theScene = new Scene( root );
         primaryStage.setScene( theScene );
-
         Canvas canvas = new Canvas( canvas_y, canvas_x );
         
        testknop.setIcon(new ImageIcon("file:Images/down_button.png"));
        
         
-        
         GraphicsContext gc = canvas.getGraphicsContext2D();
         
         // Alle images worden later op andere manier getekend
         Image background = new Image("file:Images/mapRotterdam.png");
-        Image up_image = new Image("file:Images/up_button.png");
-        Image down_image = new Image("file:Images/down_button.png");
-        Image left_image = new Image("file:Images/left_button.png");
-        Image right_image = new Image("file:Images/right_button.png");
+        Image up_image = new Image("file:Images/up_buttont.png");
+        Image down_image = new Image("file:Images/down_buttont.png");
+        Image left_image = new Image("file:Images/left_buttont.png");
+        Image right_image = new Image("file:Images/right_buttont.png");
         Image menu_image = new Image("file:Images/menuimg.png");
         Image metro_image = new Image("file:Images/metrolabel.png");
         Image tram_image = new Image("file:Images/tramlabel.png");
