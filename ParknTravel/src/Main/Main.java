@@ -36,6 +36,7 @@ public class Main extends Application{
         
        
         GraphicsContext gc = canvas.getGraphicsContext2D();
+        
         // Alle images worden later op andere manier getekend
         Image background = new Image("file:Images/mapRotterdam.png");
         Image up_image = new Image("file:Images/up_button.png");
@@ -48,31 +49,31 @@ public class Main extends Application{
         Image bus_image = new Image("file:Images/buslabel.png");
         Image looptijd_image = new Image("file:Images/looptijd.png");
         Image loopafstand_image = new Image("file:Images/loopafstand.png");
+        root.getChildren().addAll( canvas ); // maakt het frame
+        primaryStage.show();   // showed het frame     
         
-        
-        if(background!=null){     
-        gc.drawImage( background, map_x, map_y );
-        // All deze items zijn slechts images
+        // images start draw
+        gc.drawImage( background, map_x, map_y ); // coordinaten van background zijn variable ivm navigatie
+        // all deze images zijn knoppen. maar dat moet dus nog op een manier waar gemaakt worden
         gc.drawImage( up_image, 550, 10 );
         gc.drawImage( down_image, 550, 730 );
         gc.drawImage( left_image, 10, 380 );
         gc.drawImage( right_image, 1130, 380 );
+        // All deze items zijn slechts images
         gc.drawImage( menu_image, 5, 0 );
         gc.drawImage( metro_image, 10, 80 );
-        gc.drawImage( bus_image, 10, 180 );
-        gc.drawImage( tram_image, 10, 130 );
+        gc.drawImage( tram_image, 10, 140 );
+        gc.drawImage( bus_image, 10, 200 );
+
         // All deze items worden objecten van hun class type (vesleepbaar en nieuwe locatie geeft een return aan de queries
         gc.drawImage( loopafstand_image, 70, 260 );
         gc.drawImage( looptijd_image, 130, 330 );
 
         
-        }
-        root.getChildren().addAll( canvas );
+        
+        // images end draw
         
 
-  
-
-        primaryStage.show();
 
       
 }
