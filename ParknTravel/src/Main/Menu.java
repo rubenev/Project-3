@@ -1,6 +1,8 @@
 
 package Main;
 
+import Main.IComponents.IComponents;
+
 /**
  *
  * @author Sam

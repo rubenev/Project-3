@@ -1,5 +1,5 @@
 
-package Main;
+package Main.IComponents;
 
 public interface Update {
     /**

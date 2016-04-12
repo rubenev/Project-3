@@ -5,7 +5,7 @@
  */
 package Main.Stations;
 
-import Main.IStations;
+import Main.IComponents.IStations;
 
 /**
  *

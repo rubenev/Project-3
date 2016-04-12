@@ -1,7 +1,7 @@
 
 package Main.Stations;
 
-import Main.IStations;
+import Main.IComponents.IStations;
 
 
     public class Bus implements IStations{
