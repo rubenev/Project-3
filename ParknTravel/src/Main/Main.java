@@ -69,8 +69,8 @@ public class Main extends Application {
         up.setLayoutY(5);
         up.setShape(new Circle());
         // actie on click
-        up.setOnAction(e ->{    
-        map_y = map_y + 100;
+        up.setOnAction(e ->{ 
+        if (map_y+100 <= 0){map_y = map_y + 100;}
         gc.drawImage( background, map_x, map_y );
         gc.drawImage( menu_image, 5, 0 );
         gc.drawImage( metro_image, 10, 80 );
@@ -89,7 +89,7 @@ public class Main extends Application {
         down.setShape(new Circle());
         // actie on click
         down.setOnAction(e->{        
-        map_y = map_y - 100;
+        if (map_y-100 >= -9400){map_y = map_y - 100;}
         gc.drawImage( background, map_x, map_y );
         gc.drawImage( menu_image, 5, 0 );
         gc.drawImage( metro_image, 10, 80 );
@@ -107,7 +107,7 @@ public class Main extends Application {
         left.setShape(new Circle());
         // actie on click
         left.setOnAction(e-> {       
-        map_x = map_x + 150;
+        if (map_x+150 <= 0){map_x = map_x + 150;}
         gc.drawImage( background, map_x, map_y );
         gc.drawImage( menu_image, 5, 0 );
         gc.drawImage( metro_image, 10, 80 );
@@ -125,7 +125,7 @@ public class Main extends Application {
         right.setShape(new Circle());
         // actie on click
         right.setOnAction(e -> {       
-        map_x = map_x - 150;
+        if ((map_x)-150 >= -9400){map_x = map_x - 150;}
         gc.drawImage( background, map_x, map_y );        
         gc.drawImage( menu_image, 5, 0 );
         gc.drawImage( metro_image, 10, 80 );
