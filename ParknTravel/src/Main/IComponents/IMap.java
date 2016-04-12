@@ -1,5 +1,7 @@
 
-package Main;
+package Main.IComponents;
+
+import Main.IComponents.IComponents;
 
 /**
  *
