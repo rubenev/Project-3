@@ -76,7 +76,10 @@ public class Main extends Application {
     Image bus_image = new Image("file:Images/buslabel.png");
     Image looptijd_image = new Image("file:Images/looptijd.png");
     Image loopafstand_image = new Image("file:Images/loopafstand.png");  
-    Image dot = new Image("file:Images/dot.png");  
+    Image P_image = new Image("file:Images/P-location_image.png");  
+    Image M_image = new Image("file:Images/M-location_image.png"); 
+    Image T_image = new Image("file:Images/T-location_image.png"); 
+    Image B_image = new Image("file:Images/B-location_image.png"); 
     public static void main(String[] args) {
         launch(args);
     }
@@ -120,10 +123,12 @@ public class Main extends Application {
         gc.drawImage( bus_image, 10, 200 );
         gc.drawImage( loopafstand_image, 70, 260 );
         gc.drawImage( looptijd_image, 130, 330 );
-                gc.drawImage( dot, pointxtest+map_x, pointytest+map_y );     
-       gc.drawImage( dot, pointxstraat+map_x, pointystraat+map_y );   
-       gc.drawImage( dot, pointxstraat2+map_x, pointystraat2+map_y );  
-       gc.drawImage( dot, pointxbeurs+map_x, pointybeurs+map_y );  
+        
+        // Test punten op map //
+       gc.drawImage( P_image, pointxtest+map_x, pointytest+map_y );     
+       gc.drawImage( P_image, pointxstraat+map_x, pointystraat+map_y );   
+       gc.drawImage( M_image, pointxstraat2+map_x, pointystraat2+map_y );  
+       gc.drawImage( T_image, pointxbeurs+map_x, pointybeurs+map_y );  
       });
 
         // maak button
@@ -145,10 +150,10 @@ public class Main extends Application {
         gc.drawImage( looptijd_image, 130, 330 );  
         
         // Test punten op map //
-       gc.drawImage( dot, pointxtest+map_x, pointytest+map_y );     
-       gc.drawImage( dot, pointxstraat+map_x, pointystraat+map_y );   
-       gc.drawImage( dot, pointxstraat2+map_x, pointystraat2+map_y );  
-       gc.drawImage( dot, pointxbeurs+map_x, pointybeurs+map_y );  
+       gc.drawImage( P_image, pointxtest+map_x, pointytest+map_y );     
+       gc.drawImage( P_image, pointxstraat+map_x, pointystraat+map_y );   
+       gc.drawImage( M_image, pointxstraat2+map_x, pointystraat2+map_y );  
+       gc.drawImage( T_image, pointxbeurs+map_x, pointybeurs+map_y );  
     });
         // maak button
         Button left = new Button();
@@ -169,10 +174,10 @@ public class Main extends Application {
         gc.drawImage( looptijd_image, 130, 330 );  
         
         // Test punten op map //
-       gc.drawImage( dot, pointxtest+map_x, pointytest+map_y );     
-       gc.drawImage( dot, pointxstraat+map_x, pointystraat+map_y );   
-       gc.drawImage( dot, pointxstraat2+map_x, pointystraat2+map_y );  
-       gc.drawImage( dot, pointxbeurs+map_x, pointybeurs+map_y );  
+       gc.drawImage( P_image, pointxtest+map_x, pointytest+map_y );     
+       gc.drawImage( P_image, pointxstraat+map_x, pointystraat+map_y );   
+       gc.drawImage( M_image, pointxstraat2+map_x, pointystraat2+map_y );  
+       gc.drawImage( T_image, pointxbeurs+map_x, pointybeurs+map_y );  
       });
         // maak button
         Button right = new Button();
@@ -193,10 +198,10 @@ public class Main extends Application {
         gc.drawImage( looptijd_image, 130, 330 );
         
         // Test punten op map //
-       gc.drawImage( dot, pointxtest+map_x, pointytest+map_y );     
-       gc.drawImage( dot, pointxstraat+map_x, pointystraat+map_y );   
-       gc.drawImage( dot, pointxstraat2+map_x, pointystraat2+map_y );  
-       gc.drawImage( dot, pointxbeurs+map_x, pointybeurs+map_y );  
+       gc.drawImage( P_image, pointxtest+map_x, pointytest+map_y );     
+       gc.drawImage( P_image, pointxstraat+map_x, pointystraat+map_y );   
+       gc.drawImage( M_image, pointxstraat2+map_x, pointystraat2+map_y );  
+       gc.drawImage( T_image, pointxbeurs+map_x, pointybeurs+map_y );  
     });   
 
 
