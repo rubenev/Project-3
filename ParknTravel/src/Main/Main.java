@@ -159,13 +159,11 @@ public class Main extends Application {
         gc.drawImage( bus_image, 10, 200 );
         gc.drawImage( loopafstand_image, 70, 260 );
         gc.drawImage( looptijd_image, 130, 330 );
-
+        
 
     });   
+        
 
-
-//        gc.drawImage( dot, 1245, 280 ); 
-//        gc.drawImage( dot, pointxnieuw, pointynieuw );
         try
         {
             Class.forName("org.postgresql.Driver");
