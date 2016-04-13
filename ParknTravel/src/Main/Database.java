@@ -5,6 +5,9 @@
  */
 package Main;
 
+import Main.Stations.Bus;
+import Main.Stations.Metro;
+import Main.Stations.Tram;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +25,9 @@ public class Database {
     double null_xlong = (4.396787 + 180.0) * (10563 / 360);  
     
     List<Garage> list_garages = new ArrayList();
+    List<Bus> list_busses = new ArrayList();
+    List<Tram> list_trams = new ArrayList();
+    List<Metro> list_metros = new ArrayList();
  
     Image P_image = new Image("file:Images/P-location_image.png");  
     Image M_image = new Image("file:Images/M-location_image.png"); 
@@ -64,4 +70,40 @@ public class Database {
                     ee.printStackTrace();
                 };  
                 return list_garages;    
-}}
+}public List<Bus> getBusList(){
+                    try
+                {
+                    Class.forName("org.postgresql.Driver");
+                    
+                    Connection con=DriverManager.getConnection("jdbc:postgresql://localhost:5432/ParknTravel","postgres","password");
+                    if(con!=null)
+                        System.out.println("Connected");
+                    Statement st=con.createStatement();
+                    ResultSet rs = st.executeQuery("SELECT * FROM ret_haltes;");
+                    while (rs.next()){ //loopt door de lijst tot er niks meer is
+                        Double longitude_sql = rs.getDouble("longitude"); //pakt de volgende long
+                        Double latitude_sql = rs.getDouble("latitude"); //pakt de volgende lat
+                        String name = rs.getString("name"); //pakt de volgende name
+                    // calculate de x y van de long lat
+                  
+                        double latRad1 = latitude_sql*Math.PI/180;
+                        double mercN1 = Math.log(Math.tan((Math.PI/4)+(latRad1/2)));
+                        double sql_ylat = (10159/2)-(10563*mercN1/(2*Math.PI));
+                        double sql_xlong = (longitude_sql + 180.0) * (10563 / 360);  
+                        // calculate the locatie van x y
+                        double pointysql = ((sql_ylat - null_ylat)*1781);
+                        double pointxsql = ((sql_xlong - null_xlong)*1758); 
+                        // tekent de P op de locatie
+                        Bus bus = new Bus(B_image, name, "Test","Not test", pointxsql,pointysql);
+                        list_busses.add(bus);              
+                         // de loop begint opnieuw
+                    
+                }}
+                    catch(Exception ee) // dit is nodig bij een try
+                {
+                    ee.printStackTrace();
+                };  
+                return list_busses;        
+}
+
+}

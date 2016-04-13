@@ -14,13 +14,14 @@ import javafx.scene.image.Image;
     double Position_x;// longitude, latitude
     double Position_y;
     
-    public Bus (String Name, String Description,String Type, double longitude,double latitude)
+    public Bus (Image image, String Name, String Description,String Type, double longitude,double latitude)
     {
     this.Name = Name;
     this.Description = Description;
     this.Type = Type;
     this.Position_x = longitude;
     this.Position_y = latitude;
+    this.Bus_Img = image;
     
     }
     

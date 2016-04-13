@@ -4,10 +4,7 @@ package Main;
 // Commit test Selim Esengin 11:20
 
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+
 import java.util.ArrayList;
 import java.util.List;
 import javafx.animation.AnimationTimer;
