@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -38,7 +39,9 @@ public class Main extends Application {
     double mercN = Math.log(Math.tan((Math.PI/4)+(latRad/2)));
     double null_ylat = (10159/2)-(10563*mercN/(2*Math.PI));
     double null_xlong = (4.396787 + 180.0) * (10563 / 360);  
-
+    double longitude_sql;
+    double latitude_sql;
+    String name;
 
     Image background = new Image("file:Images/mapRotterdam.png");
     Image up_image = new Image("file:Images/up_button.png");
@@ -71,18 +74,6 @@ public class Main extends Application {
         Canvas canvas = new Canvas( canvas_y, canvas_x );
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
-     
-        // images start draw
-        gc.drawImage( background, map_x, map_y ); // coordinaten van background zijn variable ivm navigatie
-        // All deze items zijn slechts images
-        gc.drawImage( menu_image, 5, 0 );
-        gc.drawImage( metro_image, 10, 80 );
-        gc.drawImage( tram_image, 10, 140 );
-        gc.drawImage( bus_image, 10, 200 );
-        // All deze items worden objecten van hun class type (vesleepbaar en nieuwe locatie geeft een return aan de queries
-        gc.drawImage( loopafstand_image, 70, 260 );
-        gc.drawImage( looptijd_image, 130, 330 );
-        
 
         // maak button
         Button up = new Button();
@@ -94,15 +85,6 @@ public class Main extends Application {
         // actie on click
         up.setOnAction(e ->{ 
         if (map_y+100 <= 0){map_y = map_y + 100;}
-        gc.drawImage( background, map_x, map_y );
-        gc.drawImage( menu_image, 5, 0 );
-        gc.drawImage( metro_image, 10, 80 );
-        gc.drawImage( tram_image, 10, 140 );
-        gc.drawImage( bus_image, 10, 200 );
-        gc.drawImage( loopafstand_image, 70, 260 );
-        gc.drawImage( looptijd_image, 130, 330 );
-        
- 
       });
 
         // maak button
@@ -115,15 +97,6 @@ public class Main extends Application {
         // actie on click
         down.setOnAction(e->{        
         if (map_y-100 >= -9400){map_y = map_y - 100;}
-        gc.drawImage( background, map_x, map_y );
-        gc.drawImage( menu_image, 5, 0 );
-        gc.drawImage( metro_image, 10, 80 );
-        gc.drawImage( tram_image, 10, 140 );
-        gc.drawImage( bus_image, 10, 200 );
-        gc.drawImage( loopafstand_image, 70, 260 );
-        gc.drawImage( looptijd_image, 130, 330 );  
-        
-
     });
         // maak button
         Button left = new Button();
@@ -135,15 +108,6 @@ public class Main extends Application {
         // actie on click
         left.setOnAction(e-> {       
         if (map_x+150 <= 0){map_x = map_x + 150;}
-        gc.drawImage( background, map_x, map_y );
-        gc.drawImage( menu_image, 5, 0 );
-        gc.drawImage( metro_image, 10, 80 );
-        gc.drawImage( tram_image, 10, 140 );
-        gc.drawImage( bus_image, 10, 200 );
-        gc.drawImage( loopafstand_image, 70, 260 );
-        gc.drawImage( looptijd_image, 130, 330 );  
-        
-
       });
         // maak button
         Button right = new Button();
@@ -155,65 +119,65 @@ public class Main extends Application {
         // actie on click
         right.setOnAction(e -> {       
         if ((map_x)-150 >= -9400){map_x = map_x - 150;}
-        gc.drawImage( background, map_x, map_y );        
-        gc.drawImage( menu_image, 5, 0 );
-        gc.drawImage( metro_image, 10, 80 );
-        gc.drawImage( tram_image, 10, 140 );
-        gc.drawImage( bus_image, 10, 200 );
-        gc.drawImage( loopafstand_image, 70, 260 );
-        gc.drawImage( looptijd_image, 130, 330 );
-        for (Garage garage : list_garages){
-            garage.setPositionX(map_x);
-            garage.setPositionY(map_y);
-            garage.Draw(gc);
-
-                }
-
     });   
-        
-
-        try
-        {
-            Class.forName("org.postgresql.Driver");
-
-        Connection con=DriverManager.getConnection("jdbc:postgresql://localhost:5432/ParknTravel","postgres","password");
-                if(con!=null)
-                System.out.println("Connected");
-        Statement st=con.createStatement();
-        ResultSet rs = st.executeQuery("SELECT * FROM parking;");
-            while (rs.next()){ //loopt door de lijst tot er niks meer is
-                Double longitude_sql = rs.getDouble("longitude"); //pakt de volgende long
-                Double latitude_sql = rs.getDouble("latitude"); //pakt de volgende lat
-                String name = rs.getString("name"); //pakt de volgende name
-                // calculate de x y van de long lat
-                double latRad1 = latitude_sql*Math.PI/180;
-                double mercN1 = Math.log(Math.tan((Math.PI/4)+(latRad1/2)));
-                double sql_ylat = (10159/2)-(10563*mercN1/(2*Math.PI));
-                double sql_xlong = (longitude_sql + 180.0) * (10563 / 360);  
-                // calculate the locatie van x y
-                double pointysql = ((sql_ylat - null_ylat)*1781);
-                double pointxsql = ((sql_xlong - null_xlong)*1758); 
-                // tekent de P op de locatie
-                Garage garage = new Garage(P_image, name, "Test","Not test", pointxsql,pointysql);
-                list_garages.add(garage);
-                
-                // de loop begint opnieuw
-        }}
-            catch(Exception ee) // dit is nodig bij een try
-        {
-            ee.printStackTrace();
-        };
-        for (Garage garage : list_garages){
-            garage.setPositionX(map_x);
-            garage.setPositionY(map_y);
-            garage.Draw(gc);
-
-                }
-        // add buttons om te tekenen
         root.getChildren().addAll(canvas,right,left,up,down);
         primaryStage.setScene( theScene );
 
         primaryStage.show();
+                try
+                {
+                    Class.forName("org.postgresql.Driver");
+                    
+                    Connection con=DriverManager.getConnection("jdbc:postgresql://localhost:5432/ParknTravel","postgres","password");
+                    if(con!=null)
+                        System.out.println("Connected");
+                    Statement st=con.createStatement();
+                    ResultSet rs = st.executeQuery("SELECT * FROM parking;");
+                    while (rs.next()){ //loopt door de lijst tot er niks meer is
+                        Double longitude_sql = rs.getDouble("longitude"); //pakt de volgende long
+                        Double latitude_sql = rs.getDouble("latitude"); //pakt de volgende lat
+                        String name = rs.getString("name"); //pakt de volgende name
+                    // calculate de x y van de long lat
+                        double latRad1 = latitude_sql*Math.PI/180;
+                        double mercN1 = Math.log(Math.tan((Math.PI/4)+(latRad1/2)));
+                        double sql_ylat = (10159/2)-(10563*mercN1/(2*Math.PI));
+                        double sql_xlong = (longitude_sql + 180.0) * (10563 / 360);  
+                        // calculate the locatie van x y
+                        double pointysql = ((sql_ylat - null_ylat)*1781);
+                        double pointxsql = ((sql_xlong - null_xlong)*1758); 
+                        // tekent de P op de locatie
+                        Garage garage = new Garage(P_image, name, "Test","Not test", pointxsql,pointysql);
+                        list_garages.add(garage);              
+                         // de loop begint opnieuw
+                }}
+                    catch(Exception ee) // dit is nodig bij een try
+                {
+                    ee.printStackTrace();
+                };          
+        
+        new AnimationTimer(){
+            @Override
+            public void handle(long currentNanoTime){
+                //clear the canvas before painting over it
+      
+                gc.clearRect(0,0,canvas.getWidth(),canvas.getHeight());
+                gc.drawImage( background, map_x, map_y );
+                for (Garage garage : list_garages){
+                    garage.setPositionX(map_x);
+                    garage.setPositionY(map_y);
+                    garage.Draw(gc);}
+                gc.drawImage( menu_image, 5, 0 );
+                gc.drawImage( metro_image, 10, 80 );
+                gc.drawImage( tram_image, 10, 140 );
+                gc.drawImage( bus_image, 10, 200 );
+                gc.drawImage( loopafstand_image, 70, 260 );
+                gc.drawImage( looptijd_image, 130, 330 );   
+            }
+        }.start();
+        
+
+        // add buttons om te tekenen
+
         // images end draw
         
 
