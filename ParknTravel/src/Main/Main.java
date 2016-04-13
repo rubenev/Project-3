@@ -3,6 +3,11 @@ package Main;
 
 // Commit test Selim Esengin 11:20
 
+import Main.Stations.Bus;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -19,8 +24,8 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     
-    int map_x = 0;
-    int map_y = 0;
+    int map_x = -3500;
+    int map_y = -5400;
     int canvas_x = 1000;
     int canvas_y = 1500;
     
@@ -31,39 +36,7 @@ public class Main extends Application {
     double mercN = Math.log(Math.tan((Math.PI/4)+(latRad/2)));
     double null_ylat = (10159/2)-(10563*mercN/(2*Math.PI));
     double null_xlong = (4.396787 + 180.0) * (10563 / 360);  
-   //---------------------------------------------------------//
-   //              berekenen van haltes punt x en y           //
-   //---------------------------------------------------------//   
-    double latRad1 = 51.985299*Math.PI/180;
-    double mercN1 = Math.log(Math.tan((Math.PI/4)+(latRad1/2)));
-    double straat_ylat = (10159/2)-(10563*mercN1/(2*Math.PI));
-    double straat_xlong = (4.420903 + 180.0) * (10563 / 360);  
-    
-    double latRad2 = 51.979266*Math.PI/180;
-    double mercN2 = Math.log(Math.tan((Math.PI/4)+(latRad2/2)));
-    double straat2_ylat = (10159/2)-(10563*mercN2/(2*Math.PI));
-    double straat2_xlong = (4.404522 + 180.0) * (10563 / 360);  
 
-    double latRad4 = 51.917372*Math.PI/180;
-    double mercN4 = Math.log(Math.tan((Math.PI/4)+(latRad4/2)));
-    double test_ylat = (10159/2)-(10563*mercN4/(2*Math.PI));
-    double test_xlong = (4.485112 + 180.0) * (10563 / 360);      
-
-    double latRad3 = 51.918209*Math.PI/180;
-    double mercN3 = Math.log(Math.tan((Math.PI/4)+(latRad3/2)));
-    double beurs_ylat = (10159/2)-(10563*mercN3/(2*Math.PI));
-    double beurs_xlong = (4.481266 + 180.0) * (10563 / 360);  
-   //---------------------------------------------------------//
-   //         berekenen van lokaties van haltes op map        //
-   //---------------------------------------------------------//       
-    double pointystraat = ((straat_ylat - null_ylat)*1781);
-    double pointxstraat = ((straat_xlong - null_xlong)*1758);
-    double pointystraat2 = ((straat2_ylat - null_ylat)*1781);
-    double pointxstraat2 = ((straat2_xlong - null_xlong)*1758);
-    double pointytest = ((test_ylat - null_ylat)*1781);
-    double pointxtest = ((test_xlong - null_xlong)*1758);
-    double pointybeurs = ((beurs_ylat - null_ylat)*1781);
-    double pointxbeurs = ((beurs_xlong - null_xlong)*1758);    
 
     Image background = new Image("file:Images/mapRotterdam.png");
     Image up_image = new Image("file:Images/up_button.png");
@@ -81,11 +54,13 @@ public class Main extends Application {
     Image T_image = new Image("file:Images/T-location_image.png"); 
     Image B_image = new Image("file:Images/B-location_image.png"); 
     public static void main(String[] args) {
+   
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage){
+
         primaryStage.setTitle("Park n Travel");        
         Group root = new Group();
         Scene theScene = new Scene( root );
@@ -124,11 +99,7 @@ public class Main extends Application {
         gc.drawImage( loopafstand_image, 70, 260 );
         gc.drawImage( looptijd_image, 130, 330 );
         
-        // Test punten op map //
-       gc.drawImage( P_image, pointxtest+map_x, pointytest+map_y );     
-       gc.drawImage( P_image, pointxstraat+map_x, pointystraat+map_y );   
-       gc.drawImage( M_image, pointxstraat2+map_x, pointystraat2+map_y );  
-       gc.drawImage( T_image, pointxbeurs+map_x, pointybeurs+map_y );  
+ 
       });
 
         // maak button
@@ -149,11 +120,7 @@ public class Main extends Application {
         gc.drawImage( loopafstand_image, 70, 260 );
         gc.drawImage( looptijd_image, 130, 330 );  
         
-        // Test punten op map //
-       gc.drawImage( P_image, pointxtest+map_x, pointytest+map_y );     
-       gc.drawImage( P_image, pointxstraat+map_x, pointystraat+map_y );   
-       gc.drawImage( M_image, pointxstraat2+map_x, pointystraat2+map_y );  
-       gc.drawImage( T_image, pointxbeurs+map_x, pointybeurs+map_y );  
+
     });
         // maak button
         Button left = new Button();
@@ -173,11 +140,7 @@ public class Main extends Application {
         gc.drawImage( loopafstand_image, 70, 260 );
         gc.drawImage( looptijd_image, 130, 330 );  
         
-        // Test punten op map //
-       gc.drawImage( P_image, pointxtest+map_x, pointytest+map_y );     
-       gc.drawImage( P_image, pointxstraat+map_x, pointystraat+map_y );   
-       gc.drawImage( M_image, pointxstraat2+map_x, pointystraat2+map_y );  
-       gc.drawImage( T_image, pointxbeurs+map_x, pointybeurs+map_y );  
+
       });
         // maak button
         Button right = new Button();
@@ -196,27 +159,47 @@ public class Main extends Application {
         gc.drawImage( bus_image, 10, 200 );
         gc.drawImage( loopafstand_image, 70, 260 );
         gc.drawImage( looptijd_image, 130, 330 );
-        
-        // Test punten op map //
-       gc.drawImage( P_image, pointxtest+map_x, pointytest+map_y );     
-       gc.drawImage( P_image, pointxstraat+map_x, pointystraat+map_y );   
-       gc.drawImage( M_image, pointxstraat2+map_x, pointystraat2+map_y );  
-       gc.drawImage( T_image, pointxbeurs+map_x, pointybeurs+map_y );  
+
+
     });   
 
 
 //        gc.drawImage( dot, 1245, 280 ); 
-//        gc.drawImage( dot, pointxnieuw, pointynieuw );   
-        
-        
-//        gc.drawImage( dot, bus_x, bus_y );
+//        gc.drawImage( dot, pointxnieuw, pointynieuw );
+        try
+        {
+            Class.forName("org.postgresql.Driver");
+
+        Connection con=DriverManager.getConnection("jdbc:postgresql://localhost:5432/ParknTravel","postgres","password");
+                if(con!=null)
+                System.out.println("Connected");
+        Statement st=con.createStatement();
+        ResultSet rs = st.executeQuery("SELECT * FROM parking;");
+            while (rs.next()){ //loopt door de lijst tot er niks meer is
+                Double longitude_sql = rs.getDouble("longitude"); //pakt de volgende long
+                Double latitude_sql = rs.getDouble("latitude"); //pakt de volgende lat
+                String name = rs.getString("name"); //pakt de volgende name
+                // calculate de x y van de long lat
+                double latRad1 = latitude_sql*Math.PI/180;
+                double mercN1 = Math.log(Math.tan((Math.PI/4)+(latRad1/2)));
+                double sql_ylat = (10159/2)-(10563*mercN1/(2*Math.PI));
+                double sql_xlong = (longitude_sql + 180.0) * (10563 / 360);  
+                // calculate the locatie van x y
+                double pointysql = ((sql_ylat - null_ylat)*1781);
+                double pointxsql = ((sql_xlong - null_xlong)*1758); 
+                // tekent de P op de locatie
+                gc.drawImage( P_image, pointxsql+map_x, pointysql+map_y ); 
+                // de loop begint opnieuw
+        }}
+            catch(Exception ee) // dit is nodig bij een try
+        {
+            ee.printStackTrace();
+        }              
+
         // add buttons om te tekenen
         root.getChildren().addAll(canvas,right,left,up,down);
         primaryStage.setScene( theScene );
-        
 
-        System.out.println("x = " + pointystraat + ", " + "y = "+ pointxstraat);
-//        System.out.println("x = " + pointxstraat + ", " + "y = "+ pointystraat);
         primaryStage.show();
         // images end draw
         
