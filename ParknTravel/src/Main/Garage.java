@@ -6,6 +6,8 @@
 package Main;
 
 import Main.IComponents.IStations;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -20,6 +22,7 @@ public class Garage implements IStations {
     private Image Garage_Img = null; // string naar de plek invullen blijft hetzelfde voor alle trams
     double Position_x;// longitude, latitude
     double Position_y;
+    List<Garage> GarageList = new ArrayList();
     
     public Garage (Image Garage_Img, String Name, String Description,String Type, double longitude,double latitude)
     {
@@ -60,6 +63,10 @@ public class Garage implements IStations {
     }
     public void setPositionY(double map_y){
         this.Position_y = this.Position_y + map_y;
+       
+    }
+    public void setGarageList(List<Garage> list){
+        this.GarageList = list;
     }
     
     @Override
