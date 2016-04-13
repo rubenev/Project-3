@@ -2,26 +2,29 @@
 package Main.Stations;
 
 import Main.IComponents.IStations;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 
 
     public class Bus implements IStations{
     private String Name = null;
     private String Description = null;
     private String Type = null;
-    private final String Bus_Img = null; // string naar de plek invullen blijft hetzelfde voor alle trams
-    private double[] Location = new double[2];// longitude, latitude
+    private Image Bus_Img = null; // string naar de plek invullen blijft hetzelfde voor alle trams
+    double Position_x;// longitude, latitude
+    double Position_y;
     
     public Bus (String Name, String Description,String Type, double longitude,double latitude)
     {
     this.Name = Name;
     this.Description = Description;
     this.Type = Type;
-    this.Location[0] = longitude;
-    this.Location[1]= latitude;
+    this.Position_x = longitude;
+    this.Position_y = latitude;
     
     }
     
-    public String getTram_Img(){return Bus_Img;}
+    public Image getTram_Img(){return Bus_Img;}
     
     @Override        
     public String[] getStation() {
@@ -30,8 +33,6 @@ import Main.IComponents.IStations;
         StationList[0] = this.Name;
         StationList[1] = this.Description;
         StationList[2] = this.Type;
-        StationList[3] = Double.toString(this.Location[0]) ;
-        StationList[4] = Double.toString(this.Location[1]) ;
         
         return StationList;}
     
@@ -48,8 +49,9 @@ import Main.IComponents.IStations;
     
     }
     @Override
-    public void Draw(){}
-
+    public void Draw(GraphicsContext gc){
+        gc.drawImage(this.Bus_Img,this.Position_x,this.Position_y);
+    }
     @Override
     public void update() {}
 
@@ -66,14 +68,10 @@ import Main.IComponents.IStations;
      return Type;}
     
     @Override
-    public double getLongitude(){return this.Location[0];}
+    public double getPositionX(){return this.Position_x;}
     
     @Override
-    public double getLatitude(){return this.Location[1];}
-    
-    @Override
-    public double[] getLocation(){return this.Location;}
-    
+    public double getPositionY(){return this.Position_y;}
    
         
     

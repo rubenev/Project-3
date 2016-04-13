@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -53,6 +55,7 @@ public class Main extends Application {
     Image M_image = new Image("file:Images/M-location_image.png"); 
     Image T_image = new Image("file:Images/T-location_image.png"); 
     Image B_image = new Image("file:Images/B-location_image.png"); 
+    List<Garage> list_garages = new ArrayList();
     public static void main(String[] args) {
    
         launch(args);
@@ -159,7 +162,12 @@ public class Main extends Application {
         gc.drawImage( bus_image, 10, 200 );
         gc.drawImage( loopafstand_image, 70, 260 );
         gc.drawImage( looptijd_image, 130, 330 );
-        
+        for (Garage garage : list_garages){
+            garage.setPositionX(map_x);
+            garage.setPositionY(map_y);
+            garage.Draw(gc);
+
+                }
 
     });   
         
@@ -186,14 +194,21 @@ public class Main extends Application {
                 double pointysql = ((sql_ylat - null_ylat)*1781);
                 double pointxsql = ((sql_xlong - null_xlong)*1758); 
                 // tekent de P op de locatie
-                gc.drawImage( P_image, pointxsql+map_x, pointysql+map_y ); 
+                Garage garage = new Garage(P_image, name, "Test","Not test", pointxsql,pointysql);
+                list_garages.add(garage);
+                
                 // de loop begint opnieuw
         }}
             catch(Exception ee) // dit is nodig bij een try
         {
             ee.printStackTrace();
-        }              
+        };
+        for (Garage garage : list_garages){
+            garage.setPositionX(map_x);
+            garage.setPositionY(map_y);
+            garage.Draw(gc);
 
+                }
         // add buttons om te tekenen
         root.getChildren().addAll(canvas,right,left,up,down);
         primaryStage.setScene( theScene );

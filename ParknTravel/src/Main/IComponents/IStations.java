@@ -34,16 +34,12 @@ public interface IStations extends IComponents{
     /**
     * @return the Longitude
     **/
-    public double getLongitude();
+    public double getPositionX();
     /**
     * @return the LAtitude
     **/
-    public double getLatitude();
+    public double getPositionY();
 
-    /**
-     *
-     * @return Location, list of 2 doubles. Longitude , Latitude.
-     */
-    public double[] getLocation();
+    
     
 }

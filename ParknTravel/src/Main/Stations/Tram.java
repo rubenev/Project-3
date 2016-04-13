@@ -6,6 +6,7 @@
 package Main.Stations;
 
 import Main.IComponents.IStations;
+import javafx.scene.canvas.GraphicsContext;
 
 /**
  *
@@ -16,15 +17,16 @@ import Main.IComponents.IStations;
     private String Description = null;
     private String Type = null;
     private final String Tram_Img = null; // string naar de plek invullen blijft hetzelfde voor alle trams
-    private double[] Location = new double[2];// longitude, latitude
+    private double Position_x;
+    private double Position_y;// longitude, latitude
     
     public Tram (String Name, String Description,String Type, double longitude,double latitude)
     {
     this.Name = Name;
     this.Description = Description;
     this.Type = Type;
-    this.Location[0] = longitude;
-    this.Location[1]= latitude;
+    this.Position_x = longitude;
+    this.Position_y = latitude;
     
     }
     
@@ -37,8 +39,7 @@ import Main.IComponents.IStations;
         StationList[0] = this.Name;
         StationList[1] = this.Description;
         StationList[2] = this.Type;
-        StationList[3] = Double.toString(this.Location[0]) ;
-        StationList[4] = Double.toString(this.Location[1]) ;
+
         
         return StationList;}
     
@@ -55,7 +56,7 @@ import Main.IComponents.IStations;
     
     }
     @Override
-    public void Draw(){}
+    public void Draw(GraphicsContext gc){}
 
     @Override
     public void update() {}
@@ -73,13 +74,15 @@ import Main.IComponents.IStations;
      return Type;}
     
     @Override
-    public double getLongitude(){return this.Location[0];}
+    public double getPositionX(){return this.Position_x;}
     
     @Override
-    public double getLatitude(){return this.Location[1];}
+    public double getPositionY(){return this.Position_y;}
+
+
+  
     
-    @Override
-    public double[] getLocation(){return this.Location;}
+
  }
  
     
