@@ -21,7 +21,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
-import javax.swing.JComboBox;
 
 
 public class Main extends Application {
@@ -46,14 +45,8 @@ public class Main extends Application {
     Image left_image = new Image("file:Images/left_button.png");
     Image right_image = new Image("file:Images/right_button.png");
     Image menu_image = new Image("file:Images/menuimg.png");
-//    Image metro_image = new Image("file:Images/metrolabel.png");
-//    Image tram_image = new Image("file:Images/tramlabel.png");
-//    Image bus_image = new Image("file:Images/buslabel.png");
-//    Image metro_check = new Image("file:Images/metrolabel_check.png");
-//    Image tram_check = new Image("file:Images/tramlabel_check.png");
-//    Image bus_check = new Image("file:Images/buslabel_check.png");
     Image looptijd_image = new Image("file:Images/looptijd.png");
-    Image loopafstand_image = new Image("file:Images/loopafstand.png");  
+    Image loopafstand_image = new Image("file:Images/loopafstand.png");
     Menu menu = new Menu();
     CheckBox bus = new CheckBox();
     CheckBox tram = new CheckBox();
@@ -84,13 +77,19 @@ public class Main extends Application {
         for (Garage garage : new_list){
             comboBox.getItems().add(garage.getName());
         }
-        comboBox.setValue("Green rectangle");
+        comboBox.setValue("Select Garage");
         comboBox.setBackground(Background.EMPTY);
         comboBox.setLayoutX(20);
         comboBox.setLayoutY(20);
         
         comboBox.setOnAction(e -> {
           comboBox.getValue();  
+          for (Garage garage : new_list){
+              if (comboBox.getValue() == garage.getName()){
+//                map_x = (int) garage.getPositionX() + 300;
+//                map_y = (int) garage.getPositionY() + 300;
+                System.out.println(map_x);}
+          }
           System.out.println(comboBox.getValue());
         });
         
@@ -107,10 +106,7 @@ public class Main extends Application {
         up.setOnAction(e ->{ 
         if (map_y+100 <= 0){map_y = map_y + 100;
         for (Garage garage : new_list){
-            garage.setPositionY(+ 100); //past alle Y van de garages aan UPDATE
-            }}   
-      });
-
+            garage.setPositionY(+ 100);}}}); //past alle Y van de garages aan UPDATE      
         // maak button
         Button down = new Button();
         // plaats button
@@ -122,9 +118,7 @@ public class Main extends Application {
         down.setOnAction(e->{        
         if (map_y-100 >= -9400){map_y = map_y - 100;
         for (Garage garage : new_list){
-            garage.setPositionY(- 100); //past alle Y van de garages aan UPDATE
-            }}
-    });
+            garage.setPositionY(- 100);}}}); //past alle Y van de garages aan UPDATE    
         // maak button
         Button left = new Button();
         // plaats button plaatje ect
@@ -136,9 +130,7 @@ public class Main extends Application {
         left.setOnAction(e-> {       
         if (map_x+150 <= 0){map_x = map_x + 150;
         for (Garage garage : new_list){
-            garage.setPositionX(+ 150); //past alle X van de garages aan UPDATE
-            }}
-      });
+            garage.setPositionX(+ 150);}}}); //past alle X van de garages aan UPDATE    
         // maak button
         Button right = new Button();
         // plaats button plaatje ect
@@ -150,18 +142,13 @@ public class Main extends Application {
         right.setOnAction(e -> {       
         if ((map_x)-150 >= -9400){map_x = map_x - 150;
         for (Garage garage : new_list){
-            garage.setPositionX(- 150); //past alle X van de garages aan UPDATE
-        }}
-    });   
+            garage.setPositionX(- 150);}}});  //past alle X van de garages aan UPDATE
+      
         root.getChildren().addAll(canvas,right,left,up,down,comboBox,bus,tram,metro);
         primaryStage.setScene( theScene );
         primaryStage.show();
-        
 
-
-// connect haald een list op en slaat deze op in new_list
-     //   new_list.setGarageList(new_list);        
-
+        // Refresh het scherm
         new AnimationTimer(){
             @Override
             public void handle(long currentNanoTime){
@@ -169,24 +156,15 @@ public class Main extends Application {
                 
                 gc.clearRect(0,0,canvas.getWidth(),canvas.getHeight());
                 gc.drawImage( background, map_x, map_y );
-               menu.InteractionCheckbox(bus, metro, tram, primaryStage, theScene);
+                menu.InteractionCheckbox(bus, metro, tram, primaryStage, theScene);
                 for (Garage garage : new_list){
-                    garage.Draw(gc);}
+                    if(comboBox.getValue() == garage.getName() || comboBox.getValue() == "Select Garage")
+                        garage.Draw(gc);}
                 gc.drawImage( menu_image, 5, 0 );
                 gc.drawImage( loopafstand_image, 70, 260 );
                 gc.drawImage( looptijd_image, 130, 330 );   
                 
             }
-        }.start();
-        
-
-        // add buttons om te tekenen
-
-        // images end draw
-        
-
-
-      
-}
-    
+        }.start();   
+    }    
 }
