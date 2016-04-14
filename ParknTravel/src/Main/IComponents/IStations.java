@@ -27,10 +27,7 @@ public interface IStations extends IComponents{
     * @return the Description
     **/
     public String getDescription();
-    /**
-    * @return the Type
-    **/
-    public String getType();
+
     /**
     * @return the Longitude
     **/

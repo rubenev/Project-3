@@ -183,11 +183,4 @@ public List<Tram> getTramList (){
                     ee.printStackTrace();
                 };  
                 return list_metros;        
-}
-
-
-
-
-}
-}
-
+}}
