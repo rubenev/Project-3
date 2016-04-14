@@ -9,16 +9,16 @@ import javafx.scene.image.Image;
     public class Bus implements IStations{
     private String Name = null;
     private String Description = null;
-    private String Type = null;
+    //private String Type = null;
     private Image Bus_Img = null; // string naar de plek invullen blijft hetzelfde voor alle trams
     double Position_x;// longitude, latitude
     double Position_y;
     
-    public Bus (Image image, String Name, String Description,String Type, double longitude,double latitude)
+    public Bus (Image image, String Name, String Description, double longitude,double latitude)
     {
     this.Name = Name;
     this.Description = Description;
-    this.Type = Type;
+    //this.Type = Type;
     this.Position_x = longitude;
     this.Position_y = latitude;
     this.Bus_Img = image;
@@ -33,7 +33,7 @@ import javafx.scene.image.Image;
         String[] StationList = new String[5];
         StationList[0] = this.Name;
         StationList[1] = this.Description;
-        StationList[2] = this.Type;
+       // StationList[2] = this.Type;
         
         return StationList;}
     
@@ -63,11 +63,11 @@ import javafx.scene.image.Image;
     @Override
     public String getDescription() {
        return Description;}
-
+/*
     @Override
     public String getType() {
      return Type;}
-    
+    */
     @Override
     public double getPositionX(){return this.Position_x;}
     
