@@ -14,10 +14,13 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import javax.swing.JComboBox;
 
 
 public class Main extends Application {
@@ -60,14 +63,29 @@ public class Main extends Application {
         primaryStage.setTitle("Park n Travel");        
         Group root = new Group();
         Scene theScene = new Scene( root );
+        // data is database
         Database data = new Database();
-        List<Garage> new_list= data.getGaragelist(); 
+        List<Garage> new_list= data.getGaragelist(); //list van garages uit database
         for (Garage garage : new_list){
             garage.setPositionY(map_y); //past alle Y van de garages aan zodat het klopt met de map
             garage.setPositionX(map_x); //past alle Y van de garages aan zodat het klopt met de map
             }
         Canvas canvas = new Canvas( canvas_y, canvas_x );
-
+        
+        ComboBox<String> comboBox = new ComboBox<>();
+        for (Garage garage : new_list){
+            comboBox.getItems().add(garage.getName());
+        }
+        comboBox.setValue("Green rectangle");
+        comboBox.setBackground(Background.EMPTY);
+        comboBox.setLayoutX(20);
+        comboBox.setLayoutY(20);
+        
+        comboBox.setOnAction(e -> {
+          comboBox.getValue();  
+          System.out.println(comboBox.getValue());
+        });
+        
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
         // maak button
@@ -127,7 +145,7 @@ public class Main extends Application {
             garage.setPositionX(- 150); //past alle X van de garages aan UPDATE
         }}
     });   
-        root.getChildren().addAll(canvas,right,left,up,down);
+        root.getChildren().addAll(canvas,right,left,up,down,comboBox);
         primaryStage.setScene( theScene );
         primaryStage.show();
         
