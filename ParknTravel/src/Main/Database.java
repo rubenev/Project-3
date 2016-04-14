@@ -79,7 +79,7 @@ public class Database {
                     if(con!=null)
                         System.out.println("Connected");
                     Statement st=con.createStatement();
-                    ResultSet rs = st.executeQuery("SELECT * FROM ret_haltes;");
+                    ResultSet rs = st.executeQuery("SELECT * FROM ret_haltes;"); // aanpasssssen!!
                     while (rs.next()){ //loopt door de lijst tot er niks meer is
                         Double longitude_sql = rs.getDouble("longitude"); //pakt de volgende long
                         Double latitude_sql = rs.getDouble("latitude"); //pakt de volgende lat

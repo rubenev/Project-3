@@ -79,10 +79,10 @@ public class Main extends Application {
         up.setShape(new Circle());
         // actie on click
         up.setOnAction(e ->{ 
-        if (map_y+100 <= 0){map_y = map_y + 100;}
+        if (map_y+100 <= 0){map_y = map_y + 100;
         for (Garage garage : new_list){
             garage.setPositionY(+ 100); //past alle Y van de garages aan UPDATE
-            }   
+            }}   
       });
 
         // maak button
@@ -94,10 +94,10 @@ public class Main extends Application {
         down.setShape(new Circle());
         // actie on click
         down.setOnAction(e->{        
-        if (map_y-100 >= -9400){map_y = map_y - 100;}
+        if (map_y-100 >= -9400){map_y = map_y - 100;
         for (Garage garage : new_list){
             garage.setPositionY(- 100); //past alle Y van de garages aan UPDATE
-            }
+            }}
     });
         // maak button
         Button left = new Button();
@@ -108,10 +108,10 @@ public class Main extends Application {
         left.setShape(new Circle());
         // actie on click
         left.setOnAction(e-> {       
-        if (map_x+150 <= 0){map_x = map_x + 150;}
+        if (map_x+150 <= 0){map_x = map_x + 150;
         for (Garage garage : new_list){
             garage.setPositionX(+ 150); //past alle X van de garages aan UPDATE
-            }
+            }}
       });
         // maak button
         Button right = new Button();
@@ -122,10 +122,10 @@ public class Main extends Application {
         right.setShape(new Circle());
         // actie on click
         right.setOnAction(e -> {       
-        if ((map_x)-150 >= -9400){map_x = map_x - 150;}
+        if ((map_x)-150 >= -9400){map_x = map_x - 150;
         for (Garage garage : new_list){
             garage.setPositionX(- 150); //past alle X van de garages aan UPDATE
-        }
+        }}
     });   
         root.getChildren().addAll(canvas,right,left,up,down);
         primaryStage.setScene( theScene );
