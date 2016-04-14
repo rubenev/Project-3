@@ -1,6 +1,5 @@
 package Main.Stations;
 
-import Main.IComponents.IStations;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -17,7 +16,7 @@ public class Metro implements IStations{
     double Position_x;
     double Position_y;
     
-    public Metro (Image image, String Name, String Description,double longitude,double latitude)
+    public Metro(Image image, String Name, String Description,double longitude,double latitude)
     {
     this.Name = Name;
     this.Description = Description;
@@ -54,8 +53,10 @@ public class Metro implements IStations{
     
     }
     @Override
-    public void Draw(GraphicsContext gc){}
-
+    public void Draw(GraphicsContext gc){
+        gc.drawImage(this.Metro_Img,this.Position_x,this.Position_y);
+    }
+        
     @Override
     public void update() {}
 

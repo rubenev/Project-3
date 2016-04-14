@@ -5,7 +5,7 @@
  */
 package Main;
 
-import Main.IComponents.IStations;
+import Main.Stations.IStations;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.canvas.GraphicsContext;

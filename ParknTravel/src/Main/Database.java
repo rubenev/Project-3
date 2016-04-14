@@ -30,9 +30,9 @@ public class Database {
     List<Metro> list_metros = new ArrayList();
  
     Image P_image = new Image("file:Images/P-location_image.png");  
-    Image M_image = new Image("file:Images/M-location_image.png"); 
-    Image T_image = new Image("file:Images/T-location_image.png"); 
-    Image B_image = new Image("file:Images/B-location_image.png"); 
+    Image M_image = new Image("file:Images/M-location_imagek.png"); 
+    Image T_image = new Image("file:Images/T-location_imagek.png"); 
+    Image B_image = new Image("file:Images/B-location_imagek.png"); 
     public Database(){
     
     } 
@@ -157,7 +157,7 @@ public List<Tram> getTramList (){
                     if(con!=null)
                         System.out.println("Connected");
                     Statement st=con.createStatement();
-                    ResultSet rs = st.executeQuery("SELECT * FROM ret_haltes WHERE ret_description LIKE '%metrolijn%' OR ret_haltes.description LIKE '%Metrolijn%';"); // aanpasssssen!!
+                    ResultSet rs = st.executeQuery("SELECT * FROM ret_haltes WHERE description LIKE '%metrolijn%' OR ret_haltes.description LIKE '%Metrolijn%';"); // aanpasssssen!!
                     while (rs.next()){ //loopt door de lijst tot er niks meer is
                         Double longitude_sql = rs.getDouble("longitude"); //pakt de volgende long
                         Double latitude_sql = rs.getDouble("latitude"); //pakt de volgende lat

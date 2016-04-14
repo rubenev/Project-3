@@ -4,6 +4,8 @@ package Main;
 // Commit test Selim Esengin 11:20
 
 
+
+import Main.Stations.Metro;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.animation.AnimationTimer;
@@ -52,6 +54,7 @@ public class Main extends Application {
     CheckBox metro = new CheckBox();
     
     List<Garage> list_garages = new ArrayList();
+    List<Metro> list_metro = new ArrayList();
     public static void main(String[] args) {
    
         launch(args);
@@ -70,6 +73,12 @@ public class Main extends Application {
             garage.setPositionY(map_y); //past alle Y van de garages aan zodat het klopt met de map
             garage.setPositionX(map_x); //past alle Y van de garages aan zodat het klopt met de map
             }
+        List<Metro> metro_list= data.getMetroList(); //list van garages uit database
+        for (Metro metro : metro_list){
+            metro.setPositionY(map_y); //past alle Y van de garages aan zodat het klopt met de map
+            metro.setPositionX(map_x); //past alle Y van de garages aan zodat het klopt met de map
+            }
+        
         Canvas canvas = new Canvas( canvas_y, canvas_x );
         
         ComboBox<String> comboBox = new ComboBox<>();
@@ -106,7 +115,10 @@ public class Main extends Application {
         up.setOnAction(e ->{ 
         if (map_y+100 <= 0){map_y = map_y + 100;
         for (Garage garage : new_list){
-            garage.setPositionY(+ 100);}}}); //past alle Y van de garages aan UPDATE      
+            garage.setPositionY(+ 100);}
+        for (Metro metro : metro_list){
+            metro.setPositionY(+ 100);
+        }}}); //past alle Y van de garages aan UPDATE      
         // maak button
         Button down = new Button();
         // plaats button
@@ -118,7 +130,10 @@ public class Main extends Application {
         down.setOnAction(e->{        
         if (map_y-100 >= -9400){map_y = map_y - 100;
         for (Garage garage : new_list){
-            garage.setPositionY(- 100);}}}); //past alle Y van de garages aan UPDATE    
+            garage.setPositionY(- 100);}
+        for (Metro metro : metro_list){
+            metro.setPositionY(- 100);
+        }}}); //past alle Y van de garages aan UPDATE    
         // maak button
         Button left = new Button();
         // plaats button plaatje ect
@@ -130,7 +145,10 @@ public class Main extends Application {
         left.setOnAction(e-> {       
         if (map_x+150 <= 0){map_x = map_x + 150;
         for (Garage garage : new_list){
-            garage.setPositionX(+ 150);}}}); //past alle X van de garages aan UPDATE    
+            garage.setPositionX(+ 150);}
+        for (Metro metro : metro_list){
+            metro.setPositionX(+ 150);
+        }}}); //past alle X van de garages aan UPDATE    
         // maak button
         Button right = new Button();
         // plaats button plaatje ect
@@ -142,7 +160,10 @@ public class Main extends Application {
         right.setOnAction(e -> {       
         if ((map_x)-150 >= -9400){map_x = map_x - 150;
         for (Garage garage : new_list){
-            garage.setPositionX(- 150);}}});  //past alle X van de garages aan UPDATE
+            garage.setPositionX(- 150);}
+        for (Metro metro : metro_list){
+            metro.setPositionX(- 150);
+        }}});  //past alle X van de garages aan UPDATE
     
         root.getChildren().addAll(canvas,right,left,up,down,comboBox,bus,tram,metro);
         primaryStage.setScene( theScene );
@@ -157,9 +178,14 @@ public class Main extends Application {
                 gc.clearRect(0,0,canvas.getWidth(),canvas.getHeight());
                 gc.drawImage( background, map_x, map_y );
                 menu.InteractionCheckbox(bus, metro, tram, primaryStage, theScene);
+                for (Metro metroo : metro_list){
+                    if(metro.isSelected())
+                    metroo.Draw(gc);
+                }
                 for (Garage garage : new_list){
                     if(comboBox.getValue() == garage.getName() || comboBox.getValue() == "Select Garage" || comboBox.getValue() == "Show All")
                         garage.Draw(gc);}
+                
                 gc.drawImage( menu_image, 5, 0 );
                 
                 gc.drawImage( loopafstand_image, 70, 260 );
