@@ -7,6 +7,7 @@ package Main.Stations;
 
 import Main.IComponents.IStations;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 
 /**
  *
@@ -15,22 +16,23 @@ import javafx.scene.canvas.GraphicsContext;
  public class Tram implements IStations{
     private String Name = null;
     private String Description = null;
-    private String Type = null;
-    private final String Tram_Img = null; // string naar de plek invullen blijft hetzelfde voor alle trams
+    //private String Type = null;
+    private Image Tram_Img = null; // string naar de plek invullen blijft hetzelfde voor alle trams
     private double Position_x;
     private double Position_y;// longitude, latitude
     
-    public Tram (String Name, String Description,String Type, double longitude,double latitude)
+    public Tram (Image image, String Name, String Description, double longitude,double latitude)
     {
     this.Name = Name;
     this.Description = Description;
-    this.Type = Type;
+    //this.Type = Type;
     this.Position_x = longitude;
     this.Position_y = latitude;
+    this.Tram_Img = image;
     
     }
     
-    public String getTram_Img(){return Tram_Img;}
+    public Image getTram_Img(){return Tram_Img;}
     
     @Override        
     public String[] getStation() {
@@ -38,7 +40,7 @@ import javafx.scene.canvas.GraphicsContext;
         String[] StationList = new String[5];
         StationList[0] = this.Name;
         StationList[1] = this.Description;
-        StationList[2] = this.Type;
+        //StationList[2] = this.Type;
 
         
         return StationList;}
@@ -69,9 +71,9 @@ import javafx.scene.canvas.GraphicsContext;
     public String getDescription() {
        return Description;}
 
-    @Override
-    public String getType() {
-     return Type;}
+    //@Override
+    //public String getType() {
+    // return Type;}
     
     @Override
     public double getPositionX(){return this.Position_x;}
