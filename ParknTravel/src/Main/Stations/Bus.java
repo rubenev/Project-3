@@ -63,11 +63,16 @@ import javafx.scene.image.Image;
     @Override
     public String getDescription() {
        return Description;}
-/*
+    
     @Override
-    public String getType() {
-     return Type;}
-    */
+    public void setPositionX(double map_x){
+        this.Position_x = this.Position_x + map_x;
+    }
+    @Override
+    public void setPositionY(double map_y){
+        this.Position_y = this.Position_y + map_y;
+       
+    }
     @Override
     public double getPositionX(){return this.Position_x;}
     

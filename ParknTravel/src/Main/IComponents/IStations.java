@@ -37,6 +37,8 @@ public interface IStations extends IComponents{
     **/
     public double getPositionY();
 
+    public void setPositionX(double map_x);
     
+    public void setPositionY(double map_y);
     
 }

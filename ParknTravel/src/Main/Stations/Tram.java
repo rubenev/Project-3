@@ -14,16 +14,16 @@ import javafx.scene.image.Image;
  * @author Halfvol
  */
  public class Tram implements IStations{
-    private String Name = null;
+    private String name = null;
     private String Description = null;
     //private String Type = null;
     private Image Tram_Img = null; // string naar de plek invullen blijft hetzelfde voor alle trams
     private double Position_x;
     private double Position_y;// longitude, latitude
     
-    public Tram (Image image, String Name, String Description, double longitude,double latitude)
+    public Tram (Image image, String name, String Description, double longitude,double latitude)
     {
-    this.Name = Name;
+    this.name = name;
     this.Description = Description;
     //this.Type = Type;
     this.Position_x = longitude;
@@ -38,7 +38,7 @@ import javafx.scene.image.Image;
     public String[] getStation() {
         // return een lijst met alle atributen in String
         String[] StationList = new String[5];
-        StationList[0] = this.Name;
+        StationList[0] = this.name;
         StationList[1] = this.Description;
         //StationList[2] = this.Type;
 
@@ -65,16 +65,21 @@ import javafx.scene.image.Image;
 
     @Override
     public String getName() {
-        return Name;}
+        return name;}
 
     @Override
     public String getDescription() {
        return Description;}
 
-    //@Override
-    //public String getType() {
-    // return Type;}
-    
+    @Override
+    public void setPositionX(double map_x){
+        this.Position_x = this.Position_x + map_x;
+    }
+    @Override
+    public void setPositionY(double map_y){
+        this.Position_y = this.Position_y + map_y;
+       
+    }
     @Override
     public double getPositionX(){return this.Position_x;}
     

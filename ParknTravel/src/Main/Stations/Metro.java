@@ -14,15 +14,16 @@ public class Metro implements IStations{
     private String Description = null;
     //private String Type = null;
     private Image Metro_Img = null; // string naar de plek invullen blijft hetzelfde voor alle trams
-    private double[] Location = new double[2];// longitude, latitude
+    double Position_x;
+    double Position_y;
     
     public Metro (Image image, String Name, String Description,double longitude,double latitude)
     {
     this.Name = Name;
     this.Description = Description;
     //this.Type = Type;
-    this.Location[0] = longitude;
-    this.Location[1]= latitude;
+    this.Position_x = longitude;
+    this.Position_y = latitude;
     this.Metro_Img = image;
     
     }
@@ -65,17 +66,21 @@ public class Metro implements IStations{
     @Override
     public String getDescription() {
        return Description;}
-/*
+
     @Override
-    public String getType() {
-     return Type;}
-    */
+    public void setPositionX(double map_x){
+        this.Position_x = this.Position_x + map_x;
+    }
+    @Override
+    public void setPositionY(double map_y){
+        this.Position_y = this.Position_y + map_y;
+       
+    }
+    @Override
+    public double getPositionX(){return this.Position_x;}
     
     @Override
-    public double getPositionX(){return this.Location[0];}
-    
-    @Override
-    public double getPositionY(){return this.Location[1];}
+    public double getPositionY(){return this.Position_y;}
     
   
 }

@@ -58,9 +58,11 @@ public class Garage implements IStations {
     public String getType() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    @Override
     public void setPositionX(double map_x){
         this.Position_x = this.Position_x + map_x;
     }
+    @Override
     public void setPositionY(double map_y){
         this.Position_y = this.Position_y + map_y;
        
