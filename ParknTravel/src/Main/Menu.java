@@ -19,6 +19,8 @@ public class Menu implements IComponents {
     Image metro_image = new Image("file:Images/metrolabel.png");
     Image tram_image = new Image("file:Images/tramlabel.png");
     Image tram_image_c = new Image("file:Images/tramlabel_check.png");
+    Image bus_image_c = new Image("file:Images/buslabel_check.png");
+    Image metro_image_c = new Image("file:Images/metrolabel_check.png");
     Image bus_image = new Image("file:Images/buslabel.png");
     Image looptijd_image = new Image("file:Images/looptijd.png");
     Image loopafstand_image = new Image("file:Images/loopafstand.png");  
@@ -34,11 +36,11 @@ public class Menu implements IComponents {
     }
     public void InteractionCheckbox(CheckBox Bus , CheckBox Metro, CheckBox Tram, Stage primaryStage, Scene theScene ){
     Bus.setLayoutX(-21); Bus.setLayoutY(200);
-    if (Bus.isSelected()){Bus.setGraphic(new ImageView(tram_image));}else{Bus.setGraphic(new ImageView(bus_image));}
+    if (Bus.isSelected()){Bus.setGraphic(new ImageView(bus_image_c));}else{Bus.setGraphic(new ImageView(bus_image));}
      Metro.setLayoutX(-21); Metro.setLayoutY(80);
-    if (Metro.isSelected()){Metro.setGraphic(new ImageView(tram_image_c));}else{Metro.setGraphic(new ImageView(metro_image));}
+    if (Metro.isSelected()){Metro.setGraphic(new ImageView(metro_image_c));}else{Metro.setGraphic(new ImageView(metro_image));}
      Tram.setLayoutX(-21); Tram.setLayoutY(140);
-    if (Tram.isSelected()){Tram.setGraphic(new ImageView(metro_image));}else{Tram.setGraphic(new ImageView(tram_image));}
+    if (Tram.isSelected()){Tram.setGraphic(new ImageView(tram_image_c));}else{Tram.setGraphic(new ImageView(tram_image));}
     
     primaryStage.setScene( theScene );
     }

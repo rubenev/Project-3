@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -45,12 +46,19 @@ public class Main extends Application {
     Image left_image = new Image("file:Images/left_button.png");
     Image right_image = new Image("file:Images/right_button.png");
     Image menu_image = new Image("file:Images/menuimg.png");
-    Image metro_image = new Image("file:Images/metrolabel.png");
-    Image tram_image = new Image("file:Images/tramlabel.png");
-    Image bus_image = new Image("file:Images/buslabel.png");
+//    Image metro_image = new Image("file:Images/metrolabel.png");
+//    Image tram_image = new Image("file:Images/tramlabel.png");
+//    Image bus_image = new Image("file:Images/buslabel.png");
+//    Image metro_check = new Image("file:Images/metrolabel_check.png");
+//    Image tram_check = new Image("file:Images/tramlabel_check.png");
+//    Image bus_check = new Image("file:Images/buslabel_check.png");
     Image looptijd_image = new Image("file:Images/looptijd.png");
     Image loopafstand_image = new Image("file:Images/loopafstand.png");  
-
+    Menu menu = new Menu();
+    CheckBox bus = new CheckBox();
+    CheckBox tram = new CheckBox();
+    CheckBox metro = new CheckBox();
+    
     List<Garage> list_garages = new ArrayList();
     public static void main(String[] args) {
    
@@ -145,7 +153,7 @@ public class Main extends Application {
             garage.setPositionX(- 150); //past alle X van de garages aan UPDATE
         }}
     });   
-        root.getChildren().addAll(canvas,right,left,up,down,comboBox);
+        root.getChildren().addAll(canvas,right,left,up,down,comboBox,bus,tram,metro);
         primaryStage.setScene( theScene );
         primaryStage.show();
         
@@ -161,13 +169,10 @@ public class Main extends Application {
                 
                 gc.clearRect(0,0,canvas.getWidth(),canvas.getHeight());
                 gc.drawImage( background, map_x, map_y );
-                
+               menu.InteractionCheckbox(bus, metro, tram, primaryStage, theScene);
                 for (Garage garage : new_list){
                     garage.Draw(gc);}
                 gc.drawImage( menu_image, 5, 0 );
-                gc.drawImage( metro_image, 10, 80 );
-                gc.drawImage( tram_image, 10, 140 );
-                gc.drawImage( bus_image, 10, 200 );
                 gc.drawImage( loopafstand_image, 70, 260 );
                 gc.drawImage( looptijd_image, 130, 330 );   
                 
