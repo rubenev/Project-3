@@ -79,11 +79,12 @@ public class Database {
                     if(con!=null)
                         System.out.println("Connected");
                     Statement st=con.createStatement();
-                    ResultSet rs = st.executeQuery("SELECT * FROM ret_haltes;"); // aanpasssssen!!
+                    ResultSet rs = st.executeQuery("SELECT * FROM ret_haltes WHERE ret_description LIKE '%buslijn%' OR ret_haltes.description LIKE '%Buslijn%';"); // aanpasssssen!!
                     while (rs.next()){ //loopt door de lijst tot er niks meer is
                         Double longitude_sql = rs.getDouble("longitude"); //pakt de volgende long
                         Double latitude_sql = rs.getDouble("latitude"); //pakt de volgende lat
                         String name = rs.getString("name"); //pakt de volgende name
+                        String description = rs.getString("description");
                     // calculate de x y van de long lat
                   
                         double latRad1 = latitude_sql*Math.PI/180;
@@ -94,7 +95,7 @@ public class Database {
                         double pointysql = ((sql_ylat - null_ylat)*1781);
                         double pointxsql = ((sql_xlong - null_xlong)*1758); 
                         // tekent de P op de locatie
-                        Bus bus = new Bus(B_image, name, "Test","Not test", pointxsql,pointysql);
+                        Bus bus = new Bus(B_image, name, description, pointxsql,pointysql);
                         list_busses.add(bus);              
                          // de loop begint opnieuw
                     
@@ -105,5 +106,88 @@ public class Database {
                 };  
                 return list_busses;        
 }
+public List<Tram> getTramList (){
+            
+            try
+                {
+                    Class.forName("org.postgresql.Driver");
+                    
+                    Connection con=DriverManager.getConnection("jdbc:postgresql://localhost:5432/ParknTravel","postgres","password");
+                    if(con!=null)
+                        System.out.println("Connected");
+                    Statement st=con.createStatement();
+                    ResultSet rs = st.executeQuery("SELECT * FROM ret_haltes WHERE ret_description LIKE '%tramlijn%' OR ret_haltes.description LIKE '%Tramlijn%';"); // aanpasssssen!!
+                    while (rs.next()){ //loopt door de lijst tot er niks meer is
+                        Double longitude_sql = rs.getDouble("longitude"); //pakt de volgende long
+                        Double latitude_sql = rs.getDouble("latitude"); //pakt de volgende lat
+                        String name = rs.getString("name"); //pakt de volgende name
+                        String description = rs.getString("description");
+                        
+                        
+                    // calculate de x y van de long lat
+                  
+                        double latRad1 = latitude_sql*Math.PI/180;
+                        double mercN1 = Math.log(Math.tan((Math.PI/4)+(latRad1/2)));
+                        double sql_ylat = (10159/2)-(10563*mercN1/(2*Math.PI));
+                        double sql_xlong = (longitude_sql + 180.0) * (10563 / 360);  
+                        // calculate the locatie van x y
+                        double pointysql = ((sql_ylat - null_ylat)*1781);
+                        double pointxsql = ((sql_xlong - null_xlong)*1758); 
+                        // tekent de P op de locatie
+                        Tram tram = new Tram(T_image, name, description, pointxsql,pointysql);
+                        list_trams.add(tram);              
+                         // de loop begint opnieuw
+                    
+                }}
+                    catch(Exception ee) // dit is nodig bij een try
+                {
+                    ee.printStackTrace();
+                };  
+                return list_trams;
+}
+                
+                
+   public List<Metro> getMetroList(){
+       
+             try
+                {
+                    Class.forName("org.postgresql.Driver");
+                    
+                    Connection con=DriverManager.getConnection("jdbc:postgresql://localhost:5432/ParknTravel","postgres","password");
+                    if(con!=null)
+                        System.out.println("Connected");
+                    Statement st=con.createStatement();
+                    ResultSet rs = st.executeQuery("SELECT * FROM ret_haltes WHERE ret_description LIKE '%metrolijn%' OR ret_haltes.description LIKE '%Metrolijn%';"); // aanpasssssen!!
+                    while (rs.next()){ //loopt door de lijst tot er niks meer is
+                        Double longitude_sql = rs.getDouble("longitude"); //pakt de volgende long
+                        Double latitude_sql = rs.getDouble("latitude"); //pakt de volgende lat
+                        String name = rs.getString("name"); //pakt de volgende name
+                        String description = rs.getString("description");
+                    // calculate de x y van de long lat
+                  
+                        double latRad1 = latitude_sql*Math.PI/180;
+                        double mercN1 = Math.log(Math.tan((Math.PI/4)+(latRad1/2)));
+                        double sql_ylat = (10159/2)-(10563*mercN1/(2*Math.PI));
+                        double sql_xlong = (longitude_sql + 180.0) * (10563 / 360);  
+                        // calculate the locatie van x y
+                        double pointysql = ((sql_ylat - null_ylat)*1781);
+                        double pointxsql = ((sql_xlong - null_xlong)*1758); 
+                        // tekent de P op de locatie
+                        Metro metro = new Metro(M_image, name, description, pointxsql,pointysql);
+                        list_metros.add(metro);              
+                         // de loop begint opnieuw
+                    
+                }}
+                    catch(Exception ee) // dit is nodig bij een try
+                {
+                    ee.printStackTrace();
+                };  
+                return list_metros;        
+}
+
+
+
 
 }
+}
+
