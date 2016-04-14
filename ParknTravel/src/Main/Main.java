@@ -74,10 +74,11 @@ public class Main extends Application {
         Canvas canvas = new Canvas( canvas_y, canvas_x );
         
         ComboBox<String> comboBox = new ComboBox<>();
+        comboBox.getItems().add("Show All");
         for (Garage garage : new_list){
             comboBox.getItems().add(garage.getName());
         }
-        comboBox.setValue("Select Garage");
+        comboBox.setValue("Select Garage");       
         comboBox.setBackground(Background.EMPTY);
         comboBox.setLayoutX(20);
         comboBox.setLayoutY(20);
@@ -86,8 +87,8 @@ public class Main extends Application {
           comboBox.getValue();  
           for (Garage garage : new_list){
               if (comboBox.getValue() == garage.getName()){
-//                map_x = (int) garage.getPositionX() + 300;
-//                map_y = (int) garage.getPositionY() + 300;
+//                map_x = -10563 - (int) garage.getPositionX();
+//                map_y = -10159 - (int) garage.getPositionY();
                 System.out.println(map_x);}
           }
           System.out.println(comboBox.getValue());
@@ -158,7 +159,7 @@ public class Main extends Application {
                 gc.drawImage( background, map_x, map_y );
                 menu.InteractionCheckbox(bus, metro, tram, primaryStage, theScene);
                 for (Garage garage : new_list){
-                    if(comboBox.getValue() == garage.getName() || comboBox.getValue() == "Select Garage")
+                    if(comboBox.getValue() == garage.getName() || comboBox.getValue() == "Select Garage" || comboBox.getValue() == "Show All")
                         garage.Draw(gc);}
                 gc.drawImage( menu_image, 5, 0 );
                 gc.drawImage( loopafstand_image, 70, 260 );
