@@ -39,15 +39,15 @@ public class Main extends Application {
     double null_ylat = (10159/2)-(10563*mercN/(2*Math.PI));
     double null_xlong = (4.396787 + 180.0) * (10563 / 360);  
 
-    Image logo = new Image("file:Images/Halfvol.png");
+    Image logo = new Image("Images/Halfvol.png");
     Image background = new Image("file:Images/mapRotterdam.png");
-    Image up_image = new Image("file:Images/up_button.png");
-    Image down_image = new Image("file:Images/down_button.png");
-    Image left_image = new Image("file:Images/left_button.png");
-    Image right_image = new Image("file:Images/right_button.png");
-    Image menu_image = new Image("file:Images/menuimg.png");
-    Image looptijd_image = new Image("file:Images/looptijd.png");
-    Image loopafstand_image = new Image("file:Images/loopafstand.png");
+    Image up_image = new Image("Images/up_button.png");
+    Image down_image = new Image("Images/down_button.png");
+    Image left_image = new Image("Images/left_button.png");
+    Image right_image = new Image("Images/right_button.png");
+    Image menu_image = new Image("Images/menuimg.png");
+    Image looptijd_image = new Image("Images/looptijd.png");
+    Image loopafstand_image = new Image("Images/loopafstand.png");
     Menu menu = new Menu();
     CheckBox bus = new CheckBox();
     CheckBox tram = new CheckBox();

@@ -15,7 +15,7 @@ import javafx.scene.control.CheckBox;
  */
 public class Menu implements IComponents {
     
-    Image menu_image = new Image("file:Images/menuimg.png");
+/*    Image menu_image = new Image("file:Images/menuimg.png");
     Image metro_image = new Image("file:Images/metrolabel.png");
     Image tram_image = new Image("file:Images/tramlabel.png");
     Image tram_image_c = new Image("file:Images/tramlabel_check.png");
@@ -23,7 +23,17 @@ public class Menu implements IComponents {
     Image metro_image_c = new Image("file:Images/metrolabel_check.png");
     Image bus_image = new Image("file:Images/buslabel.png");
     Image looptijd_image = new Image("file:Images/looptijd.png");
-    Image loopafstand_image = new Image("file:Images/loopafstand.png");  
+    Image loopafstand_image = new Image("file:Images/loopafstand.png");  */
+    
+    Image menu_image = new Image("Images/menuimg.png");
+    Image metro_image = new Image("Images/metrolabel.png");
+    Image tram_image = new Image("Images/tramlabel.png");
+    Image tram_image_c = new Image("Images/tramlabel_check.png");
+    Image bus_image_c = new Image("Images/buslabel_check.png");
+    Image metro_image_c = new Image("Images/metrolabel_check.png");
+    Image bus_image = new Image("Images/buslabel.png");
+    Image looptijd_image = new Image("Images/looptijd.png");
+    Image loopafstand_image = new Image("Images/loopafstand.png");  
 
     @Override
     public void Draw(GraphicsContext gc) {

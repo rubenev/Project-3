@@ -29,10 +29,15 @@ public class Database {
     List<Tram> list_trams = new ArrayList();
     List<Metro> list_metros = new ArrayList();
  
-    Image P_image = new Image("file:Images/P-location_image.png");  
+/*    Image P_image = new Image("file:Images/P-location_image.png");  
     Image M_image = new Image("file:Images/M-location_imagek.png"); 
     Image T_image = new Image("file:Images/T-location_imagek.png"); 
-    Image B_image = new Image("file:Images/B-location_imagek.png"); 
+    Image B_image = new Image("file:Images/B-location_imagek.png"); */
+    
+     Image P_image = new Image("Images/P-location_image.png");  
+    Image M_image = new Image("Images/M-location_imagek.png"); 
+    Image T_image = new Image("Images/T-location_imagek.png"); 
+    Image B_image = new Image("Images/B-location_imagek.png"); 
     public Database(){
     
     } 
