@@ -4,7 +4,6 @@ package Main;
 // Commit test Selim Esengin 11:20
 
 
-
 import java.util.ArrayList;
 import java.util.List;
 import javafx.animation.AnimationTimer;
@@ -38,7 +37,7 @@ public class Main extends Application {
     double null_ylat = (10159/2)-(10563*mercN/(2*Math.PI));
     double null_xlong = (4.396787 + 180.0) * (10563 / 360);  
 
-
+    Image logo = new Image("file:Images/Halfvol.png");
     Image background = new Image("file:Images/mapRotterdam.png");
     Image up_image = new Image("file:Images/up_button.png");
     Image down_image = new Image("file:Images/down_button.png");
@@ -59,7 +58,7 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage){
+    public void start(Stage primaryStage) throws InterruptedException{
 
         primaryStage.setTitle("Park n Travel");        
         Group root = new Group();
@@ -144,11 +143,11 @@ public class Main extends Application {
         if ((map_x)-150 >= -9400){map_x = map_x - 150;
         for (Garage garage : new_list){
             garage.setPositionX(- 150);}}});  //past alle X van de garages aan UPDATE
-      
+    
         root.getChildren().addAll(canvas,right,left,up,down,comboBox,bus,tram,metro);
         primaryStage.setScene( theScene );
         primaryStage.show();
-
+     
         // Refresh het scherm
         new AnimationTimer(){
             @Override
@@ -162,6 +161,7 @@ public class Main extends Application {
                     if(comboBox.getValue() == garage.getName() || comboBox.getValue() == "Select Garage" || comboBox.getValue() == "Show All")
                         garage.Draw(gc);}
                 gc.drawImage( menu_image, 5, 0 );
+                
                 gc.drawImage( loopafstand_image, 70, 260 );
                 gc.drawImage( looptijd_image, 130, 330 );   
                 
