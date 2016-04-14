@@ -26,10 +26,10 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     
-    int map_x = -3500;
-    int map_y = -5400;
-    int canvas_x = 1000;
-    int canvas_y = 1500;
+    double map_x = -3500;
+    double map_y = -5400;
+    double canvas_x = 1000;
+    double canvas_y = 1500;
     
    //---------------------------------------------------------//
    //              berekenen van null punt x en y             //
@@ -95,9 +95,19 @@ public class Main extends Application {
           comboBox.getValue();  
           for (Garage garage : new_list){
               if (comboBox.getValue() == garage.getName()){
-//                map_x = -10563 - (int) garage.getPositionX();
-//                map_y = -10159 - (int) garage.getPositionY();
-                System.out.println(map_x);}
+                double temp_mapx = map_x*1; // we bewaren hier een oude map_x en y onder andere naam
+                double temp_mapy = map_y*1;
+                map_x = (temp_mapx - garage.getPositionX())+(canvas_y/2); // 2000 = -1800
+                map_y = (temp_mapy - garage.getPositionY())+(canvas_x/2); // 4000 = 4000 - 1600 + 1000
+                for (Garage garage2 : new_list){
+                    garage2.setPositionY(map_y-temp_mapy); //hier vullen we het verschil van de som in als nieuwe locatiemeter van de garages
+                    garage2.setPositionX(map_x-temp_mapx); //past alle Y van de garages aan zodat het klopt met de map
+                    }
+                for (Metro metro : metro_list){
+                    metro.setPositionY(map_y-temp_mapy); //past alle Y van de garages aan zodat het klopt met de map
+                    metro.setPositionX(map_x-temp_mapx); //past alle Y van de garages aan zodat het klopt met de map
+                    
+                System.out.println(metro.getPositionX() + " " + metro.getPositionY());}}
           }
           System.out.println(comboBox.getValue());
         });
