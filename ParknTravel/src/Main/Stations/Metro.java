@@ -2,6 +2,7 @@ package Main.Stations;
 
 import Main.IComponents.IStations;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 
 
 /**
@@ -11,21 +12,22 @@ import javafx.scene.canvas.GraphicsContext;
 public class Metro implements IStations{
     private String Name = null;
     private String Description = null;
-    private String Type = null;
-    private final String Metro_Img = null; // string naar de plek invullen blijft hetzelfde voor alle trams
+    //private String Type = null;
+    private Image Metro_Img = null; // string naar de plek invullen blijft hetzelfde voor alle trams
     private double[] Location = new double[2];// longitude, latitude
     
-    public Metro (String Name, String Description,String Type, double longitude,double latitude)
+    public Metro (Image image, String Name, String Description,double longitude,double latitude)
     {
     this.Name = Name;
     this.Description = Description;
-    this.Type = Type;
+    //this.Type = Type;
     this.Location[0] = longitude;
     this.Location[1]= latitude;
+    this.Metro_Img = image;
     
     }
     
-    public String getMetro_Img(){return Metro_Img;}
+    public Image getMetro_Img(){return Metro_Img;}
     
     @Override        
     public String[] getStation() {
@@ -33,7 +35,7 @@ public class Metro implements IStations{
         String[] StationList = new String[5];
         StationList[0] = this.Name;
         StationList[1] = this.Description;
-        StationList[2] = this.Type;
+       // StationList[2] = this.Type;
 
         
         return StationList;}
@@ -63,10 +65,11 @@ public class Metro implements IStations{
     @Override
     public String getDescription() {
        return Description;}
-
+/*
     @Override
     public String getType() {
      return Type;}
+    */
     
     @Override
     public double getPositionX(){return this.Location[0];}
