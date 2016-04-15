@@ -40,7 +40,7 @@ public class Main extends Application {
     double null_xlong = (4.396787 + 180.0) * (10563 / 360);  
 
     Image logo = new Image("Images/Halfvol.png");
-    Image background = new Image("file:Images/mapRotterdam.png");
+    Image background = new Image("Images/mapRotterdam.png");
     Image up_image = new Image("Images/up_button.png");
     Image down_image = new Image("Images/down_button.png");
     Image left_image = new Image("Images/left_button.png");
