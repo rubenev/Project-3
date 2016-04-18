@@ -34,6 +34,8 @@ public class Menu implements IComponents {
     Image bus_image = new Image("Images/buslabeln.png");
     Image looptijd_image = new Image("Images/looptijd.png");
     Image loopafstand_image = new Image("Images/loopafstand.png");  
+    double selected_garX;
+    double selected_garY;
 
     @Override
     public void Draw(GraphicsContext gc) {
@@ -54,5 +56,16 @@ public class Menu implements IComponents {
     
     primaryStage.setScene( theScene );
     }
-    
+    public void setgarX(double x){
+        this.selected_garX = x;
+    }
+    public void setgarY(double y){
+        this.selected_garY = y;
+    }   
+    public double getgarX(){
+        return this.selected_garX;
+    }
+    public double getgarY(){
+        return this.selected_garY;
+    }    
 }
