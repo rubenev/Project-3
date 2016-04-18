@@ -54,7 +54,10 @@ public class Main extends Application {
     Image looptijd_image = new Image("Images/looptijd.png");
     Image loopafstand_image = new Image("Images/loopafstand.png");
     Image bus_imagebw = new Image("Images/B-location_imagebw.png");
+    Image tram_imagebw = new Image("Images/T-location_imagebw.png");
+    Image metro_imagebw = new Image("Images/M-location_imagebw.png");
     Image B_image_info = new Image("Images/B-location_image_info.png"); //TEWST
+    
     
     Menu menu = new Menu();
     CheckBox bus = new CheckBox();
@@ -252,7 +255,7 @@ public class Main extends Application {
                         if((Math.sqrt(Math.pow(((menu.getgarY()) - metroo.getPositionY()),2) + Math.pow(((menu.getgarX())- metroo.getPositionX()),2))) <= 300)
                         {
                             metroo.Draw(gc);}
-                        else{gc.drawImage( bus_imagebw, metroo.getPositionX(), metroo.getPositionY() );}
+                        else{gc.drawImage( metro_imagebw, metroo.getPositionX(), metroo.getPositionY() );}
                 }
                 for (Tram tramm : tram_list){
                     if(tram.isSelected()){   
@@ -260,7 +263,7 @@ public class Main extends Application {
                         {
                             
                             tramm.Draw(gc);}
-                        else{gc.drawImage( bus_imagebw, tramm.getPositionX(), tramm.getPositionY() );}
+                        else{gc.drawImage( tram_imagebw, tramm.getPositionX(), tramm.getPositionY() );}
                 }
                 }
                 for (Bus buss : bus_list){
