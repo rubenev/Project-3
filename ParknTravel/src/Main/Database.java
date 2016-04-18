@@ -35,9 +35,9 @@ public class Database {
     Image B_image = new Image("file:Images/B-location_imagek.png"); */
     
      Image P_image = new Image("Images/P-location_image.png");  
-    Image M_image = new Image("Images/M-location_imagek.png"); 
-    Image T_image = new Image("Images/T-location_imagek.png"); 
-    Image B_image = new Image("Images/B-location_imagek.png"); 
+    Image M_image = new Image("Images/M-location_imagen.png"); 
+    Image T_image = new Image("Images/T-location_imagen.png"); 
+    Image B_image = new Image("Images/B-location_imagen.png"); 
     public Database(){
     
     } 

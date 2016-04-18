@@ -26,12 +26,12 @@ public class Menu implements IComponents {
     Image loopafstand_image = new Image("file:Images/loopafstand.png");  */
     
     Image menu_image = new Image("Images/menuimg.png");
-    Image metro_image = new Image("Images/metrolabel.png");
-    Image tram_image = new Image("Images/tramlabel.png");
-    Image tram_image_c = new Image("Images/tramlabel_check.png");
-    Image bus_image_c = new Image("Images/buslabel_check.png");
-    Image metro_image_c = new Image("Images/metrolabel_check.png");
-    Image bus_image = new Image("Images/buslabel.png");
+    Image metro_image = new Image("Images/metrolabeln.png");
+    Image tram_image = new Image("Images/tramlabeln.png");
+    Image tram_image_c = new Image("Images/tramlabel_checkn.png");
+    Image bus_image_c = new Image("Images/buslabel_checkn.png");
+    Image metro_image_c = new Image("Images/metrolabel_checkn.png");
+    Image bus_image = new Image("Images/buslabeln.png");
     Image looptijd_image = new Image("Images/looptijd.png");
     Image loopafstand_image = new Image("Images/loopafstand.png");  
 

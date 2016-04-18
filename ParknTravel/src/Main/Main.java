@@ -225,11 +225,11 @@ public class Main extends Application {
         for (Metro metro : metro_list){
             metro.setPositionX(- 150);}
         for (Tram tram : tram_list){
-            tram.setPositionX(- 150);
+            tram.setPositionX(- 150);}
         for (Bus bus : bus_list){
             bus.setPositionX(-150);
         }
-        }}});  //past alle X van de garages aan UPDATE
+        }});  //past alle X van de garages aan UPDATE
     
         root.getChildren().addAll(canvas,right,left,up,down,comboBox,bus,tram,metro);
         primaryStage.setScene( theScene );
@@ -261,7 +261,6 @@ public class Main extends Application {
                         garage.Draw(gc);}
                 
                 gc.drawImage( menu_image, 5, 0 );
-                gc.drawImage( B_image_info, 300, 300 );
                 gc.drawImage( loopafstand_image, 70, 260 );
                 gc.drawImage( looptijd_image, 130, 330 );   
                 
