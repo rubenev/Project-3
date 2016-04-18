@@ -6,10 +6,12 @@ package Main;
 
 
 import Main.Stations.Metro;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -40,7 +42,7 @@ public class Main extends Application {
     double null_xlong = (4.396787 + 180.0) * (10563 / 360);  
 
     Image logo = new Image("Images/Halfvol.png");
-    Image background = new Image("file:Images/mapRotterdam.png");
+    Image background = new Image("Images/mapRotterdam.png");
     Image up_image = new Image("Images/up_button.png");
     Image down_image = new Image("Images/down_button.png");
     Image left_image = new Image("Images/left_button.png");
@@ -48,10 +50,14 @@ public class Main extends Application {
     Image menu_image = new Image("Images/menuimg.png");
     Image looptijd_image = new Image("Images/looptijd.png");
     Image loopafstand_image = new Image("Images/loopafstand.png");
+    
+    Image B_image_info = new Image("Images/B-location_image_info.png"); //TEWST
+    
     Menu menu = new Menu();
     CheckBox bus = new CheckBox();
     CheckBox tram = new CheckBox();
     CheckBox metro = new CheckBox();
+    ImageView images = new ImageView();
     
     List<Garage> list_garages = new ArrayList();
     List<Metro> list_metro = new ArrayList();
@@ -78,6 +84,12 @@ public class Main extends Application {
             metro.setPositionY(map_y); //past alle Y van de garages aan zodat het klopt met de map
             metro.setPositionX(map_x); //past alle Y van de garages aan zodat het klopt met de map
             }
+        images.setImage(B_image_info);
+        images.setOnMouseClicked(e ->{
+                      System.out.println("Tile pressed ");
+                      
+                  
+             });
         
         Canvas canvas = new Canvas( canvas_y, canvas_x );
         
@@ -178,7 +190,7 @@ public class Main extends Application {
         root.getChildren().addAll(canvas,right,left,up,down,comboBox,bus,tram,metro);
         primaryStage.setScene( theScene );
         primaryStage.show();
-     
+        
         // Refresh het scherm
         new AnimationTimer(){
             @Override
@@ -197,7 +209,7 @@ public class Main extends Application {
                         garage.Draw(gc);}
                 
                 gc.drawImage( menu_image, 5, 0 );
-                
+                gc.drawImage( B_image_info, 300, 300 );
                 gc.drawImage( loopafstand_image, 70, 260 );
                 gc.drawImage( looptijd_image, 130, 330 );   
                 
