@@ -4,7 +4,8 @@ package Main;
 // Commit test Selim Esengin 11:20
 
 
-
+import Main.Stations.Tram;
+import Main.Stations.Bus;
 import Main.Stations.Metro;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -61,6 +62,7 @@ public class Main extends Application {
     
     List<Garage> list_garages = new ArrayList();
     List<Metro> list_metro = new ArrayList();
+    List<Tram> list_tram = new ArrayList();
     public static void main(String[] args) {
    
         launch(args);
@@ -84,6 +86,16 @@ public class Main extends Application {
             metro.setPositionY(map_y); //past alle Y van de garages aan zodat het klopt met de map
             metro.setPositionX(map_x); //past alle Y van de garages aan zodat het klopt met de map
             }
+        List<Tram> tram_list = data.getTramList();
+        for (Tram tram : tram_list){
+            tram.setPositionY(map_y);
+            tram.setPositionX(map_x);
+        }
+        List<Bus> bus_list = data.getBusList();
+        for (Bus bus: bus_list){
+            bus.setPositionY(map_y);
+            bus.setPositionX(map_x);
+        }
         images.setImage(B_image_info);
         images.setOnMouseClicked(e ->{
                       System.out.println("Tile pressed ");
@@ -119,7 +131,19 @@ public class Main extends Application {
                     metro.setPositionY(map_y-temp_mapy); //past alle Y van de garages aan zodat het klopt met de map
                     metro.setPositionX(map_x-temp_mapx); //past alle Y van de garages aan zodat het klopt met de map
                     
-                System.out.println(metro.getPositionX() + " " + metro.getPositionY());}}
+                System.out.println(metro.getPositionX() + " " + metro.getPositionY());}
+                
+                for (Tram tram : tram_list){
+                    tram.setPositionY(map_y-temp_mapy);
+                    tram.setPositionX(map_x-temp_mapx);
+                }
+                for (Bus bus : bus_list){
+                    bus.setPositionY(map_y-temp_mapy);
+                    bus.setPositionX(map_x-temp_mapx);
+                }
+              
+              }
+
           }
           System.out.println(comboBox.getValue());
         });
@@ -139,8 +163,13 @@ public class Main extends Application {
         for (Garage garage : new_list){
             garage.setPositionY(+ 100);}
         for (Metro metro : metro_list){
-            metro.setPositionY(+ 100);
-        }}}); //past alle Y van de garages aan UPDATE      
+            metro.setPositionY(+ 100);}
+        for (Tram tram : tram_list){
+            tram.setPositionY(+ 100);}
+        for (Bus bus : bus_list){
+            bus.setPositionY(+ 100);
+        }
+        }}); //past alle Y van de garages aan UPDATE      
         // maak button
         Button down = new Button();
         // plaats button
@@ -154,8 +183,13 @@ public class Main extends Application {
         for (Garage garage : new_list){
             garage.setPositionY(- 100);}
         for (Metro metro : metro_list){
-            metro.setPositionY(- 100);
-        }}}); //past alle Y van de garages aan UPDATE    
+            metro.setPositionY(- 100);}
+        for (Tram tram : tram_list){
+            tram.setPositionY(- 100);}
+        for (Bus bus : bus_list){
+            bus.setPositionY(- 100);
+        }
+        }}); //past alle Y van de garages aan UPDATE    
         // maak button
         Button left = new Button();
         // plaats button plaatje ect
@@ -169,8 +203,13 @@ public class Main extends Application {
         for (Garage garage : new_list){
             garage.setPositionX(+ 150);}
         for (Metro metro : metro_list){
-            metro.setPositionX(+ 150);
-        }}}); //past alle X van de garages aan UPDATE    
+            metro.setPositionX(+ 150);}
+        for (Tram tram : tram_list){
+            tram.setPositionX(+ 150);}
+        for (Bus bus : bus_list){
+            bus.setPositionX(+ 150);
+        }
+            }}); //past alle X van de garages aan UPDATE    
         // maak button
         Button right = new Button();
         // plaats button plaatje ect
@@ -184,7 +223,12 @@ public class Main extends Application {
         for (Garage garage : new_list){
             garage.setPositionX(- 150);}
         for (Metro metro : metro_list){
-            metro.setPositionX(- 150);
+            metro.setPositionX(- 150);}
+        for (Tram tram : tram_list){
+            tram.setPositionX(- 150);
+        for (Bus bus : bus_list){
+            bus.setPositionX(-150);
+        }
         }}});  //past alle X van de garages aan UPDATE
     
         root.getChildren().addAll(canvas,right,left,up,down,comboBox,bus,tram,metro);
@@ -203,6 +247,14 @@ public class Main extends Application {
                 for (Metro metroo : metro_list){
                     if(metro.isSelected())
                     metroo.Draw(gc);
+                }
+                for (Tram tramm : tram_list){
+                    if(tram.isSelected())
+                        tramm.Draw(gc);
+                }
+                for (Bus buss : bus_list){
+                    if (bus.isSelected())
+                        buss.Draw(gc);
                 }
                 for (Garage garage : new_list){
                     if(comboBox.getValue() == garage.getName() || comboBox.getValue() == "Select Garage" || comboBox.getValue() == "Show All")

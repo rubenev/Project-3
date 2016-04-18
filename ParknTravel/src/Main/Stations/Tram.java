@@ -57,7 +57,8 @@ import javafx.scene.image.Image;
     
     }
     @Override
-    public void Draw(GraphicsContext gc){}
+    public void Draw(GraphicsContext gc){
+    gc.drawImage(this.Tram_Img,this.Position_x,this.Position_y);}
 
     @Override
     public void update() {}

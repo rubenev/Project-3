@@ -84,7 +84,7 @@ public class Database {
                     if(con!=null)
                         System.out.println("Connected");
                     Statement st=con.createStatement();
-                    ResultSet rs = st.executeQuery("SELECT * FROM ret_haltes WHERE ret_description LIKE '%buslijn%' OR ret_haltes.description LIKE '%Buslijn%';"); // aanpasssssen!!
+                    ResultSet rs = st.executeQuery("SELECT * FROM ret_haltes WHERE ret_haltes.description LIKE '%buslijn%' OR ret_haltes.description LIKE '%Buslijn%';"); // aanpasssssen!!
                     while (rs.next()){ //loopt door de lijst tot er niks meer is
                         Double longitude_sql = rs.getDouble("longitude"); //pakt de volgende long
                         Double latitude_sql = rs.getDouble("latitude"); //pakt de volgende lat
@@ -121,7 +121,7 @@ public List<Tram> getTramList (){
                     if(con!=null)
                         System.out.println("Connected");
                     Statement st=con.createStatement();
-                    ResultSet rs = st.executeQuery("SELECT * FROM ret_haltes WHERE ret_description LIKE '%tramlijn%' OR ret_haltes.description LIKE '%Tramlijn%';"); // aanpasssssen!!
+                    ResultSet rs = st.executeQuery("SELECT * FROM ret_haltes WHERE ret_haltes.description LIKE '%tramlijn%' OR ret_haltes.description LIKE '%Tramlijn%';"); // aanpasssssen!!
                     while (rs.next()){ //loopt door de lijst tot er niks meer is
                         Double longitude_sql = rs.getDouble("longitude"); //pakt de volgende long
                         Double latitude_sql = rs.getDouble("latitude"); //pakt de volgende lat
@@ -162,7 +162,7 @@ public List<Tram> getTramList (){
                     if(con!=null)
                         System.out.println("Connected");
                     Statement st=con.createStatement();
-                    ResultSet rs = st.executeQuery("SELECT * FROM ret_haltes WHERE description LIKE '%metrolijn%' OR ret_haltes.description LIKE '%Metrolijn%';"); // aanpasssssen!!
+                    ResultSet rs = st.executeQuery("SELECT * FROM ret_haltes WHERE ret_haltes.description LIKE '%metrolijn%' OR ret_haltes.description LIKE '%Metrolijn%';"); // aanpasssssen!!
                     while (rs.next()){ //loopt door de lijst tot er niks meer is
                         Double longitude_sql = rs.getDouble("longitude"); //pakt de volgende long
                         Double latitude_sql = rs.getDouble("latitude"); //pakt de volgende lat
