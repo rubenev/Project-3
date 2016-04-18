@@ -33,6 +33,8 @@ public class Main extends Application {
     double map_y = -5400;
     double canvas_x = 1000;
     double canvas_y = 1500;
+    double selecten_garageX;
+    double selecten_garageY;
     
    //---------------------------------------------------------//
    //              berekenen van null punt x en y             //
@@ -51,7 +53,7 @@ public class Main extends Application {
     Image menu_image = new Image("Images/menuimg.png");
     Image looptijd_image = new Image("Images/looptijd.png");
     Image loopafstand_image = new Image("Images/loopafstand.png");
-    
+    Image bus_imagebw = new Image("Images/B-location_imagebw.png");
     Image B_image_info = new Image("Images/B-location_image_info.png"); //TEWST
     
     Menu menu = new Menu();
@@ -131,7 +133,7 @@ public class Main extends Application {
                     metro.setPositionY(map_y-temp_mapy); //past alle Y van de garages aan zodat het klopt met de map
                     metro.setPositionX(map_x-temp_mapx); //past alle Y van de garages aan zodat het klopt met de map
                     
-                System.out.println(metro.getPositionX() + " " + metro.getPositionY());}
+                ;}
                 
                 for (Tram tram : tram_list){
                     tram.setPositionY(map_y-temp_mapy);
@@ -244,27 +246,51 @@ public class Main extends Application {
                 gc.clearRect(0,0,canvas.getWidth(),canvas.getHeight());
                 gc.drawImage( background, map_x, map_y );
                 menu.InteractionCheckbox(bus, metro, tram, primaryStage, theScene);
+                
                 for (Metro metroo : metro_list){
                     if(metro.isSelected())
                     metroo.Draw(gc);
                 }
                 for (Tram tramm : tram_list){
-                    if(tram.isSelected())
-                        tramm.Draw(gc);
+                    if(tram.isSelected()){
+                        double slider = 300.0;    
+                        double nn = (Math.sqrt(Math.pow(slider/2 - ((canvas_y/2)),2) + Math.pow((slider/2 - ((canvas_x/2))),2)));
+                        //if((selecten_garageX-buss.getPositionX() < 300 && selecten_garageY-buss.getPositionY() < 300 )&&(selecten_garageX-buss.getPositionX() > -300 && selecten_garageY-buss.getPositionY() > -300 ))
+                        if ((nn > tramm.getPositionX() && nn > tramm.getPositionY()))
+                        {
+                            System.out.println((canvas_x/2)-tramm.getPositionX());
+                            tramm.Draw(gc);}
+                        else{gc.drawImage( bus_imagebw, tramm.getPositionX(), tramm.getPositionY() );}
+                }
                 }
                 for (Bus buss : bus_list){
-                    if (bus.isSelected())
-                        buss.Draw(gc);
-                }
+                    if (bus.isSelected()){
+                        double slider = 300.0;    
+                        //if((selecten_garageX-buss.getPositionX() < 300 && selecten_garageY-buss.getPositionY() < 300 )&&(selecten_garageX-buss.getPositionX() > -300 && selecten_garageY-buss.getPositionY() > -300 ))
+                        if(slider > (Math.sqrt(Math.pow((slider/2 - (selecten_garageY-buss.getPositionY())),2) + Math.pow((slider/2 - (selecten_garageX-buss.getPositionX())),2))))
+                        {
+                            buss.Draw(gc);}
+                        else{gc.drawImage( bus_imagebw, buss.getPositionX(), buss.getPositionY() );}
+                }}
                 for (Garage garage : new_list){
-                    if(comboBox.getValue() == garage.getName() || comboBox.getValue() == "Select Garage" || comboBox.getValue() == "Show All")
+                    if(comboBox.getValue() == garage.getName() || comboBox.getValue() == "Select Garage" || comboBox.getValue() == "Show All"){
+
                         garage.Draw(gc);}
+}               
                 
                 gc.drawImage( menu_image, 5, 0 );
                 gc.drawImage( loopafstand_image, 70, 260 );
                 gc.drawImage( looptijd_image, 130, 330 );   
                 
-            }
+            } 
         }.start();   
     }    
-}
+}/*
+        N = slider
+        i = y  j = x
+
+        r = math.sqrt((n/2 - x)**2 + (n/2 - y)**2)
+
+        if math.sqrt((300/2 - (selecten_garageX-buss.getPositionX()))**2 + (300/2 - (selecten_garageY-buss.getPositionY()))**2) <= 300 
+
+*/
