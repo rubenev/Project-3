@@ -13,6 +13,7 @@ import java.util.List;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -20,10 +21,13 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
+import static javafx.scene.paint.Color.RED;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 
@@ -101,25 +105,37 @@ public class Main extends Application {
             bus.setPositionY(map_y);
             bus.setPositionX(map_x);
         }
-        images.setImage(B_image_info);
-        images.setOnMouseClicked(e ->{
-                      System.out.println("Tile pressed ");
-                      
-                  
-             });
+        ///////////////////////////////////////////////////////////////
+        //                           SLIDER                         ///
+        ///////////////////////////////////////////////////////////////
+        Slider slider = new Slider(0,1,1);
+        slider.setMin(0);
+        slider.setMax(1000);
+        slider.setValue(50);
+        slider.setLayoutX(20);
+        slider.setLayoutY(280);
+        slider.setShowTickLabels(false);
+        slider.setShowTickMarks(false);
+        slider.setMajorTickUnit(50);
+        slider.setMinorTickCount(5);
+        slider.setBlockIncrement(10);
+        slider.setCursor(Cursor.HAND);
+        slider.setMinSize(230, 1);
+        slider.setBackground(Background.EMPTY);
+        //slider.paintThumb(RED);
+        
         
         Canvas canvas = new Canvas( canvas_y, canvas_x );
-        
+        ///////////////////////////////////////////////////////////////
+        //                           COMBOBOX                       ///
+        ///////////////////////////////////////////////////////////////
         ComboBox<String> comboBox = new ComboBox<>();
         comboBox.getItems().add("Show All");
-        for (Garage garage : new_list){
-            comboBox.getItems().add(garage.getName());
-        }
+        for (Garage garage : new_list){comboBox.getItems().add(garage.getName());}
         comboBox.setValue("Select Garage");       
         comboBox.setBackground(Background.EMPTY);
         comboBox.setLayoutX(20);
-        comboBox.setLayoutY(20);
-        
+        comboBox.setLayoutY(20);      
         comboBox.setOnAction(e -> {
           comboBox.getValue();  
           for (Garage garage : new_list){
@@ -130,32 +146,22 @@ public class Main extends Application {
                 map_y = (temp_mapy - garage.getPositionY())+(canvas_x/2); // 4000 = 4000 - 1600 + 1000
                 for (Garage garage2 : new_list){
                     garage2.setPositionY(map_y-temp_mapy); //hier vullen we het verschil van de som in als nieuwe locatiemeter van de garages
-                    garage2.setPositionX(map_x-temp_mapx); //past alle Y van de garages aan zodat het klopt met de map
-                    }
+                    garage2.setPositionX(map_x-temp_mapx);} //past alle Y van de garages aan zodat het klopt met de map       
                 for (Metro metro : metro_list){
                     metro.setPositionY(map_y-temp_mapy); //past alle Y van de garages aan zodat het klopt met de map
-                    metro.setPositionX(map_x-temp_mapx); //past alle Y van de garages aan zodat het klopt met de map
-                    
-                ;}
-                
+                    metro.setPositionX(map_x-temp_mapx);} //past alle Y van de garages aan zodat het klopt met de map            
                 for (Tram tram : tram_list){
                     tram.setPositionY(map_y-temp_mapy);
-                    tram.setPositionX(map_x-temp_mapx);
-                }
+                    tram.setPositionX(map_x-temp_mapx);}
                 for (Bus bus : bus_list){
                     bus.setPositionY(map_y-temp_mapy);
                     bus.setPositionX(map_x-temp_mapx);
-                }
-              
-              }
-
-          }
-          System.out.println(comboBox.getValue());
-        });
+                }}}});
         
         GraphicsContext gc = canvas.getGraphicsContext2D();
-
-        // maak button
+        ///////////////////////////////////////////////////////////////
+        //                     NAVIGATIE KNOPPEN                    ///
+        ///////////////////////////////////////////////////////////////
         Button up = new Button();
         // plaats button
         up.setGraphic(new ImageView(up_image));
@@ -192,9 +198,7 @@ public class Main extends Application {
         for (Tram tram : tram_list){
             tram.setPositionY(- 100);}
         for (Bus bus : bus_list){
-            bus.setPositionY(- 100);
-        }
-        }}); //past alle Y van de garages aan UPDATE    
+            bus.setPositionY(- 100);}}}); //past alle Y van de garages aan UPDATE    
         // maak button
         Button left = new Button();
         // plaats button plaatje ect
@@ -212,9 +216,7 @@ public class Main extends Application {
         for (Tram tram : tram_list){
             tram.setPositionX(+ 150);}
         for (Bus bus : bus_list){
-            bus.setPositionX(+ 150);
-        }
-            }}); //past alle X van de garages aan UPDATE    
+            bus.setPositionX(+ 150);}}}); //past alle X van de garages aan UPDATE    
         // maak button
         Button right = new Button();
         // plaats button plaatje ect
@@ -232,11 +234,12 @@ public class Main extends Application {
         for (Tram tram : tram_list){
             tram.setPositionX(- 150);}
         for (Bus bus : bus_list){
-            bus.setPositionX(-150);
-        }
-        }});  //past alle X van de garages aan UPDATE
+            bus.setPositionX(-150);}}});  //past alle X van de garages aan UPDATE
+        ///////////////////////////////////////////////////////////////
+        //                         ROOT CREeREN                     ///
+        ///////////////////////////////////////////////////////////////
     
-        root.getChildren().addAll(canvas,right,left,up,down,comboBox,bus,tram,metro);
+        root.getChildren().addAll(canvas,right,left,up,down,comboBox,bus,tram,metro,slider);
         primaryStage.setScene( theScene );
         primaryStage.show();
         
@@ -252,14 +255,14 @@ public class Main extends Application {
                 
                 for (Metro metroo : metro_list){
                     if(metro.isSelected())
-                        if((Math.sqrt(Math.pow(((menu.getgarY()) - metroo.getPositionY()),2) + Math.pow(((menu.getgarX())- metroo.getPositionX()),2))) <= 300)
+                        if((Math.sqrt(Math.pow(((menu.getgarY()) - metroo.getPositionY()),2) + Math.pow(((menu.getgarX())- metroo.getPositionX()),2))) <= slider.getValue())
                         {
                             metroo.Draw(gc);}
                         else{gc.drawImage( metro_imagebw, metroo.getPositionX(), metroo.getPositionY() );}
                 }
                 for (Tram tramm : tram_list){
                     if(tram.isSelected()){   
-                        if((Math.sqrt(Math.pow(((menu.getgarY()) - tramm.getPositionY()),2) + Math.pow(((menu.getgarX())- tramm.getPositionX()),2))) <= 300)
+                        if((Math.sqrt(Math.pow(((menu.getgarY()) - tramm.getPositionY()),2) + Math.pow(((menu.getgarX())- tramm.getPositionX()),2))) <= slider.getValue())
                         {
                             
                             tramm.Draw(gc);}
@@ -268,7 +271,7 @@ public class Main extends Application {
                 }
                 for (Bus buss : bus_list){
                     if (bus.isSelected()){   
-                        if((Math.sqrt(Math.pow(((menu.getgarY()) - buss.getPositionY()),2) + Math.pow(((menu.getgarX())- buss.getPositionX()),2))) <= 300)
+                        if((Math.sqrt(Math.pow(((menu.getgarY()) - buss.getPositionY()),2) + Math.pow(((menu.getgarX())- buss.getPositionX()),2))) <= slider.getValue())
                         {
                             buss.Draw(gc);}
                         else{gc.drawImage( bus_imagebw, buss.getPositionX(), buss.getPositionY() );}
@@ -285,7 +288,7 @@ public class Main extends Application {
 }               
                 
                 gc.drawImage( menu_image, 5, 0 );
-                gc.drawImage( loopafstand_image, 70, 260 );
+                //gc.drawImage( loopafstand_image, 70, 260 );
                 gc.drawImage( looptijd_image, 130, 330 );   
                 
             } 
