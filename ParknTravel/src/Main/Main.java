@@ -3,7 +3,7 @@ package Main;
 
 // Commit test Selim Esengin 11:20
 
-
+import Main.Classes.Images;
 import Main.Stations.Tram;
 import Main.Stations.Bus;
 import Main.Stations.Metro;
@@ -46,22 +46,7 @@ public class Main extends Application {
     double latRad = 51.988431*Math.PI/180;
     double mercN = Math.log(Math.tan((Math.PI/4)+(latRad/2)));
     double null_ylat = (10159/2)-(10563*mercN/(2*Math.PI));
-    double null_xlong = (4.396787 + 180.0) * (10563 / 360);  
-
-    Image logo = new Image("Images/Halfvol.png");
-    Image background = new Image("Images/mapRotterdam.png");
-    Image up_image = new Image("Images/up_button.png");
-    Image down_image = new Image("Images/down_button.png");
-    Image left_image = new Image("Images/left_button.png");
-    Image right_image = new Image("Images/right_button.png");
-    Image menu_image = new Image("Images/menuimg.png");
-    Image looptijd_image = new Image("Images/looptijd.png");
-    Image loopafstand_image = new Image("Images/loopafstand.png");
-    Image bus_imagebw = new Image("Images/B-location_imagebw.png");
-    Image tram_imagebw = new Image("Images/T-location_imagebw.png");
-    Image metro_imagebw = new Image("Images/M-location_imagebw.png");
-    Image B_image_info = new Image("Images/B-location_image_info.png"); //TEWST
-    
+    double null_xlong = (4.396787 + 180.0) * (10563 / 360);      
     
     Menu menu = new Menu();
     CheckBox bus = new CheckBox();
@@ -164,7 +149,7 @@ public class Main extends Application {
         ///////////////////////////////////////////////////////////////
         Button up = new Button();
         // plaats button
-        up.setGraphic(new ImageView(up_image));
+        up.setGraphic(new ImageView(Images.up_image));
         up.setLayoutX((canvas_y/2)-20);
         up.setLayoutY(5);
         up.setShape(new Circle());
@@ -184,7 +169,7 @@ public class Main extends Application {
         // maak button
         Button down = new Button();
         // plaats button
-        down.setGraphic(new ImageView(down_image));
+        down.setGraphic(new ImageView(Images.down_image));
         down.setLayoutX((canvas_y/2)-20);
         down.setLayoutY((canvas_x-75));
         down.setShape(new Circle());
@@ -202,7 +187,7 @@ public class Main extends Application {
         // maak button
         Button left = new Button();
         // plaats button plaatje ect
-        left.setGraphic(new ImageView(left_image));
+        left.setGraphic(new ImageView(Images.left_image));
         left.setLayoutX(5);
         left.setLayoutY((canvas_x/2)-20);
         left.setShape(new Circle());
@@ -220,7 +205,7 @@ public class Main extends Application {
         // maak button
         Button right = new Button();
         // plaats button plaatje ect
-        right.setGraphic(new ImageView(right_image));
+        right.setGraphic(new ImageView(Images.right_image));
         right.setLayoutX(canvas_y-82);
         right.setLayoutY((canvas_x/2)-20);
         right.setShape(new Circle());
@@ -250,7 +235,7 @@ public class Main extends Application {
                 //clear the canvas before painting over it
                 
                 gc.clearRect(0,0,canvas.getWidth(),canvas.getHeight());
-                gc.drawImage( background, map_x, map_y );
+                gc.drawImage( Images.background, map_x, map_y );
                 menu.InteractionCheckbox(bus, metro, tram, primaryStage, theScene);
                 
                 for (Metro metroo : metro_list){
@@ -258,7 +243,7 @@ public class Main extends Application {
                         if((Math.sqrt(Math.pow(((menu.getgarY()) - metroo.getPositionY()),2) + Math.pow(((menu.getgarX())- metroo.getPositionX()),2))) <= slider.getValue())
                         {
                             metroo.Draw(gc);}
-                        else{gc.drawImage( metro_imagebw, metroo.getPositionX(), metroo.getPositionY() );}
+                        else{gc.drawImage( Images.metro_imagebw, metroo.getPositionX(), metroo.getPositionY() );}
                 }
                 for (Tram tramm : tram_list){
                     if(tram.isSelected()){   
@@ -266,7 +251,7 @@ public class Main extends Application {
                         {
                             
                             tramm.Draw(gc);}
-                        else{gc.drawImage( tram_imagebw, tramm.getPositionX(), tramm.getPositionY() );}
+                        else{gc.drawImage( Images.tram_imagebw, tramm.getPositionX(), tramm.getPositionY() );}
                 }
                 }
                 for (Bus buss : bus_list){
@@ -274,7 +259,7 @@ public class Main extends Application {
                         if((Math.sqrt(Math.pow(((menu.getgarY()) - buss.getPositionY()),2) + Math.pow(((menu.getgarX())- buss.getPositionX()),2))) <= slider.getValue())
                         {
                             buss.Draw(gc);}
-                        else{gc.drawImage( bus_imagebw, buss.getPositionX(), buss.getPositionY() );}
+                        else{gc.drawImage( Images.bus_imagebw, buss.getPositionX(), buss.getPositionY() );}
                 }}
                 for (Garage garage : new_list){
                     if(comboBox.getValue() == garage.getName() || comboBox.getValue() == "Select Garage" || comboBox.getValue() == "Show All"){
@@ -287,9 +272,9 @@ public class Main extends Application {
                         }
 }               
                 
-                gc.drawImage( menu_image, 5, 0 );
+                gc.drawImage( Images.menu_image, 5, 0 );
                 //gc.drawImage( loopafstand_image, 70, 260 );
-                gc.drawImage( looptijd_image, 130, 330 );   
+                gc.drawImage( Images.looptijd_image, 130, 330 );   
                 
             } 
         }.start();   
