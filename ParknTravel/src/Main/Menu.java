@@ -2,6 +2,7 @@
 package Main;
 
 import Main.IComponents.IComponents;
+import java.awt.Graphics;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -68,7 +69,11 @@ public class Menu implements IComponents {
     public double getgarY(){
         return this.selected_garY;
     }    
-    public void fillText(java.lang.String text,double x,double y){
-        
+    public void paint(Graphics g, double text, double x, double y)
+    {  
+       String text_string = Double.toString(text);
+       int x_int = (int) x;
+       int y_int = (int) y;
+       g.drawString(text_string, x_int, y_int);
     }
 }

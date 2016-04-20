@@ -31,6 +31,7 @@ import static javafx.scene.paint.Color.RED;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import java.awt.Graphics;
 
 
 public class Main extends Application {
@@ -97,8 +98,8 @@ public class Main extends Application {
         ///////////////////////////////////////////////////////////////
         Slider slider_loopafstand = new Slider(); //loopafstand
         slider_loopafstand.setMin(0);
-        slider_loopafstand.setMax(1000);
-        slider_loopafstand.setValue(50);
+        slider_loopafstand.setMax(1000);// 80/100
+        slider_loopafstand.setValue(40); // 1,25 40pixels is 50 meter
         slider_loopafstand.setLayoutX(20);
         slider_loopafstand.setLayoutY(265);
         slider_loopafstand.setShowTickLabels(false);
@@ -259,14 +260,16 @@ public class Main extends Application {
                 
                 for (Metro metroo : metro_list){
                     if(metro.isSelected())
-                        if((Math.sqrt(Math.pow(((menu.getgarY()) - metroo.getPositionY()),2) + Math.pow(((menu.getgarX())- metroo.getPositionX()),2))) <= slider_loopafstand.getValue())
+                        if(((Math.sqrt(Math.pow(((menu.getgarY()) - metroo.getPositionY()),2) + Math.pow(((menu.getgarX())- metroo.getPositionX()),2))) <= slider_loopafstand.getValue())
+                            &&((Math.sqrt(Math.pow(((menu.getgarY()) - metroo.getPositionY()),2) + Math.pow(((menu.getgarX())- metroo.getPositionX()),2))) <= slider_looptijd.getValue()))
                         {
                             metroo.Draw(gc);}
                         else{gc.drawImage( Images.metro_imagebw, metroo.getPositionX(), metroo.getPositionY() );}
                 }
                 for (Tram tramm : tram_list){
                     if(tram.isSelected()){   
-                        if((Math.sqrt(Math.pow(((menu.getgarY()) - tramm.getPositionY()),2) + Math.pow(((menu.getgarX())- tramm.getPositionX()),2))) <= slider_loopafstand.getValue())
+                        if(((Math.sqrt(Math.pow(((menu.getgarY()) - tramm.getPositionY()),2) + Math.pow(((menu.getgarX())- tramm.getPositionX()),2))) <= slider_loopafstand.getValue())
+                           &&((Math.sqrt(Math.pow(((menu.getgarY()) - tramm.getPositionY()),2) + Math.pow(((menu.getgarX())- tramm.getPositionX()),2))) <= slider_looptijd.getValue()))
                         {
                             
                             tramm.Draw(gc);}
@@ -275,7 +278,8 @@ public class Main extends Application {
                 }
                 for (Bus buss : bus_list){
                     if (bus.isSelected()){   
-                        if((Math.sqrt(Math.pow(((menu.getgarY()) - buss.getPositionY()),2) + Math.pow(((menu.getgarX())- buss.getPositionX()),2))) <= slider_loopafstand.getValue())
+                        if(((Math.sqrt(Math.pow(((menu.getgarY()) - buss.getPositionY()),2) + Math.pow(((menu.getgarX())- buss.getPositionX()),2))) <= slider_loopafstand.getValue())
+                           && (Math.sqrt(Math.pow(((menu.getgarY()) - buss.getPositionY()),2) + Math.pow(((menu.getgarX())- buss.getPositionX()),2))) <= slider_looptijd.getValue())
                         {
                             buss.Draw(gc);}
                         else{gc.drawImage( Images.bus_imagebw, buss.getPositionX(), buss.getPositionY() );}
@@ -292,7 +296,7 @@ public class Main extends Application {
 }               
                 
                 gc.drawImage( Images.menu_image, 5, 0 );
- 
+               // menu.paint(comboBox,55, 55, 55);
                 
             } 
         }.start();   
