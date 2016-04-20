@@ -119,22 +119,22 @@ public class Main extends Application {
         //                           SLIDER                         ///
         ///////////////////////////////////////////////////////////////
         Slider slider_loopafstand = new Slider(); //loopafstand // 1,25 40pixels is 50 meter
-        slider_loopafstand.setMin(0);slider_loopafstand.setMax(1000);slider_loopafstand.setValue(400); slider_loopafstand.setLayoutX(20);slider_loopafstand.setLayoutY(265);
-        slider_loopafstand.setShowTickLabels(false);slider_loopafstand.setShowTickMarks(false);slider_loopafstand.setMajorTickUnit(50);slider_loopafstand.setMinorTickCount(50);
-        slider_loopafstand.setBlockIncrement(10);slider_loopafstand.setCursor(Cursor.HAND);slider_loopafstand.setMinSize(240, 1);slider_loopafstand.setBackground(Background.EMPTY);
+        slider_loopafstand.setMin(0); slider_loopafstand.setMax(1000); slider_loopafstand.setValue(400); slider_loopafstand.setLayoutX(20); slider_loopafstand.setLayoutY(265);
+        slider_loopafstand.setShowTickLabels(false); slider_loopafstand.setShowTickMarks(false); slider_loopafstand.setMajorTickUnit(50); slider_loopafstand.setMinorTickCount(50);
+        slider_loopafstand.setBlockIncrement(10); slider_loopafstand.setCursor(Cursor.HAND); slider_loopafstand.setMinSize(240, 1); slider_loopafstand.setBackground(Background.EMPTY);
         slider_loopafstand.getStylesheets().add(getClass().getResource("sliderstylesheet.css").toExternalForm()); // verandert de layout van de slider met behulp van css 
         
         Slider slider_looptijd = new Slider(); // looptijd // 66 pixels per minuut
-        slider_looptijd.setMin(0);slider_looptijd.setMax(1000);slider_looptijd.setValue(400); slider_looptijd.setLayoutX(20);slider_looptijd.setLayoutY(325);
-        slider_looptijd.setShowTickLabels(false);slider_looptijd.setShowTickMarks(false);slider_looptijd.setMajorTickUnit(50);slider_looptijd.setMinorTickCount(50);
-        slider_looptijd.setBlockIncrement(10);slider_looptijd.setCursor(Cursor.HAND);slider_looptijd.setMinSize(240, 1);slider_looptijd.setBackground(Background.EMPTY);
+        slider_looptijd.setMin(0); slider_looptijd.setMax(1000); slider_looptijd.setValue(400); slider_looptijd.setLayoutX(20); slider_looptijd.setLayoutY(325);
+        slider_looptijd.setShowTickLabels(false); slider_looptijd.setShowTickMarks(false); slider_looptijd.setMajorTickUnit(50); slider_looptijd.setMinorTickCount(50);
+        slider_looptijd.setBlockIncrement(10); slider_looptijd.setCursor(Cursor.HAND); slider_looptijd.setMinSize(240, 1); slider_looptijd.setBackground(Background.EMPTY);
         slider_looptijd.getStylesheets().add(getClass().getResource("sliderstylesheet2.css").toExternalForm()); // verandert de layout van de slider met behulp van css
         ///////////////////////////////////////////////////////////////
         //                           COMBOBOX                       ///
         ///////////////////////////////////////////////////////////////
         ComboBox<String> comboBox = new ComboBox<>();
         comboBox.getItems().add("Show All");
-        for (Garage garage : new_list){comboBox.getItems().add(garage.getName());}
+        for (Garage garage : new_list){comboBox.getItems().add(garage.getName());} // hier vullen we de comboBox aan met de garages
         comboBox.setValue("Select Garage");       
         comboBox.setBackground(Background.EMPTY);
         comboBox.setLayoutX(20);
@@ -203,8 +203,8 @@ public class Main extends Application {
             tram.setPositionX(+ 150);}
         for (Bus bus : bus_list){
             bus.setPositionX(+ 150);}}}); //past alle X van de garages aan UPDATE    
-        // maak button
-        Button right = new Button();
+        
+        Button right = new Button(); // maak button
         right.setGraphic(new ImageView(Images.right_image));right.setLayoutX(canvas_y-82);right.setLayoutY((canvas_x/2)-20);right.setShape(new Circle());       
         right.setOnAction(e -> {       // actie on click
         if ((map_x)-150 >= -9400){map_x = map_x - 150;
