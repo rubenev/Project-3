@@ -58,7 +58,7 @@ public class Main extends Application {
     double mercN = Math.log(Math.tan((Math.PI/4)+(latRad/2)));
     double null_ylat = (10159/2)-(10563*mercN/(2*Math.PI));
     double null_xlong = (4.396787 + 180.0) * (10563 / 360);      
-    
+    Button exitButton = new Button();
     Menu menu = new Menu();
     CheckBox bus = new CheckBox();
     CheckBox tram = new CheckBox();
@@ -306,6 +306,24 @@ public class Main extends Application {
           
           MetroLabelList.add(garagelabel);
           MetroButtonList.add(garagebutt);}
+        ////////////////////////////////////////////////////////////////
+        //                         Eixt full screen                   //
+         /////////////////////////////////////////////////////////////
+         
+         exitButton.setLayoutX(100);
+         exitButton.setLayoutY(100);
+         exitButton.setOnAction(e -> { primaryStage.setFullScreen(false);
+            primaryStage.setWidth(1500);
+            primaryStage.setHeight(1000);
+              canvas_y = 1500;
+              canvas_x = 1000;
+        right.setLayoutX(canvas_y-102);
+        right.setLayoutY((canvas_x/2)-20);
+        down.setLayoutX((canvas_y/2)-20);
+        down.setLayoutY((canvas_x-115));    
+        left.setLayoutY((canvas_x/2)-20);
+         up.setLayoutX((canvas_y/2)-20);       
+         });
         
         
         ///////////////////////////////////////////////////////////////
@@ -320,7 +338,7 @@ public class Main extends Application {
         looptijdtext.setTextFill(Color.web("#FFFFFF"));
 //        canvas.setLayoutX(canvas_x);
 //        canvas.setLayoutY(canvas_y);       
-        root.getChildren().addAll(canvas,right,left,up,down,comboBox,bus,tram,metro,slider_loopafstand,slider_looptijd,loopafstandtext,looptijdtext);
+        root.getChildren().addAll(canvas,right,left,up,down,comboBox,bus,tram,metro,slider_loopafstand,slider_looptijd,loopafstandtext,looptijdtext,exitButton);
         root.getChildren().addAll(GarageButtonList);
         root.getChildren().addAll(GarageLabelList);
         root.getChildren().addAll(MetroLabelList);
