@@ -407,20 +407,8 @@ public class Main extends Application {
 }               
                 
                 gc.drawImage( Images.menu_image, 5, 0 );
-               // menu.paint(comboBox,55, 55, 55);
             } 
         }.start();   
     } 
     
 }
-
-
-/*
-        N = slider
-        i = y  j = x
-
-        r = math.sqrt((n/2 - x)**2 + (n/2 - y)**2)
-
-        if math.sqrt((300/2 - (selecten_garageX-buss.getPositionX()))**2 + (300/2 - (selecten_garageY-buss.getPositionY()))**2) <= 300 
-
-*/
