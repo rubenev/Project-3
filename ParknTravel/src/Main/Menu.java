@@ -50,16 +50,32 @@ public class Menu implements IComponents {
     public void update() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    public void InteractionCheckbox(CheckBox Bus , CheckBox Metro, CheckBox Tram, Stage primaryStage, Scene theScene , List<Button> MetrobList){
-    Bus.setLayoutX(-21); Bus.setLayoutY(200);
-    if (Bus.isSelected()){Bus.setGraphic(new ImageView(bus_image_c));}else{Bus.setGraphic(new ImageView(bus_image));}
-     Metro.setLayoutX(-21); Metro.setLayoutY(80);
-    if (Metro.isSelected()){Metro.setGraphic(new ImageView(metro_image_c)); 
+    public void InteractionCheckbox(CheckBox Bus , CheckBox Metro, CheckBox Tram, Stage primaryStage, Scene theScene , List<Button> MetrobList,List<Button> BusbList,List<Button>TrambList ){
+    
+        Bus.setLayoutX(-21); Bus.setLayoutY(200);
+    if (Bus.isSelected())
+        {Bus.setGraphic(new ImageView(bus_image_c));
+        for (Button busbutt :  BusbList){busbutt.setVisible(true);}
+        }
+    else{Bus.setGraphic(new ImageView(bus_image));
+    for (Button busbutt :  BusbList){busbutt.setVisible(false);}}
+        
+    
+    
+    Metro.setLayoutX(-21); Metro.setLayoutY(80);  
+    if (Metro.isSelected())
+        {Metro.setGraphic(new ImageView(metro_image_c)); 
         for (Button metrobutt : MetrobList){metrobutt.setVisible(true);}}
     else{Metro.setGraphic(new ImageView(metro_image));
         for (Button metrobutt : MetrobList){metrobutt.setVisible(false);}}
-     Tram.setLayoutX(-21); Tram.setLayoutY(140);
-    if (Tram.isSelected()){Tram.setGraphic(new ImageView(tram_image_c));}else{Tram.setGraphic(new ImageView(tram_image));}
+    
+    
+    Tram.setLayoutX(-21); Tram.setLayoutY(140);
+    if (Tram.isSelected())
+        {Tram.setGraphic(new ImageView(tram_image_c));
+        for (Button trambutt : TrambList){trambutt.setVisible(true);}}
+    else{Tram.setGraphic(new ImageView(tram_image));
+        for (Button trambutt : TrambList){trambutt.setVisible(false);}}
     
     primaryStage.setScene( theScene );
     }
@@ -82,4 +98,17 @@ public class Menu implements IComponents {
        int y_int = (int) y;
        g.drawString(text_string, x_int, y_int);
     }
+    /**
+     * 
+     * @param buttList lijst met buttons
+     * @param X geef x coördinaat - is naar links
+     * @param Y geef y coördinaat - is naar beneden
+     */
+    public void moveButtonList(List<Button> buttList,int X,int Y){
+    for (Button button: buttList){
+        button.setLayoutX(button.getLayoutX() + X);
+        button.setLayoutY(button.getLayoutY() + Y);}
+    
+    }
+    
 }

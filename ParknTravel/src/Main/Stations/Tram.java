@@ -19,6 +19,7 @@ import javafx.scene.image.Image;
     private Image Tram_Img = null; // string naar de plek invullen blijft hetzelfde voor alle trams
     private double Position_x;
     private double Position_y;// longitude, latitude
+    public boolean isClicked = false;
     
     public Tram (Image image, String name, String Description, double longitude,double latitude)
     {

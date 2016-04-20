@@ -75,6 +75,11 @@ public class Main extends Application {
     List<Label> GarageLabelList = new ArrayList();
     List<Button> MetroButtonList = new ArrayList();
     List<Label> MetroLabelList = new ArrayList();
+    List<Button> BusButtonList = new ArrayList();
+    List<Label> BusLabelList = new ArrayList();
+    List<Button> TramButtonList = new ArrayList();
+    List<Label> TramLabelList = new ArrayList();
+    
     public static void main(String[] args) {
    
         launch(args);
@@ -169,6 +174,7 @@ public class Main extends Application {
         up.setGraphic(new ImageView(Images.up_image));up.setLayoutX((canvas_y/2)-20);up.setLayoutY(5);up.setShape(new Circle());       
         up.setOnAction(e ->{ // actie on click
         if (map_y+100 <= 0){map_y = map_y + 100;
+        menu.moveButtonList(GarageButtonList, 0, 100);
         for (Garage garage : new_list){
             garage.setPositionY(+ 100);}
         for (Metro metro : metro_list){
@@ -261,6 +267,47 @@ public class Main extends Application {
           
           MetroLabelList.add(garagelabel);
           MetroButtonList.add(garagebutt);}
+         
+         for (Bus bus : bus_list){
+              Button garagebutt = new Button();
+              Label garagelabel = new Label();
+          garagebutt.setOnMouseClicked(e -> {
+              if (bus.isClicked == false){
+                  garagelabel.setVisible(true);
+              bus.isClicked = true;}
+            else{garagelabel.setVisible(false);bus.isClicked = false;}});
+          garagebutt.setLayoutX(bus.getPositionX());
+          garagebutt.setLayoutY(bus.getPositionY()); 
+          garagebutt.setCursor(Cursor.OPEN_HAND);
+          
+          garagelabel.setLayoutX(bus.getPositionX() + 80);
+          garagelabel.setLayoutY(bus.getPositionY() + 30);
+          garagelabel.setText(bus.getName() + "\n" + bus.getDescription());
+          garagelabel.setVisible(false);
+          
+          BusLabelList.add(garagelabel);
+          BusButtonList.add(garagebutt);}
+         
+         for (Tram tram : tram_list){
+              Button garagebutt = new Button();
+              Label garagelabel = new Label();
+          garagebutt.setOnMouseClicked(e -> {
+              if (tram.isClicked == false){
+                  garagelabel.setVisible(true);
+              tram.isClicked = true;}
+            else{garagelabel.setVisible(false);tram.isClicked = false;}});
+          garagebutt.setLayoutX(tram.getPositionX());
+          garagebutt.setLayoutY(tram.getPositionY()); 
+          garagebutt.setCursor(Cursor.OPEN_HAND);
+          
+          garagelabel.setLayoutX(tram.getPositionX() + 80);
+          garagelabel.setLayoutY(tram.getPositionY() + 30);
+          garagelabel.setText(tram.getName() + "\n" + tram.getDescription());
+          garagelabel.setVisible(false);
+          
+          TramLabelList.add(garagelabel);
+          TramButtonList.add(garagebutt);}
+
 
         ////////////////////////////////////////////////////////////////
         //                      Exit en enter full screen            //
@@ -282,6 +329,10 @@ public class Main extends Application {
         root.getChildren().addAll(GarageLabelList);
         root.getChildren().addAll(MetroLabelList);
         root.getChildren().addAll(MetroButtonList);
+        root.getChildren().addAll(BusButtonList);
+        root.getChildren().addAll(BusLabelList);
+        root.getChildren().addAll(TramButtonList);
+        root.getChildren().addAll(TramLabelList);
 
         primaryStage.setScene( theScene );
         primaryStage.show();
@@ -294,7 +345,7 @@ public class Main extends Application {
             public void handle(long currentNanoTime){
                 gc.clearRect(0,0,canvas.getWidth(),canvas.getHeight());        
                 gc.drawImage( Images.background, map_x, map_y );
-                menu.InteractionCheckbox(bus, metro, tram, primaryStage, theScene, MetroButtonList);
+                menu.InteractionCheckbox(bus, metro, tram, primaryStage, theScene, MetroButtonList, BusButtonList,TramButtonList);
                 // text loopafstand en tijd
                 double newloopafstanddouble = (slider_loopafstand.getValue() * 1.25);
                 int newloopafstandint = (int)newloopafstanddouble;
