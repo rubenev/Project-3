@@ -72,6 +72,8 @@ public class Main extends Application {
     List<Tram> list_tram = new ArrayList();
     List<Button> GarageButtonList = new ArrayList();
     List<Label> GarageLabelList = new ArrayList();
+    List<Button> MetroButtonList = new ArrayList();
+    List<Label> MetroLabelList = new ArrayList();
     public static void main(String[] args) {
    
         launch(args);
@@ -284,6 +286,27 @@ public class Main extends Application {
           
           GarageLabelList.add(garagelabel);
           GarageButtonList.add(garagebutt);}
+         
+         for (Metro metro : metro_list){
+              Button garagebutt = new Button();
+              Label garagelabel = new Label();
+          garagebutt.setOnMouseClicked(e -> {
+              if (metro.isClicked == false){
+                  garagelabel.setVisible(true);
+              metro.isClicked = true;}
+            else{garagelabel.setVisible(false);metro.isClicked = false;}});
+          garagebutt.setLayoutX(metro.getPositionX());
+          garagebutt.setLayoutY(metro.getPositionY()); 
+          garagebutt.setCursor(Cursor.OPEN_HAND);
+          
+          garagelabel.setLayoutX(metro.getPositionX() + 80);
+          garagelabel.setLayoutY(metro.getPositionY() + 30);
+          garagelabel.setText(metro.getName() + "\n" + metro.getDescription());
+          garagelabel.setVisible(false);
+          
+          MetroLabelList.add(garagelabel);
+          MetroButtonList.add(garagebutt);}
+        
         
         ///////////////////////////////////////////////////////////////
         //                         ROOT CREeREN                     ///
@@ -300,6 +323,8 @@ public class Main extends Application {
         root.getChildren().addAll(canvas,right,left,up,down,comboBox,bus,tram,metro,slider_loopafstand,slider_looptijd,loopafstandtext,looptijdtext);
         root.getChildren().addAll(GarageButtonList);
         root.getChildren().addAll(GarageLabelList);
+        root.getChildren().addAll(MetroLabelList);
+        root.getChildren().addAll(MetroButtonList);
 
         primaryStage.setScene( theScene );
         primaryStage.show();
@@ -310,7 +335,7 @@ public class Main extends Application {
             public void handle(long currentNanoTime){
                 gc.clearRect(0,0,canvas.getWidth(),canvas.getHeight());        
                 gc.drawImage( Images.background, map_x, map_y );
-                menu.InteractionCheckbox(bus, metro, tram, primaryStage, theScene);
+                menu.InteractionCheckbox(bus, metro, tram, primaryStage, theScene, MetroButtonList);
                 // text loopafstand en tijd
                 double newloopafstanddouble = (slider_loopafstand.getValue() * 1.25);
                 int newloopafstandint = (int)newloopafstanddouble;
