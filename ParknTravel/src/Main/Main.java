@@ -60,6 +60,7 @@ public class Main extends Application {
     double null_xlong = (4.396787 + 180.0) * (10563 / 360);      
     Button exitButton = new Button();
     Menu menu = new Menu();
+    
     CheckBox bus = new CheckBox();
     CheckBox tram = new CheckBox();
     CheckBox metro = new CheckBox();
@@ -85,7 +86,8 @@ public class Main extends Application {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         canvas_y = screenSize.getWidth();
         canvas_x = screenSize.getHeight();
-
+        menu.setgarY(canvas_x/2);
+        menu.setgarX(canvas_y/2);
 
         System.out.println(primaryStage.getHeight());
         primaryStage.setTitle("Park n Travel");        
@@ -306,6 +308,7 @@ public class Main extends Application {
           
           MetroLabelList.add(garagelabel);
           MetroButtonList.add(garagebutt);}
+
         ////////////////////////////////////////////////////////////////
         //                         Eixt full screen                   //
          /////////////////////////////////////////////////////////////
