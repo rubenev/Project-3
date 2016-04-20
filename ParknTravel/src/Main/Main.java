@@ -50,7 +50,7 @@ public class Main extends Application {
     double canvas_y = 1500;
     double selecten_garageX;
     double selecten_garageY;
-    
+    boolean checked = true;
    //---------------------------------------------------------//
    //              berekenen van null punt x en y             //
    //---------------------------------------------------------//    
@@ -58,7 +58,7 @@ public class Main extends Application {
     double mercN = Math.log(Math.tan((Math.PI/4)+(latRad/2)));
     double null_ylat = (10159/2)-(10563*mercN/(2*Math.PI));
     double null_xlong = (4.396787 + 180.0) * (10563 / 360);      
-    Button exitButton = new Button();
+//    Button exitButton = new Button();
     Menu menu = new Menu();
     
     CheckBox bus = new CheckBox();
@@ -83,18 +83,18 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws InterruptedException{
         primaryStage.setFullScreen(true);
+        primaryStage.setTitle("Park & Travel");   
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         canvas_y = screenSize.getWidth();
         canvas_x = screenSize.getHeight();
         menu.setgarY(canvas_x/2);
         menu.setgarX(canvas_y/2);
-
-        System.out.println(primaryStage.getHeight());
-        primaryStage.setTitle("Park n Travel");        
+        Canvas canvas = new Canvas(canvas_y,canvas_x); // creeeren van beeld enzo
+        GraphicsContext gc = canvas.getGraphicsContext2D();  
         Group root = new Group();
         Scene theScene = new Scene( root );
-        // data is database
-        Database data = new Database();
+        
+        Database data = new Database(); // data is database
         List<Garage> new_list= data.getGaragelist(); //list van garages uit database
         for (Garage garage : new_list){
             garage.setPositionY(map_y); //past alle Y van de garages aan zodat het klopt met de map
@@ -118,42 +118,17 @@ public class Main extends Application {
         ///////////////////////////////////////////////////////////////
         //                           SLIDER                         ///
         ///////////////////////////////////////////////////////////////
-        Slider slider_loopafstand = new Slider(); //loopafstand
-        slider_loopafstand.setMin(0);
-        slider_loopafstand.setMax(1000);// 80/100
-        slider_loopafstand.setValue(400); // 1,25 40pixels is 50 meter
-        slider_loopafstand.setLayoutX(20);
-        slider_loopafstand.setLayoutY(265);
-        slider_loopafstand.setShowTickLabels(false);
-        slider_loopafstand.setShowTickMarks(false);
-        slider_loopafstand.setMajorTickUnit(50);
-        slider_loopafstand.setMinorTickCount(50);
-        slider_loopafstand.setBlockIncrement(10);
-        slider_loopafstand.setCursor(Cursor.HAND);
-        slider_loopafstand.setMinSize(240, 1);
-        slider_loopafstand.setBackground(Background.EMPTY);
+        Slider slider_loopafstand = new Slider(); //loopafstand // 1,25 40pixels is 50 meter
+        slider_loopafstand.setMin(0);slider_loopafstand.setMax(1000);slider_loopafstand.setValue(400); slider_loopafstand.setLayoutX(20);slider_loopafstand.setLayoutY(265);
+        slider_loopafstand.setShowTickLabels(false);slider_loopafstand.setShowTickMarks(false);slider_loopafstand.setMajorTickUnit(50);slider_loopafstand.setMinorTickCount(50);
+        slider_loopafstand.setBlockIncrement(10);slider_loopafstand.setCursor(Cursor.HAND);slider_loopafstand.setMinSize(240, 1);slider_loopafstand.setBackground(Background.EMPTY);
         slider_loopafstand.getStylesheets().add(getClass().getResource("sliderstylesheet.css").toExternalForm()); // verandert de layout van de slider met behulp van css 
         
-        Slider slider_looptijd = new Slider(); // looptijd
-        slider_looptijd.setMin(0);
-        slider_looptijd.setMax(1000);
-        slider_looptijd.setValue(400); // 66 per minuut
-        slider_looptijd.setLayoutX(20);
-        slider_looptijd.setLayoutY(325);
-        slider_looptijd.setShowTickLabels(false);
-        slider_looptijd.setShowTickMarks(false);
-        slider_looptijd.setMajorTickUnit(50);
-        slider_looptijd.setMinorTickCount(50);
-        slider_looptijd.setBlockIncrement(10);
-        slider_looptijd.setCursor(Cursor.HAND);
-        slider_looptijd.setMinSize(240, 1);
-        slider_looptijd.setBackground(Background.EMPTY);
+        Slider slider_looptijd = new Slider(); // looptijd // 66 pixels per minuut
+        slider_looptijd.setMin(0);slider_looptijd.setMax(1000);slider_looptijd.setValue(400); slider_looptijd.setLayoutX(20);slider_looptijd.setLayoutY(325);
+        slider_looptijd.setShowTickLabels(false);slider_looptijd.setShowTickMarks(false);slider_looptijd.setMajorTickUnit(50);slider_looptijd.setMinorTickCount(50);
+        slider_looptijd.setBlockIncrement(10);slider_looptijd.setCursor(Cursor.HAND);slider_looptijd.setMinSize(240, 1);slider_looptijd.setBackground(Background.EMPTY);
         slider_looptijd.getStylesheets().add(getClass().getResource("sliderstylesheet2.css").toExternalForm()); // verandert de layout van de slider met behulp van css
-
-        
-        
-        Canvas canvas = new Canvas(canvas_y,canvas_x);
-
         ///////////////////////////////////////////////////////////////
         //                           COMBOBOX                       ///
         ///////////////////////////////////////////////////////////////
@@ -186,18 +161,13 @@ public class Main extends Application {
                     bus.setPositionX(map_x-temp_mapx);
                 }}}});
         
-        GraphicsContext gc = canvas.getGraphicsContext2D();  
+        
         ///////////////////////////////////////////////////////////////
         //                     NAVIGATIE KNOPPEN                    ///
         ///////////////////////////////////////////////////////////////
-        Button up = new Button();
-        // plaats button
-        up.setGraphic(new ImageView(Images.up_image));
-        up.setLayoutX((canvas_y/2)-20);
-        up.setLayoutY(5);
-        up.setShape(new Circle());
-        // actie on click
-        up.setOnAction(e ->{ 
+        Button up = new Button(); // maak button
+        up.setGraphic(new ImageView(Images.up_image));up.setLayoutX((canvas_y/2)-20);up.setLayoutY(5);up.setShape(new Circle());       
+        up.setOnAction(e ->{ // actie on click
         if (map_y+100 <= 0){map_y = map_y + 100;
         for (Garage garage : new_list){
             garage.setPositionY(+ 100);}
@@ -206,18 +176,11 @@ public class Main extends Application {
         for (Tram tram : tram_list){
             tram.setPositionY(+ 100);}
         for (Bus bus : bus_list){
-            bus.setPositionY(+ 100);
-        }
-        }}); //past alle Y van de garages aan UPDATE      
-        // maak button
-        Button down = new Button();
-        // plaats button
-        down.setGraphic(new ImageView(Images.down_image));
-        down.setLayoutX((canvas_y/2)-20);
-        down.setLayoutY((canvas_x-75));
-        down.setShape(new Circle());
-        // actie on click
-        down.setOnAction(e->{        
+            bus.setPositionY(+ 100);}}}); //past alle Y van de garages aan UPDATE      
+        
+        Button down = new Button(); // maak button
+        down.setGraphic(new ImageView(Images.down_image));down.setLayoutX((canvas_y/2)-20);down.setLayoutY((canvas_x-75));down.setShape(new Circle());      
+        down.setOnAction(e->{   // actie on click     
         if (map_y-100 >= -9400){map_y = map_y - 100;
         for (Garage garage : new_list){
             garage.setPositionY(- 100);}
@@ -227,15 +190,10 @@ public class Main extends Application {
             tram.setPositionY(- 100);}
         for (Bus bus : bus_list){
             bus.setPositionY(- 100);}}}); //past alle Y van de garages aan UPDATE    
-        // maak button
-        Button left = new Button();
-        // plaats button plaatje ect
-        left.setGraphic(new ImageView(Images.left_image));
-        left.setLayoutX(5);
-        left.setLayoutY((canvas_x/2)-20);
-        left.setShape(new Circle());
-        // actie on click
-        left.setOnAction(e-> {       
+        
+        Button left = new Button();// maak button
+        left.setGraphic(new ImageView(Images.left_image));left.setLayoutX(5);left.setLayoutY((canvas_x/2)-20);left.setShape(new Circle());       
+        left.setOnAction(e-> {      // actie on click 
         if (map_x+150 <= 0){map_x = map_x + 150;
         for (Garage garage : new_list){
             garage.setPositionX(+ 150);}
@@ -247,13 +205,8 @@ public class Main extends Application {
             bus.setPositionX(+ 150);}}}); //past alle X van de garages aan UPDATE    
         // maak button
         Button right = new Button();
-        // plaats button plaatje ect
-        right.setGraphic(new ImageView(Images.right_image));
-        right.setLayoutX(canvas_y-82);
-        right.setLayoutY((canvas_x/2)-20);
-        right.setShape(new Circle());
-        // actie on click
-        right.setOnAction(e -> {       
+        right.setGraphic(new ImageView(Images.right_image));right.setLayoutX(canvas_y-82);right.setLayoutY((canvas_x/2)-20);right.setShape(new Circle());       
+        right.setOnAction(e -> {       // actie on click
         if ((map_x)-150 >= -9400){map_x = map_x - 150;
         for (Garage garage : new_list){
             garage.setPositionX(- 150);}
@@ -310,26 +263,9 @@ public class Main extends Application {
           MetroButtonList.add(garagebutt);}
 
         ////////////////////////////////////////////////////////////////
-        //                         Eixt full screen                   //
-         /////////////////////////////////////////////////////////////
-         
-         exitButton.setLayoutX(canvas_y - 80);
-         exitButton.setLayoutY(10);
-         exitButton.setGraphic(new ImageView("Images/exit_fullscreen.png"));
-         exitButton.setStyle("-fx-background-color: transparent");
-         exitButton.setOnAction(e -> { primaryStage.setFullScreen(false);
-            primaryStage.setWidth(1500);
-            primaryStage.setHeight(1000);
-              canvas_y = 1500;
-              canvas_x = 1000;
-        right.setLayoutX(canvas_y-102);
-        right.setLayoutY((canvas_x/2)-20);
-        down.setLayoutX((canvas_y/2)-20);
-        down.setLayoutY((canvas_x-115));    
-        left.setLayoutY((canvas_x/2)-20);
-         up.setLayoutX((canvas_y/2)-20);       
-         });
-        
+        //                      Exit en enter full screen            //
+         /////////////////////////////////////////////////////////////       
+        exitButton exitButton = new exitButton(root,canvas_y,canvas_x,primaryStage,up,down,left,right);
         
         ///////////////////////////////////////////////////////////////
         //                         ROOT CREeREN                     ///
@@ -340,10 +276,8 @@ public class Main extends Application {
         loopafstandtext.setTextFill(Color.web("#FFFFFF"));
         looptijdtext.setLayoutX(190);
         looptijdtext.setLayoutY(310);       
-        looptijdtext.setTextFill(Color.web("#FFFFFF"));
-//        canvas.setLayoutX(canvas_x);
-//        canvas.setLayoutY(canvas_y);       
-        root.getChildren().addAll(canvas,right,left,up,down,comboBox,bus,tram,metro,slider_loopafstand,slider_looptijd,loopafstandtext,looptijdtext,exitButton);
+        looptijdtext.setTextFill(Color.web("#FFFFFF"));      
+        root.getChildren().addAll(canvas,right,left,up,down,comboBox,bus,tram,metro,slider_loopafstand,slider_looptijd,loopafstandtext,looptijdtext,exitButton.getExitbutton());
         root.getChildren().addAll(GarageButtonList);
         root.getChildren().addAll(GarageLabelList);
         root.getChildren().addAll(MetroLabelList);
@@ -352,7 +286,9 @@ public class Main extends Application {
         primaryStage.setScene( theScene );
         primaryStage.show();
         
-        // Refresh het scherm
+        ///////////////////////////////////////////////////////////////
+        //                         Update Scherm                    ///
+        ///////////////////////////////////////////////////////////////
         new AnimationTimer(){
             @Override
             public void handle(long currentNanoTime){
@@ -373,42 +309,31 @@ public class Main extends Application {
                     if(metro.isSelected())
                         if(((Math.sqrt(Math.pow(((menu.getgarY()) - metroo.getPositionY()),2) + Math.pow(((menu.getgarX())- metroo.getPositionX()),2))) <= slider_loopafstand.getValue())
                             &&((Math.sqrt(Math.pow(((menu.getgarY()) - metroo.getPositionY()),2) + Math.pow(((menu.getgarX())- metroo.getPositionX()),2))) <= slider_looptijd.getValue()))
-                        {
-                            metroo.Draw(gc);}
+                        {metroo.Draw(gc);}
                         else{gc.drawImage( Images.metro_imagebw, metroo.getPositionX(), metroo.getPositionY() );}
                 }
                 for (Tram tramm : tram_list){
                     if(tram.isSelected()){   
                         if(((Math.sqrt(Math.pow(((menu.getgarY()) - tramm.getPositionY()),2) + Math.pow(((menu.getgarX())- tramm.getPositionX()),2))) <= slider_loopafstand.getValue())
                            &&((Math.sqrt(Math.pow(((menu.getgarY()) - tramm.getPositionY()),2) + Math.pow(((menu.getgarX())- tramm.getPositionX()),2))) <= slider_looptijd.getValue()))
-                        {
-                            
-                            tramm.Draw(gc);}
+                        {tramm.Draw(gc);}
                         else{gc.drawImage( Images.tram_imagebw, tramm.getPositionX(), tramm.getPositionY() );}
-                }
-                }
+                }}
                 for (Bus buss : bus_list){
                     if (bus.isSelected()){   
                         if(((Math.sqrt(Math.pow(((menu.getgarY()) - buss.getPositionY()),2) + Math.pow(((menu.getgarX())- buss.getPositionX()),2))) <= slider_loopafstand.getValue())
                            && (Math.sqrt(Math.pow(((menu.getgarY()) - buss.getPositionY()),2) + Math.pow(((menu.getgarX())- buss.getPositionX()),2))) <= slider_looptijd.getValue())
-                        {
-                            buss.Draw(gc);}
+                        {buss.Draw(gc);}
                         else{gc.drawImage( Images.bus_imagebw, buss.getPositionX(), buss.getPositionY() );}
                 }}
                 for (Garage garage : new_list){
-                    if(comboBox.getValue() == garage.getName() || comboBox.getValue() == "Select Garage" || comboBox.getValue() == "Show All"){
-                          
+                    if(comboBox.getValue() == garage.getName() || comboBox.getValue() == "Select Garage" || comboBox.getValue() == "Show All"){    
                         garage.Draw(gc);}
-                        if(comboBox.getValue() == garage.getName()){
-                            
+                        if(comboBox.getValue() == garage.getName()){ 
                             menu.setgarY(garage.getPositionY());
-                            menu.setgarX(garage.getPositionX());
-                        }
-}               
-                
+                            menu.setgarX(garage.getPositionX());}}               
                 gc.drawImage( Images.menu_image, 5, 0 );
             } 
         }.start();   
-    } 
-    
+    }    
 }
