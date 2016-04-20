@@ -7,6 +7,8 @@ import Main.Classes.Images;
 import Main.Stations.Tram;
 import Main.Stations.Bus;
 import Main.Stations.Metro;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -93,21 +95,38 @@ public class Main extends Application {
         ///////////////////////////////////////////////////////////////
         //                           SLIDER                         ///
         ///////////////////////////////////////////////////////////////
-        Slider slider = new Slider(0,1,1);
-        slider.setMin(0);
-        slider.setMax(1000);
-        slider.setValue(50);
-        slider.setLayoutX(20);
-        slider.setLayoutY(280);
-        slider.setShowTickLabels(false);
-        slider.setShowTickMarks(false);
-        slider.setMajorTickUnit(50);
-        slider.setMinorTickCount(5);
-        slider.setBlockIncrement(10);
-        slider.setCursor(Cursor.HAND);
-        slider.setMinSize(230, 1);
-        slider.setBackground(Background.EMPTY);
-        //slider.paintThumb(RED);
+        Slider slider_loopafstand = new Slider(); //loopafstand
+        slider_loopafstand.setMin(0);
+        slider_loopafstand.setMax(1000);
+        slider_loopafstand.setValue(50);
+        slider_loopafstand.setLayoutX(20);
+        slider_loopafstand.setLayoutY(265);
+        slider_loopafstand.setShowTickLabels(false);
+        slider_loopafstand.setShowTickMarks(false);
+        slider_loopafstand.setMajorTickUnit(50);
+        slider_loopafstand.setMinorTickCount(50);
+        slider_loopafstand.setBlockIncrement(10);
+        slider_loopafstand.setCursor(Cursor.HAND);
+        slider_loopafstand.setMinSize(240, 1);
+        slider_loopafstand.setBackground(Background.EMPTY);
+        slider_loopafstand.getStylesheets().add(getClass().getResource("sliderstylesheet.css").toExternalForm()); // verandert de layout van de slider met behulp van css 
+        
+        Slider slider_looptijd = new Slider(); // looptijd
+        slider_looptijd.setMin(0);
+        slider_looptijd.setMax(1000);
+        slider_looptijd.setValue(50);
+        slider_looptijd.setLayoutX(20);
+        slider_looptijd.setLayoutY(325);
+        slider_looptijd.setShowTickLabels(false);
+        slider_looptijd.setShowTickMarks(false);
+        slider_looptijd.setMajorTickUnit(50);
+        slider_looptijd.setMinorTickCount(50);
+        slider_looptijd.setBlockIncrement(10);
+        slider_looptijd.setCursor(Cursor.HAND);
+        slider_looptijd.setMinSize(240, 1);
+        slider_looptijd.setBackground(Background.EMPTY);
+        slider_looptijd.getStylesheets().add(getClass().getResource("sliderstylesheet2.css").toExternalForm()); // verandert de layout van de slider met behulp van css
+
         
         
         Canvas canvas = new Canvas( canvas_y, canvas_x );
@@ -143,7 +162,7 @@ public class Main extends Application {
                     bus.setPositionX(map_x-temp_mapx);
                 }}}});
         
-        GraphicsContext gc = canvas.getGraphicsContext2D();
+        GraphicsContext gc = canvas.getGraphicsContext2D();  
         ///////////////////////////////////////////////////////////////
         //                     NAVIGATIE KNOPPEN                    ///
         ///////////////////////////////////////////////////////////////
@@ -224,7 +243,7 @@ public class Main extends Application {
         //                         ROOT CREeREN                     ///
         ///////////////////////////////////////////////////////////////
     
-        root.getChildren().addAll(canvas,right,left,up,down,comboBox,bus,tram,metro,slider);
+        root.getChildren().addAll(canvas,right,left,up,down,comboBox,bus,tram,metro,slider_loopafstand,slider_looptijd);
         primaryStage.setScene( theScene );
         primaryStage.show();
         
@@ -240,14 +259,14 @@ public class Main extends Application {
                 
                 for (Metro metroo : metro_list){
                     if(metro.isSelected())
-                        if((Math.sqrt(Math.pow(((menu.getgarY()) - metroo.getPositionY()),2) + Math.pow(((menu.getgarX())- metroo.getPositionX()),2))) <= slider.getValue())
+                        if((Math.sqrt(Math.pow(((menu.getgarY()) - metroo.getPositionY()),2) + Math.pow(((menu.getgarX())- metroo.getPositionX()),2))) <= slider_loopafstand.getValue())
                         {
                             metroo.Draw(gc);}
                         else{gc.drawImage( Images.metro_imagebw, metroo.getPositionX(), metroo.getPositionY() );}
                 }
                 for (Tram tramm : tram_list){
                     if(tram.isSelected()){   
-                        if((Math.sqrt(Math.pow(((menu.getgarY()) - tramm.getPositionY()),2) + Math.pow(((menu.getgarX())- tramm.getPositionX()),2))) <= slider.getValue())
+                        if((Math.sqrt(Math.pow(((menu.getgarY()) - tramm.getPositionY()),2) + Math.pow(((menu.getgarX())- tramm.getPositionX()),2))) <= slider_loopafstand.getValue())
                         {
                             
                             tramm.Draw(gc);}
@@ -256,7 +275,7 @@ public class Main extends Application {
                 }
                 for (Bus buss : bus_list){
                     if (bus.isSelected()){   
-                        if((Math.sqrt(Math.pow(((menu.getgarY()) - buss.getPositionY()),2) + Math.pow(((menu.getgarX())- buss.getPositionX()),2))) <= slider.getValue())
+                        if((Math.sqrt(Math.pow(((menu.getgarY()) - buss.getPositionY()),2) + Math.pow(((menu.getgarX())- buss.getPositionX()),2))) <= slider_loopafstand.getValue())
                         {
                             buss.Draw(gc);}
                         else{gc.drawImage( Images.bus_imagebw, buss.getPositionX(), buss.getPositionY() );}
@@ -273,8 +292,7 @@ public class Main extends Application {
 }               
                 
                 gc.drawImage( Images.menu_image, 5, 0 );
-                //gc.drawImage( loopafstand_image, 70, 260 );
-                gc.drawImage( Images.looptijd_image, 130, 330 );   
+ 
                 
             } 
         }.start();   

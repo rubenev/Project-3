@@ -68,5 +68,7 @@ public class Menu implements IComponents {
     public double getgarY(){
         return this.selected_garY;
     }    
-
+    public void fillText(java.lang.String text,double x,double y){
+        
+    }
 }
