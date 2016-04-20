@@ -7,6 +7,7 @@ import Main.Classes.Images;
 import Main.Stations.Tram;
 import Main.Stations.Bus;
 import Main.Stations.Metro;
+import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -33,6 +34,9 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import java.awt.Graphics;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.Toolkit;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
@@ -75,7 +79,13 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws InterruptedException{
+        primaryStage.setFullScreen(true);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        canvas_y = screenSize.getWidth();
+        canvas_x = screenSize.getHeight();
 
+
+        System.out.println(primaryStage.getHeight());
         primaryStage.setTitle("Park n Travel");        
         Group root = new Group();
         Scene theScene = new Scene( root );
@@ -138,7 +148,8 @@ public class Main extends Application {
 
         
         
-        Canvas canvas = new Canvas( canvas_y, canvas_x );
+        Canvas canvas = new Canvas(canvas_y,canvas_x);
+
         ///////////////////////////////////////////////////////////////
         //                           COMBOBOX                       ///
         ///////////////////////////////////////////////////////////////
@@ -284,10 +295,12 @@ public class Main extends Application {
         looptijdtext.setLayoutX(190);
         looptijdtext.setLayoutY(310);       
         looptijdtext.setTextFill(Color.web("#FFFFFF"));
-        
+//        canvas.setLayoutX(canvas_x);
+//        canvas.setLayoutY(canvas_y);       
         root.getChildren().addAll(canvas,right,left,up,down,comboBox,bus,tram,metro,slider_loopafstand,slider_looptijd,loopafstandtext,looptijdtext);
         root.getChildren().addAll(GarageButtonList);
         root.getChildren().addAll(GarageLabelList);
+
         primaryStage.setScene( theScene );
         primaryStage.show();
         
@@ -295,9 +308,7 @@ public class Main extends Application {
         new AnimationTimer(){
             @Override
             public void handle(long currentNanoTime){
-                //clear the canvas before painting over it
-                
-                gc.clearRect(0,0,canvas.getWidth(),canvas.getHeight());
+                gc.clearRect(0,0,canvas.getWidth(),canvas.getHeight());        
                 gc.drawImage( Images.background, map_x, map_y );
                 menu.InteractionCheckbox(bus, metro, tram, primaryStage, theScene);
                 // text loopafstand en tijd
