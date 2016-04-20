@@ -66,6 +66,8 @@ public class Main extends Application {
     List<Garage> list_garages = new ArrayList();
     List<Metro> list_metro = new ArrayList();
     List<Tram> list_tram = new ArrayList();
+    List<Button> GarageButtonList = new ArrayList();
+    List<Label> GarageLabelList = new ArrayList();
     public static void main(String[] args) {
    
         launch(args);
@@ -246,6 +248,32 @@ public class Main extends Application {
             tram.setPositionX(- 150);}
         for (Bus bus : bus_list){
             bus.setPositionX(-150);}}});  //past alle X van de garages aan UPDATE
+        
+        ///////////////////////////////////////////////////////////////
+        //                Button n Label bij elke garage             //
+        ///////////////////////////////////////////////////////////////
+         for (Garage garage : new_list){
+              Button garagebutt = new Button();
+              Label garagelabel = new Label();
+          garagebutt.setOnMouseClicked(e -> {
+              System.out.println(garage.getName());
+              if (garage.isClicked == false){
+                  garage.setImg(Images.B_image_info);
+                  garagelabel.setVisible(true);
+              garage.isClicked = true;}
+            else{garage.setImg(new Image("Images/P-location_image.png"));garagelabel.setVisible(false);garage.isClicked = false;}primaryStage.setScene( theScene );});
+          garagebutt.setLayoutX(garage.Position_x);
+          garagebutt.setLayoutY(garage.Position_y); 
+          garagebutt.setCursor(Cursor.OPEN_HAND);
+          
+          garagelabel.setLayoutX(garage.Position_x + 80);
+          garagelabel.setLayoutY(garage.Position_y + 30);
+          garagelabel.setText(garage.getName() + "\n" + garage.getDescription());
+          garagelabel.setVisible(false);
+          
+          GarageLabelList.add(garagelabel);
+          GarageButtonList.add(garagebutt);}
+        
         ///////////////////////////////////////////////////////////////
         //                         ROOT CREeREN                     ///
         ///////////////////////////////////////////////////////////////
@@ -258,6 +286,8 @@ public class Main extends Application {
         looptijdtext.setTextFill(Color.web("#FFFFFF"));
         
         root.getChildren().addAll(canvas,right,left,up,down,comboBox,bus,tram,metro,slider_loopafstand,slider_looptijd,loopafstandtext,looptijdtext);
+        root.getChildren().addAll(GarageButtonList);
+        root.getChildren().addAll(GarageLabelList);
         primaryStage.setScene( theScene );
         primaryStage.show();
         

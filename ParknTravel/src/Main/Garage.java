@@ -22,6 +22,7 @@ public class Garage implements IStations {
     private Image Garage_Img = null; // string naar de plek invullen blijft hetzelfde voor alle trams
     double Position_x;// longitude, latitude
     double Position_y;
+    boolean isClicked = false;
     List<Garage> GarageList = new ArrayList();
     
     public Garage (Image Garage_Img, String Name, String Description,String Type, double longitude,double latitude)
@@ -90,7 +91,7 @@ public class Garage implements IStations {
     public void update() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    public void setImg(Image img){this.Garage_Img = img;}
 
     
 }
