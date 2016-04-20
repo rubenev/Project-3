@@ -313,8 +313,10 @@ public class Main extends Application {
         //                         Eixt full screen                   //
          /////////////////////////////////////////////////////////////
          
-         exitButton.setLayoutX(100);
-         exitButton.setLayoutY(100);
+         exitButton.setLayoutX(canvas_y - 80);
+         exitButton.setLayoutY(10);
+         exitButton.setGraphic(new ImageView("Images/exit_fullscreen.png"));
+         exitButton.setStyle("-fx-background-color: transparent");
          exitButton.setOnAction(e -> { primaryStage.setFullScreen(false);
             primaryStage.setWidth(1500);
             primaryStage.setHeight(1000);
