@@ -79,6 +79,9 @@ public class Main extends Application {
     List<Label> BusLabelList = new ArrayList();
     List<Button> TramButtonList = new ArrayList();
     List<Label> TramLabelList = new ArrayList();
+    List<Button> AllButtons = new ArrayList();
+    List<Label> AllLabels = new ArrayList();
+    
     
     public static void main(String[] args) {
    
@@ -174,54 +177,26 @@ public class Main extends Application {
         up.setGraphic(new ImageView(Images.up_image));up.setLayoutX((canvas_y/2)-20);up.setLayoutY(5);up.setShape(new Circle());       
         up.setOnAction(e ->{ // actie on click
         if (map_y+100 <= 0){map_y = map_y + 100;
-        menu.moveButtonList(GarageButtonList, 0, 100);
-        for (Garage garage : new_list){
-            garage.setPositionY(+ 100);}
-        for (Metro metro : metro_list){
-            metro.setPositionY(+ 100);}
-        for (Tram tram : tram_list){
-            tram.setPositionY(+ 100);}
-        for (Bus bus : bus_list){
-            bus.setPositionY(+ 100);}}}); //past alle Y van de garages aan UPDATE      
+        menu.moveButtonList(0, 100,AllButtons,AllLabels,new_list,metro_list,tram_list,bus_list);
+        }}); //past alle Y van de garages aan UPDATE      
         
         Button down = new Button(); // maak button
         down.setGraphic(new ImageView(Images.down_image));down.setLayoutX((canvas_y/2)-20);down.setLayoutY((canvas_x-75));down.setShape(new Circle());      
         down.setOnAction(e->{   // actie on click     
         if (map_y-100 >= -9400){map_y = map_y - 100;
-        for (Garage garage : new_list){
-            garage.setPositionY(- 100);}
-        for (Metro metro : metro_list){
-            metro.setPositionY(- 100);}
-        for (Tram tram : tram_list){
-            tram.setPositionY(- 100);}
-        for (Bus bus : bus_list){
-            bus.setPositionY(- 100);}}}); //past alle Y van de garages aan UPDATE    
+        menu.moveButtonList(0, - 100,AllButtons,AllLabels,new_list,metro_list,tram_list,bus_list);}}); //past alle Y van de garages aan UPDATE    
         
         Button left = new Button();// maak button
         left.setGraphic(new ImageView(Images.left_image));left.setLayoutX(5);left.setLayoutY((canvas_x/2)-20);left.setShape(new Circle());       
         left.setOnAction(e-> {      // actie on click 
         if (map_x+150 <= 0){map_x = map_x + 150;
-        for (Garage garage : new_list){
-            garage.setPositionX(+ 150);}
-        for (Metro metro : metro_list){
-            metro.setPositionX(+ 150);}
-        for (Tram tram : tram_list){
-            tram.setPositionX(+ 150);}
-        for (Bus bus : bus_list){
-            bus.setPositionX(+ 150);}}}); //past alle X van de garages aan UPDATE    
+        menu.moveButtonList(150, 0,AllButtons,AllLabels,new_list,metro_list,tram_list,bus_list);}}); //past alle X van de garages aan UPDATE    
         
         Button right = new Button(); // maak button
         right.setGraphic(new ImageView(Images.right_image));right.setLayoutX(canvas_y-82);right.setLayoutY((canvas_x/2)-20);right.setShape(new Circle());       
         right.setOnAction(e -> {       // actie on click
         if ((map_x)-150 >= -9400){map_x = map_x - 150;
-        for (Garage garage : new_list){
-            garage.setPositionX(- 150);}
-        for (Metro metro : metro_list){
-            metro.setPositionX(- 150);}
-        for (Tram tram : tram_list){
-            tram.setPositionX(- 150);}
-        for (Bus bus : bus_list){
-            bus.setPositionX(-150);}}});  //past alle X van de garages aan UPDATE
+        menu.moveButtonList(-150, 0,AllButtons,AllLabels,new_list,metro_list,tram_list,bus_list);}});  //past alle X van de garages aan UPDATE
         
         ///////////////////////////////////////////////////////////////
         //                Button n Label bij elke garage             //
@@ -317,26 +292,29 @@ public class Main extends Application {
         ///////////////////////////////////////////////////////////////
         //                         ROOT CREeREN                     ///
         ///////////////////////////////////////////////////////////////
-
+        
         loopafstandtext.setLayoutX(190);
         loopafstandtext.setLayoutY(250);
         loopafstandtext.setTextFill(Color.web("#FFFFFF"));
         looptijdtext.setLayoutX(190);
         looptijdtext.setLayoutY(310);       
-        looptijdtext.setTextFill(Color.web("#FFFFFF"));      
-        root.getChildren().addAll(canvas,right,left,up,down,comboBox,bus,tram,metro,slider_loopafstand,slider_looptijd,loopafstandtext,looptijdtext,exitButton.getExitbutton());
-        root.getChildren().addAll(GarageButtonList);
-        root.getChildren().addAll(GarageLabelList);
-        root.getChildren().addAll(MetroLabelList);
-        root.getChildren().addAll(MetroButtonList);
-        root.getChildren().addAll(BusButtonList);
-        root.getChildren().addAll(BusLabelList);
-        root.getChildren().addAll(TramButtonList);
-        root.getChildren().addAll(TramLabelList);
-
+        looptijdtext.setTextFill(Color.web("#FFFFFF"));  
+        AllButtons.addAll(GarageButtonList);
+        AllButtons.addAll(MetroButtonList);
+        AllButtons.addAll(BusButtonList);
+        AllButtons.addAll(TramButtonList);
+        AllLabels.addAll(GarageLabelList);
+        AllLabels.addAll(MetroLabelList);
+        AllLabels.addAll(BusLabelList);
+        AllLabels.addAll(TramLabelList);
+        root.getChildren().addAll(canvas);
+        root.getChildren().addAll(right,left,up,down,comboBox,bus,tram,metro,slider_loopafstand,slider_looptijd,loopafstandtext,looptijdtext,exitButton.getExitbutton());
+        root.getChildren().addAll(AllButtons);
+        root.getChildren().addAll(AllLabels);
+      
         primaryStage.setScene( theScene );
         primaryStage.show();
-        
+       
         ///////////////////////////////////////////////////////////////
         //                         Update Scherm                    ///
         ///////////////////////////////////////////////////////////////

@@ -2,7 +2,9 @@
 package Main;
 
 import Main.IComponents.IComponents;
+import Main.Stations.Bus;
 import Main.Stations.Metro;
+import Main.Stations.Tram;
 import java.awt.Graphics;
 import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
@@ -12,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 
 /**
  *
@@ -101,14 +104,33 @@ public class Menu implements IComponents {
     /**
      * 
      * @param buttList lijst met buttons
-     * @param X geef x coördinaat - is naar links
+     * @param X geef x coördinaat - is naar rechts
      * @param Y geef y coördinaat - is naar beneden
      */
-    public void moveButtonList(List<Button> buttList,int X,int Y){
+    public void moveButtonList(int X,int Y,List<Button> buttList,List<Label> labList,List<Garage> garList,List<Metro> metList,List<Tram> traList,List<Bus> busList){
     for (Button button: buttList){
         button.setLayoutX(button.getLayoutX() + X);
         button.setLayoutY(button.getLayoutY() + Y);}
-    
+    for (Label label : labList){
+    label.setLayoutX(label.getLayoutX() + X);
+    label.setLayoutY(label.getLayoutY() + Y);
+    }
+    for (Garage garage : garList){
+    garage.setPositionX(X);
+    garage.setPositionY(Y);
+    }
+    for (Metro metro : metList){
+    metro.setPositionX(X);
+    metro.setPositionY(Y);
+    }
+    for (Tram tram : traList){
+    tram.setPositionX(X);
+    tram.setPositionY(Y);
+    }
+    for (Bus bus : busList){
+    bus.setPositionX(X);
+    bus.setPositionY(Y);
+    }
     }
     
 }
