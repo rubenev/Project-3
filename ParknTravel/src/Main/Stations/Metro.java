@@ -15,6 +15,7 @@ public class Metro implements IStations{
     private Image Metro_Img = null; // string naar de plek invullen blijft hetzelfde voor alle trams
     double Position_x;
     double Position_y;
+    public boolean isClicked;
     
     public Metro(Image image, String Name, String Description,double longitude,double latitude)
     {
@@ -83,5 +84,5 @@ public class Metro implements IStations{
     @Override
     public double getPositionY(){return this.Position_y;}
     
-  
+  public void setImg(Image img){this.Metro_Img = img;}
 }

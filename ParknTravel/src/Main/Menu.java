@@ -2,11 +2,14 @@
 package Main;
 
 import Main.IComponents.IComponents;
+import Main.Stations.Metro;
 import java.awt.Graphics;
+import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.scene.control.CheckBox;
 
@@ -47,11 +50,14 @@ public class Menu implements IComponents {
     public void update() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    public void InteractionCheckbox(CheckBox Bus , CheckBox Metro, CheckBox Tram, Stage primaryStage, Scene theScene ){
+    public void InteractionCheckbox(CheckBox Bus , CheckBox Metro, CheckBox Tram, Stage primaryStage, Scene theScene , List<Button> MetrobList){
     Bus.setLayoutX(-21); Bus.setLayoutY(200);
     if (Bus.isSelected()){Bus.setGraphic(new ImageView(bus_image_c));}else{Bus.setGraphic(new ImageView(bus_image));}
      Metro.setLayoutX(-21); Metro.setLayoutY(80);
-    if (Metro.isSelected()){Metro.setGraphic(new ImageView(metro_image_c));}else{Metro.setGraphic(new ImageView(metro_image));}
+    if (Metro.isSelected()){Metro.setGraphic(new ImageView(metro_image_c)); 
+        for (Button metrobutt : MetrobList){metrobutt.setVisible(true);}}
+    else{Metro.setGraphic(new ImageView(metro_image));
+        for (Button metrobutt : MetrobList){metrobutt.setVisible(false);}}
      Tram.setLayoutX(-21); Tram.setLayoutY(140);
     if (Tram.isSelected()){Tram.setGraphic(new ImageView(tram_image_c));}else{Tram.setGraphic(new ImageView(tram_image));}
     
