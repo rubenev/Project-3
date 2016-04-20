@@ -70,7 +70,7 @@ public class Menu implements IComponents {
         return this.selected_garY;
     }    
     public void paint(Graphics g, double text, double x, double y)
-    {  
+    {   
        String text_string = Double.toString(text);
        int x_int = (int) x;
        int y_int = (int) y;

@@ -7,6 +7,7 @@ import Main.Classes.Images;
 import Main.Stations.Tram;
 import Main.Stations.Bus;
 import Main.Stations.Metro;
+import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
@@ -32,6 +33,9 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import java.awt.Graphics;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 
 
 public class Main extends Application {
@@ -56,6 +60,8 @@ public class Main extends Application {
     CheckBox tram = new CheckBox();
     CheckBox metro = new CheckBox();
     ImageView images = new ImageView();
+    Label looptijdtext = new Label();
+    Label loopafstandtext = new Label();
     
     List<Garage> list_garages = new ArrayList();
     List<Metro> list_metro = new ArrayList();
@@ -99,7 +105,7 @@ public class Main extends Application {
         Slider slider_loopafstand = new Slider(); //loopafstand
         slider_loopafstand.setMin(0);
         slider_loopafstand.setMax(1000);// 80/100
-        slider_loopafstand.setValue(40); // 1,25 40pixels is 50 meter
+        slider_loopafstand.setValue(400); // 1,25 40pixels is 50 meter
         slider_loopafstand.setLayoutX(20);
         slider_loopafstand.setLayoutY(265);
         slider_loopafstand.setShowTickLabels(false);
@@ -115,7 +121,7 @@ public class Main extends Application {
         Slider slider_looptijd = new Slider(); // looptijd
         slider_looptijd.setMin(0);
         slider_looptijd.setMax(1000);
-        slider_looptijd.setValue(50);
+        slider_looptijd.setValue(400); // 66 per minuut
         slider_looptijd.setLayoutX(20);
         slider_looptijd.setLayoutY(325);
         slider_looptijd.setShowTickLabels(false);
@@ -243,8 +249,15 @@ public class Main extends Application {
         ///////////////////////////////////////////////////////////////
         //                         ROOT CREeREN                     ///
         ///////////////////////////////////////////////////////////////
-    
-        root.getChildren().addAll(canvas,right,left,up,down,comboBox,bus,tram,metro,slider_loopafstand,slider_looptijd);
+
+        loopafstandtext.setLayoutX(190);
+        loopafstandtext.setLayoutY(250);
+        loopafstandtext.setTextFill(Color.web("#FFFFFF"));
+        looptijdtext.setLayoutX(190);
+        looptijdtext.setLayoutY(310);       
+        looptijdtext.setTextFill(Color.web("#FFFFFF"));
+        
+        root.getChildren().addAll(canvas,right,left,up,down,comboBox,bus,tram,metro,slider_loopafstand,slider_looptijd,loopafstandtext,looptijdtext);
         primaryStage.setScene( theScene );
         primaryStage.show();
         
@@ -257,7 +270,16 @@ public class Main extends Application {
                 gc.clearRect(0,0,canvas.getWidth(),canvas.getHeight());
                 gc.drawImage( Images.background, map_x, map_y );
                 menu.InteractionCheckbox(bus, metro, tram, primaryStage, theScene);
-                
+                // text loopafstand en tijd
+                double newloopafstanddouble = (slider_loopafstand.getValue() * 1.25);
+                int newloopafstandint = (int)newloopafstanddouble;
+                String newloopafstandtext = Integer.toString(newloopafstandint);
+                loopafstandtext.setText(newloopafstandtext + " meter");  
+                double newlooptijddouble = (slider_looptijd.getValue() / 66);
+                int newlooptijdint = (int)newlooptijddouble;
+                String newlooptijdtext = Integer.toString(newlooptijdint);
+                looptijdtext.setText(newlooptijdtext + " minuten");   // 5 km/h // 83m per minuut // 66 pixels per minuut
+                               
                 for (Metro metroo : metro_list){
                     if(metro.isSelected())
                         if(((Math.sqrt(Math.pow(((menu.getgarY()) - metroo.getPositionY()),2) + Math.pow(((menu.getgarX())- metroo.getPositionX()),2))) <= slider_loopafstand.getValue())
@@ -297,11 +319,14 @@ public class Main extends Application {
                 
                 gc.drawImage( Images.menu_image, 5, 0 );
                // menu.paint(comboBox,55, 55, 55);
-                
             } 
         }.start();   
-    }    
-}/*
+    } 
+    
+}
+
+
+/*
         N = slider
         i = y  j = x
 
