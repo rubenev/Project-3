@@ -1,22 +1,16 @@
 
 package Main;
 
-// Commit test Selim Esengin 11:20
 
 import Main.Classes.Images;
 import Main.Stations.Tram;
 import Main.Stations.Bus;
 import Main.Stations.Metro;
 import java.awt.Dimension;
-import java.awt.Frame;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -29,16 +23,10 @@ import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
-import static javafx.scene.paint.Color.RED;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import java.awt.Graphics;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 
 
@@ -50,7 +38,6 @@ public class Main extends Application {
     double canvas_y = 1500;
     double selecten_garageX;
     double selecten_garageY;
-    boolean checked = true;
    //---------------------------------------------------------//
    //              berekenen van null punt x en y             //
    //---------------------------------------------------------//    
@@ -58,9 +45,8 @@ public class Main extends Application {
     double mercN = Math.log(Math.tan((Math.PI/4)+(latRad/2)));
     double null_ylat = (10159/2)-(10563*mercN/(2*Math.PI));
     double null_xlong = (4.396787 + 180.0) * (10563 / 360);      
-//    Button exitButton = new Button();
-    Menu menu = new Menu();
-    
+
+    Menu menu = new Menu(); 
     CheckBox bus = new CheckBox();
     CheckBox tram = new CheckBox();
     CheckBox metro = new CheckBox();
@@ -81,12 +67,8 @@ public class Main extends Application {
     List<Label> TramLabelList = new ArrayList();
     List<Button> AllButtons = new ArrayList();
     List<Label> AllLabels = new ArrayList();
-    
-    
-    public static void main(String[] args) {
-   
-        launch(args);
-    }
+      
+    public static void main(String[] args) {        launch(args);       }
 
     @Override
     public void start(Stage primaryStage) throws InterruptedException{
@@ -106,8 +88,7 @@ public class Main extends Application {
         List<Garage> new_list= data.getGaragelist(); //list van garages uit database
         for (Garage garage : new_list){
             garage.setPositionY(map_y); //past alle Y van de garages aan zodat het klopt met de map
-            garage.setPositionX(map_x); //past alle Y van de garages aan zodat het klopt met de map
-            }
+            garage.setPositionX(map_x);} //past alle Y van de garages aan zodat het klopt met de map
         List<Metro> metro_list= data.getMetroList(); //list van garages uit database
         for (Metro metro : metro_list){
             metro.setPositionY(map_y); //past alle Y van de garages aan zodat het klopt met de map
@@ -116,13 +97,11 @@ public class Main extends Application {
         List<Tram> tram_list = data.getTramList();
         for (Tram tram : tram_list){
             tram.setPositionY(map_y);
-            tram.setPositionX(map_x);
-        }
+            tram.setPositionX(map_x);}
         List<Bus> bus_list = data.getBusList();
         for (Bus bus: bus_list){
             bus.setPositionY(map_y);
-            bus.setPositionX(map_x);
-        }
+            bus.setPositionX(map_x);}
         ///////////////////////////////////////////////////////////////
         //                           SLIDER                         ///
         ///////////////////////////////////////////////////////////////
@@ -148,27 +127,18 @@ public class Main extends Application {
         comboBox.setLayoutX(20);
         comboBox.setLayoutY(20);      
         comboBox.setOnAction(e -> {
-          comboBox.getValue();  
+          comboBox.getValue(); 
+          canvas_y = primaryStage.getWidth();
+          canvas_x = primaryStage.getHeight();
           for (Garage garage : new_list){
               if (comboBox.getValue() == garage.getName()){
                 double temp_mapx = map_x*1; // we bewaren hier een oude map_x en y onder andere naam
                 double temp_mapy = map_y*1;
                 map_x = (temp_mapx - garage.getPositionX())+(canvas_y/2); // 2000 = -1800
                 map_y = (temp_mapy - garage.getPositionY())+(canvas_x/2); // 4000 = 4000 - 1600 + 1000
-                for (Garage garage2 : new_list){
-                    garage2.setPositionY(map_y-temp_mapy); //hier vullen we het verschil van de som in als nieuwe locatiemeter van de garages
-                    garage2.setPositionX(map_x-temp_mapx);} //past alle Y van de garages aan zodat het klopt met de map       
-                for (Metro metro : metro_list){
-                    metro.setPositionY(map_y-temp_mapy); //past alle Y van de garages aan zodat het klopt met de map
-                    metro.setPositionX(map_x-temp_mapx);} //past alle Y van de garages aan zodat het klopt met de map            
-                for (Tram tram : tram_list){
-                    tram.setPositionY(map_y-temp_mapy);
-                    tram.setPositionX(map_x-temp_mapx);}
-                for (Bus bus : bus_list){
-                    bus.setPositionY(map_y-temp_mapy);
-                    bus.setPositionX(map_x-temp_mapx);
-                }}}});
-        
+                double moveX = map_x-temp_mapx;
+                double moveY = map_y-temp_mapy;
+                menu.moveButtonList(moveX, moveY,AllButtons,AllLabels,new_list,metro_list,tram_list,bus_list);}}});   
         
         ///////////////////////////////////////////////////////////////
         //                     NAVIGATIE KNOPPEN                    ///
@@ -287,8 +257,7 @@ public class Main extends Application {
         ////////////////////////////////////////////////////////////////
         //                      Exit en enter full screen            //
          /////////////////////////////////////////////////////////////       
-        exitButton exitButton = new exitButton(root,canvas_y,canvas_x,primaryStage,up,down,left,right);
-        
+        exitButton exitButton = new exitButton(root,canvas_y,canvas_x,primaryStage,up,down,left,right);    
         ///////////////////////////////////////////////////////////////
         //                         ROOT CREeREN                     ///
         ///////////////////////////////////////////////////////////////

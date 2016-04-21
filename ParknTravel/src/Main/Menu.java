@@ -107,7 +107,7 @@ public class Menu implements IComponents {
      * @param X geef x coördinaat - is naar rechts
      * @param Y geef y coördinaat - is naar beneden
      */
-    public void moveButtonList(int X,int Y,List<Button> buttList,List<Label> labList,List<Garage> garList,List<Metro> metList,List<Tram> traList,List<Bus> busList){
+    public void moveButtonList(double X,double Y,List<Button> buttList,List<Label> labList,List<Garage> garList,List<Metro> metList,List<Tram> traList,List<Bus> busList){
     for (Button button: buttList){
         button.setLayoutX(button.getLayoutX() + X);
         button.setLayoutY(button.getLayoutY() + Y);}
