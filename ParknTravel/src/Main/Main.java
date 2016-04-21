@@ -213,8 +213,6 @@ public class Main extends Application {
           garagelabel.setGraphic(new ImageView(Images.Metro_Info));
           garagelabel.setGraphicTextGap(-550);
 
-
-          
           garagelabel.setLayoutX(metro.getPositionX() + 80);
           garagelabel.setLayoutY(metro.getPositionY() + 30);
           
@@ -243,7 +241,6 @@ public class Main extends Application {
           garagelabel.setGraphic(new ImageView(Images.Bus_Info));
           garagelabel.setGraphicTextGap(-550);
           garagelabel.setVisible(false);
-          
           BusLabelList.add(garagelabel);
           BusButtonList.add(garagebutt);}
          
@@ -255,13 +252,11 @@ public class Main extends Application {
               if (tram.isClicked == false){
                   garagelabel.setVisible(true);
               tram.isClicked = true;
-              
               if(tram.getDescription().contains("Halte")){
               garagelabel.setText("         "+ tram.getTijd()+ " minuten                " + tram.getAfstand()+ " meter                                                "  + tram.getName() +"\n \n " + tram.getDescription().replace("Halte", "\n Halte")); 
               }else{
               garagelabel.setText("         "+ tram.getTijd()+ " minuten                " + tram.getAfstand()+ " meter                                                "  + tram.getName() +"\n \n \n "+ tram.getDescription()+ "\n");
-              }
-              }
+              }}
             else{garagelabel.setVisible(false);tram.isClicked = false;}});
           garagebutt.setLayoutX(tram.getPositionX());
           garagebutt.setLayoutY(tram.getPositionY()); 
@@ -271,20 +266,16 @@ public class Main extends Application {
           garagelabel.setLayoutY(tram.getPositionY() + 30);
           garagelabel.setGraphic(new ImageView(Images.Tram_Info));
           garagelabel.setGraphicTextGap(-550);
-          garagelabel.setVisible(false);
-          
+          garagelabel.setVisible(false);        
           TramLabelList.add(garagelabel);
           TramButtonList.add(garagebutt);}
-
-
         ////////////////////////////////////////////////////////////////
         //                      Exit en enter full screen            //
          /////////////////////////////////////////////////////////////       
         exitButton exitButton = new exitButton(root,canvas_y,canvas_x,primaryStage,up,down,left,right);    
         ///////////////////////////////////////////////////////////////
         //                         ROOT CREeREN                     ///
-        ///////////////////////////////////////////////////////////////
-        
+        ///////////////////////////////////////////////////////////////     
         AllButtons.addAll(GarageButtonList);
         AllButtons.addAll(MetroButtonList);
         AllButtons.addAll(BusButtonList);
@@ -300,11 +291,8 @@ public class Main extends Application {
         root.getChildren().addAll(AllButtons);
         root.getChildren().addAll(AllLabels);
         root.getChildren().addAll(menu_image,bus,tram,metro,comboBox,up,buttonsmenu.gethelpscreen(),buttonsmenu.getHelpbutton(),right,left,down,slider_loopafstand,slider_looptijd,buttonsmenu.getloopafstandtext(),buttonsmenu.getlooptijdtext(),exitButton.getExitbutton());
-
-      
         primaryStage.setScene( theScene );
-        primaryStage.show();
-       
+        primaryStage.show();      
         ///////////////////////////////////////////////////////////////
         //                         Update Scherm                    ///
         ///////////////////////////////////////////////////////////////
@@ -326,30 +314,22 @@ public class Main extends Application {
                                
                 for (Button metroo : MetroButtonList){
                     if(metro.isSelected()){
-                        
-
-                        
                         if(((Math.sqrt(Math.pow(((menu.getgarY()) - metroo.getLayoutY()),2) + Math.pow(((menu.getgarX())- metroo.getLayoutX()),2))) <= slider_loopafstand.getValue())
                             &&((Math.sqrt(Math.pow(((menu.getgarY()) - metroo.getLayoutY()),2) + Math.pow(((menu.getgarX())- metroo.getLayoutX()),2))) <= slider_looptijd.getValue()))                           
                         {metroo.setGraphic(new ImageView(Images.M_image));}
-                        else{metroo.setGraphic(new ImageView(Images.metro_imagebw));}
-                }}
+                        else{metroo.setGraphic(new ImageView(Images.metro_imagebw));}}}
                 for (Button tramm : TramButtonList){
-                    if(tram.isSelected())
-                        
+                    if(tram.isSelected()) 
                         if(((Math.sqrt(Math.pow(((menu.getgarY()) - tramm.getLayoutY()),2) + Math.pow(((menu.getgarX())- tramm.getLayoutX()),2))) <= slider_loopafstand.getValue())
                             &&((Math.sqrt(Math.pow(((menu.getgarY()) - tramm.getLayoutY()),2) + Math.pow(((menu.getgarX())- tramm.getLayoutX()),2))) <= slider_looptijd.getValue()))
                         {tramm.setGraphic(new ImageView(Images.T_image));}
-                        else{tramm.setGraphic(new ImageView(Images.tram_imagebw));}
-                }
+                        else{tramm.setGraphic(new ImageView(Images.tram_imagebw));}}
                 for (Button buss : BusButtonList){
                     if(bus.isSelected())
-                        
                         if(((Math.sqrt(Math.pow(((menu.getgarY()) - buss.getLayoutY()),2) + Math.pow(((menu.getgarX())- buss.getLayoutX()),2))) <= slider_loopafstand.getValue())
                             &&((Math.sqrt(Math.pow(((menu.getgarY()) - buss.getLayoutY()),2) + Math.pow(((menu.getgarX())- buss.getLayoutX()),2))) <= slider_looptijd.getValue()))
                         {buss.setGraphic(new ImageView(Images.B_image));}
-                        else{buss.setGraphic(new ImageView(Images.bus_imagebw));}
-                }
+                        else{buss.setGraphic(new ImageView(Images.bus_imagebw));}}
                 for (Garage garage : new_list){
                     if(comboBox.getValue() == garage.getName() || comboBox.getValue() == "Select Garage" || comboBox.getValue() == "Show All"){    
                         garage.Draw(gc);}
