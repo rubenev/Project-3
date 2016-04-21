@@ -199,7 +199,7 @@ public class Main extends Application {
               if (metro.isClicked == false){
                   garagelabel.setVisible(true);
                   
-                  garagelabel.setText(metro.getTijd()+ " minuten        " + metro.getAfstand()+ " meter          "  + metro.getName() +"\n \n " + metro.getDescription() );
+                  garagelabel.setText("   "+ metro.getTijd()+ " minuten           " + metro.getAfstand()+ " meter                                    "  + metro.getName() +"\n \n " + metro.getDescription().replace("Dit", "\n Dit"));
               metro.isClicked = true;}
             else{garagelabel.setVisible(false);metro.isClicked = false;}});
           garagebutt.setLayoutX(metro.getPositionX());
