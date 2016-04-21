@@ -34,9 +34,9 @@ public class exitButton {
                this.exitButton.setGraphic(new ImageView("Images/enter_fullscreen.png"));
                primaryStage.setFullScreen(false);
                primaryStage.setWidth(1000);
-               primaryStage.setHeight(700);
+               primaryStage.setHeight(800);
                this.canvas_y = 1000;
-               this.canvas_x = 700;
+               this.canvas_x = 800;
                down.setLayoutY((this.canvas_x-115));
                right.setLayoutX(this.canvas_y-102);
                this.exitButton.setLayoutX(this.canvas_y - 100);
