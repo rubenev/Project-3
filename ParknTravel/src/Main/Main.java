@@ -230,7 +230,7 @@ public class Main extends Application {
           garagebutt.setOnMouseClicked(e -> {
               if (bus.isClicked == false){
                   garagelabel.setVisible(true);
-                  garagelabel.setText("         "+ bus.getTijd()+ " minuten                " + bus.getAfstand()+ " meter                                                "  + bus.getName() +"\n \n " + bus.getDescription().replace("Dit", "\n Dit"));
+                  garagelabel.setText("         "+ bus.getTijd()+ " minuten                " + bus.getAfstand()+ " meter                                                "  + bus.getName() +"\n \n \n " + bus.getDescription().replace("Dit", "\n Dit"));
               
                    bus.isClicked = true;}
             else{garagelabel.setVisible(false);bus.isClicked = false;}});
