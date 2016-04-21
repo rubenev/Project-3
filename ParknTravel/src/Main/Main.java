@@ -198,12 +198,17 @@ public class Main extends Application {
           garagebutt.setOnMouseClicked(e -> {
               if (metro.isClicked == false){
                   garagelabel.setVisible(true);
-                  garagelabel.setText(metro.getName() + "\n" + metro.getDescription() + "\n" + metro.getAfstand()+ " meter \n" + metro.getTijd()+ " minuten");
+                  
+                  garagelabel.setText(metro.getTijd()+ " minuten        " + metro.getAfstand()+ " meter          "  + metro.getName() +"\n \n " + metro.getDescription() );
               metro.isClicked = true;}
             else{garagelabel.setVisible(false);metro.isClicked = false;}});
           garagebutt.setLayoutX(metro.getPositionX());
           garagebutt.setLayoutY(metro.getPositionY()); 
           garagebutt.setCursor(Cursor.OPEN_HAND);
+          garagelabel.setGraphic(new ImageView(Images.Metro_Info));
+          garagelabel.setGraphicTextGap(-550);
+
+
           
           garagelabel.setLayoutX(metro.getPositionX() + 80);
           garagelabel.setLayoutY(metro.getPositionY() + 30);
@@ -244,6 +249,7 @@ public class Main extends Application {
               if (tram.isClicked == false){
                   garagelabel.setVisible(true);
               tram.isClicked = true;
+              
               garagelabel.setText(tram.getName() + "\n" + tram.getDescription()+ "\n" + tram.getAfstand()+ " meter \n" + tram.getTijd()+ " minuten");}
             else{garagelabel.setVisible(false);tram.isClicked = false;}});
           garagebutt.setLayoutX(tram.getPositionX());
