@@ -34,8 +34,8 @@ public class Main extends Application {
     
     double map_x = -3500;
     double map_y = -5400;
-    double canvas_x = 1000;
-    double canvas_y = 1500;
+    double canvas_x = 700;
+    double canvas_y = 1000;
    //---------------------------------------------------------//
    //              berekenen van null punt x en y             //
    //---------------------------------------------------------//    
