@@ -187,7 +187,8 @@ public class Main extends Application {
 
           garagelabel.setLayoutX(garage.Position_x + 80);
           garagelabel.setLayoutY(garage.Position_y + 30);
-          garagelabel.setText(garage.getName() + "\n" + garage.getDescription());
+          //garagelabel.setText(garage.getName() + "\n" + garage.getType());
+          garagelabel.setText(garage.getType() + "\n" + garage.getName());
           garagelabel.setVisible(false);
           
           GarageLabelList.add(garagelabel);

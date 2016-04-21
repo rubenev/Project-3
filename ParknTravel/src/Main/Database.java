@@ -55,6 +55,7 @@ public class Database {
                         Double longitude_sql = rs.getDouble("longitude"); //pakt de volgende long
                         Double latitude_sql = rs.getDouble("latitude"); //pakt de volgende lat
                         String name = rs.getString("name"); //pakt de volgende name
+                        String Type = rs.getString("type");
                     // calculate de x y van de long lat
                   
                         double latRad1 = latitude_sql*Math.PI/180;
@@ -65,7 +66,7 @@ public class Database {
                         double pointysql = ((sql_ylat - null_ylat)*1781);
                         double pointxsql = ((sql_xlong - null_xlong)*1758); 
                         // tekent de P op de locatie
-                        Garage garage = new Garage(P_image, name, "Test","Not test", pointxsql,pointysql);
+                        Garage garage = new Garage(P_image, name, "Type",Type, pointxsql,pointysql);
                         list_garages.add(garage);              
                          // de loop begint opnieuw
                     
