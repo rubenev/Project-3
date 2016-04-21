@@ -20,7 +20,8 @@ import javafx.scene.image.Image;
     private double Position_x;
     private double Position_y;// longitude, latitude
     public boolean isClicked = false;
-    
+    private double loopafstand;
+    private double looptijd;    
     public Tram (Image image, String name, String Description, double longitude,double latitude)
     {
     this.name = name;
@@ -87,7 +88,18 @@ import javafx.scene.image.Image;
     @Override
     public double getPositionY(){return this.Position_y;}
 
-
+    public void setAfstand(double loopafstand){
+        this.loopafstand = (int)(loopafstand * 1.25);
+    }    
+    public void setTijd(double looptijd){
+        this.looptijd = (int)(looptijd / 66);
+    }  
+    public double getAfstand(){
+        return this.loopafstand;
+    }    
+    public double getTijd(){
+        return this.looptijd;
+    }   
   
     
 

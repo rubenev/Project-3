@@ -16,6 +16,8 @@ public class Metro implements IStations{
     double Position_x;
     double Position_y;
     public boolean isClicked;
+    double loopafstand;
+    double looptijd;
     
     public Metro(Image image, String Name, String Description,double longitude,double latitude)
     {
@@ -85,4 +87,17 @@ public class Metro implements IStations{
     public double getPositionY(){return this.Position_y;}
     
   public void setImg(Image img){this.Metro_Img = img;}
+  
+    public void setAfstand(double loopafstand){
+        this.loopafstand = (int)(loopafstand * 1.25);
+    }    
+    public void setTijd(double looptijd){
+        this.looptijd = (int)(looptijd / 66);
+    }  
+    public double getAfstand(){
+        return this.loopafstand;
+    }    
+    public double getTijd(){
+        return this.looptijd;
+    }   
 }

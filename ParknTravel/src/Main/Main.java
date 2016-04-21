@@ -198,6 +198,7 @@ public class Main extends Application {
           garagebutt.setOnMouseClicked(e -> {
               if (metro.isClicked == false){
                   garagelabel.setVisible(true);
+                  garagelabel.setText(metro.getName() + "\n" + metro.getDescription() + "\n" + metro.getAfstand()+ " meter \n" + metro.getTijd()+ " minuten");
               metro.isClicked = true;}
             else{garagelabel.setVisible(false);metro.isClicked = false;}});
           garagebutt.setLayoutX(metro.getPositionX());
@@ -206,7 +207,7 @@ public class Main extends Application {
           
           garagelabel.setLayoutX(metro.getPositionX() + 80);
           garagelabel.setLayoutY(metro.getPositionY() + 30);
-          garagelabel.setText(metro.getName() + "\n" + metro.getDescription());
+          
           garagelabel.setVisible(false);
           
           MetroLabelList.add(garagelabel);
@@ -219,6 +220,7 @@ public class Main extends Application {
           garagebutt.setOnMouseClicked(e -> {
               if (bus.isClicked == false){
                   garagelabel.setVisible(true);
+                  garagelabel.setText(bus.getName() + "\n" + bus.getDescription()+ "\n" + bus.getAfstand()+ " meter \n" + bus.getTijd()+ " minuten");
               bus.isClicked = true;}
             else{garagelabel.setVisible(false);bus.isClicked = false;}});
           garagebutt.setLayoutX(bus.getPositionX());
@@ -228,7 +230,7 @@ public class Main extends Application {
           garagelabel.setLayoutX(bus.getPositionX() + 80);
           garagelabel.setLayoutY(bus.getPositionY() + 30);
           garagelabel.setGraphic(new ImageView(Images.bus_infolabel));
-          garagelabel.setText(bus.getName() + "\n" + bus.getDescription());
+         
           garagelabel.setVisible(false);
           
           BusLabelList.add(garagelabel);
@@ -241,7 +243,8 @@ public class Main extends Application {
           garagebutt.setOnMouseClicked(e -> {
               if (tram.isClicked == false){
                   garagelabel.setVisible(true);
-              tram.isClicked = true;}
+              tram.isClicked = true;
+              garagelabel.setText(tram.getName() + "\n" + tram.getDescription()+ "\n" + tram.getAfstand()+ " meter \n" + tram.getTijd()+ " minuten");}
             else{garagelabel.setVisible(false);tram.isClicked = false;}});
           garagebutt.setLayoutX(tram.getPositionX());
           garagebutt.setLayoutY(tram.getPositionY()); 
@@ -249,7 +252,7 @@ public class Main extends Application {
           
           garagelabel.setLayoutX(tram.getPositionX() + 80);
           garagelabel.setLayoutY(tram.getPositionY() + 30);
-          garagelabel.setText(tram.getName() + "\n" + tram.getDescription());
+          
           garagelabel.setVisible(false);
           
           TramLabelList.add(garagelabel);
@@ -304,13 +307,15 @@ public class Main extends Application {
                 buttonsmenu.getlooptijdtext().setText(newlooptijdtext + " minuten");   // 5 km/h // 83m per minuut // 66 pixels per minuut
                                
                 for (Button metroo : MetroButtonList){
-                    if(metro.isSelected())
+                    if(metro.isSelected()){
+                        
+
                         
                         if(((Math.sqrt(Math.pow(((menu.getgarY()) - metroo.getLayoutY()),2) + Math.pow(((menu.getgarX())- metroo.getLayoutX()),2))) <= slider_loopafstand.getValue())
-                            &&((Math.sqrt(Math.pow(((menu.getgarY()) - metroo.getLayoutY()),2) + Math.pow(((menu.getgarX())- metroo.getLayoutX()),2))) <= slider_looptijd.getValue()))
+                            &&((Math.sqrt(Math.pow(((menu.getgarY()) - metroo.getLayoutY()),2) + Math.pow(((menu.getgarX())- metroo.getLayoutX()),2))) <= slider_looptijd.getValue()))                           
                         {metroo.setGraphic(new ImageView(Images.M_image));}
                         else{metroo.setGraphic(new ImageView(Images.metro_imagebw));}
-                }
+                }}
                 for (Button tramm : TramButtonList){
                     if(tram.isSelected())
                         
@@ -333,8 +338,15 @@ public class Main extends Application {
                         if(comboBox.getValue() == garage.getName()){ 
                             menu.setgarY(garage.getPositionY());
                             menu.setgarX(garage.getPositionX());}}               
-                
-            } 
+                for (Tram tram : tram_list){
+                    double afstanden = Math.sqrt(Math.pow(((menu.getgarY()) - tram.getPositionY()),2) + Math.pow(((menu.getgarX())- tram.getPositionX()),2));
+                    tram.setAfstand(afstanden); tram.setTijd(afstanden);}
+                for (Bus bus : bus_list){
+                    double afstanden = Math.sqrt(Math.pow(((menu.getgarY()) - bus.getPositionY()),2) + Math.pow(((menu.getgarX())- bus.getPositionX()),2));
+                    bus.setAfstand(afstanden); bus.setTijd(afstanden);}            
+                for (Metro metro : metro_list){
+                    double afstanden = Math.sqrt(Math.pow(((menu.getgarY()) - metro.getPositionY()),2) + Math.pow(((menu.getgarX())- metro.getPositionX()),2));
+                    metro.setAfstand(afstanden); metro.setTijd(afstanden);} }
         }.start();   
     }    
 }

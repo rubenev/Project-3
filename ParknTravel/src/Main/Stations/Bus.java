@@ -13,6 +13,8 @@ import javafx.scene.image.Image;
     double Position_x;// longitude, latitude
     double Position_y;
     public boolean isClicked = false ;
+    private double loopafstand;
+    private double looptijd;
     
     public Bus (Image image, String Name, String Description, double longitude,double latitude)
     {
@@ -79,6 +81,16 @@ import javafx.scene.image.Image;
     @Override
     public double getPositionY(){return this.Position_y;}
    
-        
-    
+    public void setAfstand(double loopafstand){
+        this.loopafstand = (int)(loopafstand * 1.25);
+    }    
+    public void setTijd(double looptijd){
+        this.looptijd = (int)(looptijd / 66);
+    }  
+    public double getAfstand(){
+        return this.loopafstand;
+    }    
+    public double getTijd(){
+        return this.looptijd;
+    }   
 }
