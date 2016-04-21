@@ -32,5 +32,5 @@ public class Images {
     public static Image help_image = new Image("Images/help.png"); 
     public static Image bus_infolabel = new Image("Images/bus_info.png"); 
     public static Image B_image_info = new Image("Images/B-location_image_info.png"); //TEWST
-    
+    public static Image Bus_Info = new Image("Images/bus_info.png");
 }
