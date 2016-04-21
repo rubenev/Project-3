@@ -53,7 +53,7 @@ public class Menu implements IComponents {
     public void update() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    public void InteractionCheckbox(CheckBox Bus , CheckBox Metro, CheckBox Tram, Stage primaryStage, Scene theScene , List<Button> MetrobList,List<Button> BusbList,List<Button>TrambList ){
+    public void InteractionCheckbox(CheckBox Bus , CheckBox Metro, CheckBox Tram, Stage primaryStage, Scene theScene , List<Button> MetrobList,List<Button> BusbList,List<Button>TrambList ,List<Label>MetrolList, List<Label> BuslList,List<Label> TramlList){
     
         Bus.setLayoutX(-21); Bus.setLayoutY(200);
     if (Bus.isSelected())
@@ -61,7 +61,8 @@ public class Menu implements IComponents {
         for (Button busbutt :  BusbList){busbutt.setVisible(true);}
         }
     else{Bus.setGraphic(new ImageView(bus_image));
-    for (Button busbutt :  BusbList){busbutt.setVisible(false);}}
+    for (Button busbutt :  BusbList){busbutt.setVisible(false);for (Label buslab :  BuslList){buslab.setVisible(false);}}}
+    
         
     
     
@@ -70,7 +71,7 @@ public class Menu implements IComponents {
         {Metro.setGraphic(new ImageView(metro_image_c)); 
         for (Button metrobutt : MetrobList){metrobutt.setVisible(true);}}
     else{Metro.setGraphic(new ImageView(metro_image));
-        for (Button metrobutt : MetrobList){metrobutt.setVisible(false);}}
+        for (Button metrobutt : MetrobList){metrobutt.setVisible(false);}for (Label metlab :  MetrolList){metlab.setVisible(false);}}
     
     
     Tram.setLayoutX(-21); Tram.setLayoutY(140);
@@ -78,7 +79,7 @@ public class Menu implements IComponents {
         {Tram.setGraphic(new ImageView(tram_image_c));
         for (Button trambutt : TrambList){trambutt.setVisible(true);}}
     else{Tram.setGraphic(new ImageView(tram_image));
-        for (Button trambutt : TrambList){trambutt.setVisible(false);}}
+        for (Button trambutt : TrambList){trambutt.setVisible(false);}for (Label tralab :  TramlList){tralab.setVisible(false);}}
     
     primaryStage.setScene( theScene );
     }
