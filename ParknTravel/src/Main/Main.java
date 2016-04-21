@@ -225,8 +225,9 @@ public class Main extends Application {
           garagebutt.setOnMouseClicked(e -> {
               if (bus.isClicked == false){
                   garagelabel.setVisible(true);
-                  garagelabel.setText(bus.getName() + "\n" + bus.getDescription()+ "\n" + bus.getAfstand()+ " meter \n" + bus.getTijd()+ " minuten");
-              bus.isClicked = true;}
+                  garagelabel.setText("   "+ bus.getTijd()+ " minuten           " + bus.getAfstand()+ " meter                                    "  + bus.getName() +"\n \n " + bus.getDescription().replace("Dit", "\n Dit"));
+              
+                   bus.isClicked = true;}
             else{garagelabel.setVisible(false);bus.isClicked = false;}});
           garagebutt.setLayoutX(bus.getPositionX());
           garagebutt.setLayoutY(bus.getPositionY()); 
@@ -234,8 +235,8 @@ public class Main extends Application {
           
           garagelabel.setLayoutX(bus.getPositionX() + 80);
           garagelabel.setLayoutY(bus.getPositionY() + 30);
-          garagelabel.setGraphic(new ImageView(Images.bus_infolabel));
-         
+          garagelabel.setGraphic(new ImageView(Images.Bus_Info));
+          garagelabel.setGraphicTextGap(-550);
           garagelabel.setVisible(false);
           
           BusLabelList.add(garagelabel);
@@ -249,8 +250,9 @@ public class Main extends Application {
               if (tram.isClicked == false){
                   garagelabel.setVisible(true);
               tram.isClicked = true;
+              garagelabel.setText("   "+ tram.getTijd()+ " minuten           " + tram.getAfstand()+ " meter                                    "  + tram.getName() +"\n \n " + tram.getDescription().replace("Halte", "\n Halte"));
               
-              garagelabel.setText(tram.getName() + "\n" + tram.getDescription()+ "\n" + tram.getAfstand()+ " meter \n" + tram.getTijd()+ " minuten");}
+              }
             else{garagelabel.setVisible(false);tram.isClicked = false;}});
           garagebutt.setLayoutX(tram.getPositionX());
           garagebutt.setLayoutY(tram.getPositionY()); 
@@ -258,7 +260,8 @@ public class Main extends Application {
           
           garagelabel.setLayoutX(tram.getPositionX() + 80);
           garagelabel.setLayoutY(tram.getPositionY() + 30);
-          
+          garagelabel.setGraphic(new ImageView(Images.Tram_Info));
+          garagelabel.setGraphicTextGap(-550);
           garagelabel.setVisible(false);
           
           TramLabelList.add(garagelabel);
