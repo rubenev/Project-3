@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Main;
     
 import java.awt.Dimension;
@@ -12,10 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-/**
- *
- * @author mac_f
- */
 public class exitButton {
          Button exitButton = new Button();
          double canvas_y;
@@ -58,13 +50,9 @@ public class exitButton {
             down.setLayoutX((this.canvas_y/2)-20);           
             left.setLayoutY((this.canvas_x/2)-20);
             up.setLayoutX((this.canvas_y/2)-20);       
-             });
-            
-
+             });            
 }
         public Button getExitbutton(){
          return this.exitButton;
         }
-       
-
 }

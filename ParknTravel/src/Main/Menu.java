@@ -16,21 +16,8 @@ import javafx.stage.Stage;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 
-/**
- *
- * @author Sam
- */
+
 public class Menu implements IComponents {
-    
-/*    Image menu_image = new Image("file:Images/menuimg.png");
-    Image metro_image = new Image("file:Images/metrolabel.png");
-    Image tram_image = new Image("file:Images/tramlabel.png");
-    Image tram_image_c = new Image("file:Images/tramlabel_check.png");
-    Image bus_image_c = new Image("file:Images/buslabel_check.png");
-    Image metro_image_c = new Image("file:Images/metrolabel_check.png");
-    Image bus_image = new Image("file:Images/buslabel.png");
-    Image looptijd_image = new Image("file:Images/looptijd.png");
-    Image loopafstand_image = new Image("file:Images/loopafstand.png");  */
     
     Image menu_image = new Image("Images/menuimg.png");
     Image metro_image = new Image("Images/metrolabeln.png");
@@ -102,12 +89,7 @@ public class Menu implements IComponents {
        int y_int = (int) y;
        g.drawString(text_string, x_int, y_int);
     }
-    /**
-     * 
-     * @param buttList lijst met buttons
-     * @param X geef x coördinaat - is naar rechts
-     * @param Y geef y coördinaat - is naar beneden
-     */
+
     public void moveButtonList(double X,double Y,List<Button> buttList,List<Label> labList,List<Garage> garList,List<Metro> metList,List<Tram> traList,List<Bus> busList){
     for (Button button: buttList){
         button.setLayoutX(button.getLayoutX() + X);

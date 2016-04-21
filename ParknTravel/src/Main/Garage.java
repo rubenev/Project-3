@@ -1,8 +1,4 @@
-/*
- * Project 3 - Halfvol
- * Hogeschool Rotterdam
- * INF1G
- */
+
 package Main;
 
 import Main.Stations.IStations;
@@ -11,10 +7,7 @@ import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-/**
- *
- * @author Sam
- */
+
 public class Garage implements IStations {
     private String Name = null;
     private String Description = null;
@@ -54,7 +47,6 @@ public class Garage implements IStations {
     public String getDescription() {
         return this.Description; //To change body of generated methods, choose Tools | Templates.
     }
-
     
     public String getType() {
         return this.Type; }

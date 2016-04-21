@@ -3,15 +3,9 @@ package Main.Stations;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-
-/**
- *
- * @author Sam
- */
 public class Metro implements IStations{
     private String Name = null;
     private String Description = null;
-    //private String Type = null;
     private Image Metro_Img = null; // string naar de plek invullen blijft hetzelfde voor alle trams
     double Position_x;
     double Position_y;
@@ -23,7 +17,6 @@ public class Metro implements IStations{
     {
     this.Name = Name;
     this.Description = Description;
-    //this.Type = Type;
     this.Position_x = longitude;
     this.Position_y = latitude;
     this.Metro_Img = image;
@@ -34,26 +27,16 @@ public class Metro implements IStations{
     
     @Override        
     public String[] getStation() {
-        // return een lijst met alle atributen in String
         String[] StationList = new String[5];
         StationList[0] = this.Name;
         StationList[1] = this.Description;
-       // StationList[2] = this.Type;
 
         
         return StationList;}
     
     @Override
     public void setStation(String Code) {
-    /**
-     * gegevens ophalen uit database en hieraan toepassen
-    this.Name = Uit database Name;
-    this.Description = uit database Description;
-    this.Type = uit database Type;
-    this.Location[0] = uit database longitude;
-    this.Location[1]= uit database latitude;
-    */
-    
+  
     }
     @Override
     public void Draw(GraphicsContext gc){

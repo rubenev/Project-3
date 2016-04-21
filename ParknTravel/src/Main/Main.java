@@ -26,9 +26,8 @@ import javafx.scene.layout.Background;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import java.awt.Toolkit;
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.paint.Color;
+
 
 
 public class Main extends Application {
@@ -176,7 +175,7 @@ public class Main extends Application {
           garagebutt.setOnMouseClicked(e -> {
               System.out.println(garage.getName());
               if (garage.isClicked == false){
-                  garage.setImg(Images.B_image_info);
+                  garage.setImg(Images.B_imge_info);
                   garagelabel.setVisible(true);
               garage.isClicked = true;}
             else{garage.setImg(new Image("Images/P-location_image.png"));garagelabel.setVisible(false);garage.isClicked = false;}primaryStage.setScene( theScene );});
@@ -187,7 +186,6 @@ public class Main extends Application {
 
           garagelabel.setLayoutX(garage.Position_x + 80);
           garagelabel.setLayoutY(garage.Position_y + 30);
-          //garagelabel.setText(garage.getName() + "\n" + garage.getType());
           garagelabel.setText(garage.getType() + "\n" + garage.getName());
           garagelabel.setVisible(false);
           
