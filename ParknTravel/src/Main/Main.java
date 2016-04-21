@@ -175,7 +175,7 @@ public class Main extends Application {
           garagebutt.setOnMouseClicked(e -> {
               System.out.println(garage.getName());
               if (garage.isClicked == false){
-                  garage.setImg(Images.B_imge_info);
+                  garage.setImg(Images.B_image_info);
                   garagelabel.setVisible(true);
               garage.isClicked = true;}
             else{garage.setImg(new Image("Images/P-location_image.png"));garagelabel.setVisible(false);garage.isClicked = false;}primaryStage.setScene( theScene );});
@@ -313,7 +313,7 @@ public class Main extends Application {
             public void handle(long currentNanoTime){
                 gc.clearRect(0,0,canvas.getWidth(),canvas.getHeight());        
                 gc.drawImage( Images.background, map_x, map_y );
-                menu.InteractionCheckbox(bus, metro, tram, primaryStage, theScene, MetroButtonList, BusButtonList,TramButtonList);
+                menu.InteractionCheckbox(bus, metro, tram, primaryStage, theScene, MetroButtonList, BusButtonList,TramButtonList,MetroLabelList,BusLabelList,TramLabelList);
                 // text loopafstand en tijd
                 double newloopafstanddouble = (slider_loopafstand.getValue() * 1.25);
                 int newloopafstandint = (int)newloopafstanddouble;
