@@ -28,6 +28,8 @@ public class Images {
     public static Image M_image = new Image("Images/M-location_imagen.png"); 
     public static Image T_image = new Image("Images/T-location_imagen.png"); 
     public static Image B_image = new Image("Images/B-location_imagen.png"); 
+    public static Image helpbutton_image = new Image("Images/helpbutton.png"); 
+    public static Image help_image = new Image("Images/help.png"); 
     public static Image B_image_info = new Image("Images/B-location_image_info.png"); //TEWST
     
 }

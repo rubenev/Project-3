@@ -59,10 +59,12 @@ public class exitButton {
             left.setLayoutY((this.canvas_x/2)-20);
             up.setLayoutX((this.canvas_y/2)-20);       
              });
+            
 
 }
         public Button getExitbutton(){
          return this.exitButton;
         }
+       
 
 }

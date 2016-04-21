@@ -36,8 +36,6 @@ public class Main extends Application {
     double map_y = -5400;
     double canvas_x = 1000;
     double canvas_y = 1500;
-    double selecten_garageX;
-    double selecten_garageY;
    //---------------------------------------------------------//
    //              berekenen van null punt x en y             //
    //---------------------------------------------------------//    
@@ -45,16 +43,14 @@ public class Main extends Application {
     double mercN = Math.log(Math.tan((Math.PI/4)+(latRad/2)));
     double null_ylat = (10159/2)-(10563*mercN/(2*Math.PI));
     double null_xlong = (4.396787 + 180.0) * (10563 / 360);      
-
+    boolean help_open = false;
     Menu menu = new Menu(); 
     CheckBox bus = new CheckBox();
     CheckBox tram = new CheckBox();
     CheckBox metro = new CheckBox();
     ImageView images = new ImageView();
-    Label looptijdtext = new Label();
-    Label loopafstandtext = new Label();
     ImageView menu_image = new ImageView(Images.menu_image);
-    
+
     List<Garage> list_garages = new ArrayList();
     List<Metro> list_metro = new ArrayList();
     List<Tram> list_tram = new ArrayList();
@@ -267,12 +263,6 @@ public class Main extends Application {
         //                         ROOT CREeREN                     ///
         ///////////////////////////////////////////////////////////////
         
-        loopafstandtext.setLayoutX(190);
-        loopafstandtext.setLayoutY(250);
-        loopafstandtext.setTextFill(Color.web("#FFFFFF"));
-        looptijdtext.setLayoutX(190);
-        looptijdtext.setLayoutY(310);       
-        looptijdtext.setTextFill(Color.web("#FFFFFF"));  
         AllButtons.addAll(GarageButtonList);
         AllButtons.addAll(MetroButtonList);
         AllButtons.addAll(BusButtonList);
@@ -283,11 +273,11 @@ public class Main extends Application {
         AllLabels.addAll(TramLabelList);
          menu_image.setLayoutX(5);
          menu_image.setLayoutY(0);
-        
+        Helpbutton buttonsmenu = new Helpbutton();    
         root.getChildren().addAll(canvas);
         root.getChildren().addAll(AllButtons);
         root.getChildren().addAll(AllLabels);
-        root.getChildren().addAll(menu_image,bus,tram,metro,comboBox,right,left,up,down,slider_loopafstand,slider_looptijd,loopafstandtext,looptijdtext,exitButton.getExitbutton());
+        root.getChildren().addAll(menu_image,bus,tram,metro,comboBox,up,buttonsmenu.gethelpscreen(),buttonsmenu.getHelpbutton(),right,left,down,slider_loopafstand,slider_looptijd,buttonsmenu.getloopafstandtext(),buttonsmenu.getlooptijdtext(),exitButton.getExitbutton());
 
       
         primaryStage.setScene( theScene );
@@ -306,11 +296,11 @@ public class Main extends Application {
                 double newloopafstanddouble = (slider_loopafstand.getValue() * 1.25);
                 int newloopafstandint = (int)newloopafstanddouble;
                 String newloopafstandtext = Integer.toString(newloopafstandint);
-                loopafstandtext.setText(newloopafstandtext + " meter");  
+                buttonsmenu.getloopafstandtext().setText(newloopafstandtext + " meter");  
                 double newlooptijddouble = (slider_looptijd.getValue() / 66);
                 int newlooptijdint = (int)newlooptijddouble;
                 String newlooptijdtext = Integer.toString(newlooptijdint);
-                looptijdtext.setText(newlooptijdtext + " minuten");   // 5 km/h // 83m per minuut // 66 pixels per minuut
+                buttonsmenu.getlooptijdtext().setText(newlooptijdtext + " minuten");   // 5 km/h // 83m per minuut // 66 pixels per minuut
                                
                 for (Button metroo : MetroButtonList){
                     if(metro.isSelected())
