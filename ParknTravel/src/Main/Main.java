@@ -203,10 +203,12 @@ public class Main extends Application {
           garagebutt.setLayoutX(metro.getPositionX());
           garagebutt.setLayoutY(metro.getPositionY()); 
           garagebutt.setCursor(Cursor.OPEN_HAND);
+          garagelabel.setGraphic(new ImageView (Images.Bus_Info));
+          garagelabel.setGraphicTextGap(-390);
+          garagelabel.setText("                                               "+ metro.getName() + "\n \n" + metro.getDescription().replace(" Dit", "\n Dit")+ "\n");
           
           garagelabel.setLayoutX(metro.getPositionX() + 80);
           garagelabel.setLayoutY(metro.getPositionY() + 30);
-          garagelabel.setText(metro.getName() + "\n" + metro.getDescription());
           garagelabel.setVisible(false);
           
           MetroLabelList.add(garagelabel);
@@ -224,10 +226,11 @@ public class Main extends Application {
           garagebutt.setLayoutX(bus.getPositionX());
           garagebutt.setLayoutY(bus.getPositionY()); 
           garagebutt.setCursor(Cursor.OPEN_HAND);
-          
+          garagelabel.setGraphic(new ImageView (Images.Bus_Info));
+          garagelabel.setGraphicTextGap(-390);
+          garagelabel.setText("                                               "+ bus.getName() + "\n \n" + bus.getDescription()+ "\n");
           garagelabel.setLayoutX(bus.getPositionX() + 80);
           garagelabel.setLayoutY(bus.getPositionY() + 30);
-          garagelabel.setText(bus.getName() + "\n" + bus.getDescription());
           garagelabel.setVisible(false);
           
           BusLabelList.add(garagelabel);
@@ -245,10 +248,12 @@ public class Main extends Application {
           garagebutt.setLayoutX(tram.getPositionX());
           garagebutt.setLayoutY(tram.getPositionY()); 
           garagebutt.setCursor(Cursor.OPEN_HAND);
+          garagelabel.setGraphic(new ImageView (Images.Bus_Info));
+          garagelabel.setGraphicTextGap(-390);
+          garagelabel.setText("                                               "+ tram.getName() + "\n \n" + tram.getDescription().replace("Halte", "\n Halte")+ "\n");
           
           garagelabel.setLayoutX(tram.getPositionX() + 80);
           garagelabel.setLayoutY(tram.getPositionY() + 30);
-          garagelabel.setText(tram.getName() + "\n" + tram.getDescription());
           garagelabel.setVisible(false);
           
           TramLabelList.add(garagelabel);
