@@ -78,7 +78,7 @@ public class Database {
 }public List<Bus> getBusList(){
                     try
                 {
-                    Class.forName("org.postgresql.Driver");
+                    Class.forName("org.postgresql.Driver");//[149.210.247.55]
                     
                     Connection con=DriverManager.getConnection("jdbc:postgresql://localhost:5432/ParknTravel","postgres","password");
                     if(con!=null)

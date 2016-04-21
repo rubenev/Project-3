@@ -34,7 +34,7 @@ public class Main extends Application {
     
     double map_x = -3500;
     double map_y = -5400;
-    double canvas_x = 700;
+    double canvas_x = 800;
     double canvas_y = 1000;
    //---------------------------------------------------------//
    //              berekenen van null punt x en y             //
@@ -227,6 +227,7 @@ public class Main extends Application {
           
           garagelabel.setLayoutX(bus.getPositionX() + 80);
           garagelabel.setLayoutY(bus.getPositionY() + 30);
+          garagelabel.setGraphic(new ImageView(Images.bus_infolabel));
           garagelabel.setText(bus.getName() + "\n" + bus.getDescription());
           garagelabel.setVisible(false);
           
