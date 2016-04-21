@@ -43,7 +43,7 @@ public class Menu implements IComponents {
     Image loopafstand_image = new Image("Images/loopafstand.png");  
     double selected_garX;
     double selected_garY;
-
+    
     @Override
     public void Draw(GraphicsContext gc) {
         gc.drawImage(menu_image, 5, 0);

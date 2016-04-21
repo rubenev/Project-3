@@ -24,6 +24,10 @@ public class Images {
     public static Image bus_imagebw = new Image("Images/B-location_imagebw.png");
     public static Image tram_imagebw = new Image("Images/T-location_imagebw.png");
     public static Image metro_imagebw = new Image("Images/M-location_imagebw.png");
+    public static Image P_image = new Image("Images/P-location_image.png");  
+    public static Image M_image = new Image("Images/M-location_imagen.png"); 
+    public static Image T_image = new Image("Images/T-location_imagen.png"); 
+    public static Image B_image = new Image("Images/B-location_imagen.png"); 
     public static Image B_image_info = new Image("Images/B-location_image_info.png"); //TEWST
     
 }
