@@ -93,5 +93,5 @@ public class Garage implements IStations {
     }
     public void setImg(Image img){this.Garage_Img = img;}
 
-    
+   public Image getImg(){return this.Garage_Img;} 
 }

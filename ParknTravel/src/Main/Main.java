@@ -183,7 +183,8 @@ public class Main extends Application {
           garagebutt.setLayoutX(garage.Position_x);
           garagebutt.setLayoutY(garage.Position_y); 
           garagebutt.setCursor(Cursor.OPEN_HAND);
-          
+          garagebutt.setMinSize( garage.getImg().getWidth(),garage.getImg().getHeight());
+
           garagelabel.setLayoutX(garage.Position_x + 80);
           garagelabel.setLayoutY(garage.Position_y + 30);
           garagelabel.setText(garage.getName() + "\n" + garage.getDescription());
