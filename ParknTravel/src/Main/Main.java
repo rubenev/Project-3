@@ -26,6 +26,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import java.awt.Toolkit;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 
@@ -199,7 +200,11 @@ public class Main extends Application {
               if (metro.isClicked == false){
                   garagelabel.setVisible(true);
                   
-                  garagelabel.setText("   "+ metro.getTijd()+ " minuten           " + metro.getAfstand()+ " meter                                    "  + metro.getName() +"\n \n " + metro.getDescription().replace("Dit", "\n Dit"));
+              if(metro.getDescription().contains("Dit")){
+              garagelabel.setText("         "+ metro.getTijd()+ " minuten                " + metro.getAfstand()+ " meter                                                "  + metro.getName() +"\n \n " + metro.getDescription().replace("Dit", "\n Dit")); 
+              }else{
+              garagelabel.setText("         "+ metro.getTijd()+ " minuten                " + metro.getAfstand()+ " meter                                                "  + metro.getName() +"\n \n \n "+ metro.getDescription()+ "\n");
+              }
               metro.isClicked = true;}
             else{garagelabel.setVisible(false);metro.isClicked = false;}});
           garagebutt.setLayoutX(metro.getPositionX());
@@ -225,7 +230,7 @@ public class Main extends Application {
           garagebutt.setOnMouseClicked(e -> {
               if (bus.isClicked == false){
                   garagelabel.setVisible(true);
-                  garagelabel.setText("   "+ bus.getTijd()+ " minuten           " + bus.getAfstand()+ " meter                                    "  + bus.getName() +"\n \n " + bus.getDescription().replace("Dit", "\n Dit"));
+                  garagelabel.setText("         "+ bus.getTijd()+ " minuten                " + bus.getAfstand()+ " meter                                                "  + bus.getName() +"\n \n " + bus.getDescription().replace("Dit", "\n Dit"));
               
                    bus.isClicked = true;}
             else{garagelabel.setVisible(false);bus.isClicked = false;}});
@@ -250,8 +255,12 @@ public class Main extends Application {
               if (tram.isClicked == false){
                   garagelabel.setVisible(true);
               tram.isClicked = true;
-              garagelabel.setText("   "+ tram.getTijd()+ " minuten           " + tram.getAfstand()+ " meter                                    "  + tram.getName() +"\n \n " + tram.getDescription().replace("Halte", "\n Halte"));
               
+              if(tram.getDescription().contains("Halte")){
+              garagelabel.setText("         "+ tram.getTijd()+ " minuten                " + tram.getAfstand()+ " meter                                                "  + tram.getName() +"\n \n " + tram.getDescription().replace("Halte", "\n Halte")); 
+              }else{
+              garagelabel.setText("         "+ tram.getTijd()+ " minuten                " + tram.getAfstand()+ " meter                                                "  + tram.getName() +"\n \n \n "+ tram.getDescription()+ "\n");
+              }
               }
             else{garagelabel.setVisible(false);tram.isClicked = false;}});
           garagebutt.setLayoutX(tram.getPositionX());
