@@ -24,10 +24,10 @@ public class Database {
     double null_ylat = (10159/2)-(10563*mercN/(2*Math.PI));
     double null_xlong = (4.396787 + 180.0) * (10563 / 360);  
     
-    List<Garage> list_garages = new ArrayList();
-    List<Bus> list_busses = new ArrayList();
-    List<Tram> list_trams = new ArrayList();
-    List<Metro> list_metros = new ArrayList();
+    List<Garage> list_garages = new ArrayList<>();
+    List<Bus> list_busses = new ArrayList<>();
+    List<Tram> list_trams = new ArrayList<>();
+    List<Metro> list_metros = new ArrayList<>();
  
 /*    Image P_image = new Image("file:Images/P-location_image.png");  
     Image M_image = new Image("file:Images/M-location_imagek.png"); 

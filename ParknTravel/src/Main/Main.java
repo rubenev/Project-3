@@ -20,7 +20,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Slider;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.shape.Circle;
@@ -49,27 +48,30 @@ public class Main extends Application {
     double null_ylat = (10159/2)-(10563*mercN/(2*Math.PI));
     double null_xlong = (4.396787 + 180.0) * (10563 / 360);      
     boolean help_open = false;
+    
     Menu menu = new Menu(); 
     CheckBox bus = new CheckBox();
     CheckBox tram = new CheckBox();
     CheckBox metro = new CheckBox();
     ImageView images = new ImageView();
     ImageView menu_image = new ImageView(Images.menu_image);
-    List<Garage> list_garages = new ArrayList();
-    List<Metro> list_metro = new ArrayList();
-    List<Tram> list_tram = new ArrayList();
-    List<Button> GarageButtonList = new ArrayList();
-    List<Label> GarageLabelList = new ArrayList();
-    List<Button> MetroButtonList = new ArrayList();
-    List<Label> MetroLabelList = new ArrayList();
-    List<Button> BusButtonList = new ArrayList();
-    List<Label> BusLabelList = new ArrayList();
-    List<Button> TramButtonList = new ArrayList();
-    List<Label> TramLabelList = new ArrayList();
-    List<Button> AllButtons = new ArrayList();
-    List<Label> AllLabels = new ArrayList();
+    List<Garage> list_garages = new ArrayList<>();
+    List<Metro> list_metro = new ArrayList<>();
+    List<Tram> list_tram = new ArrayList<>();
+    List<Button> GarageButtonList = new ArrayList<>();
+    List<Label> GarageLabelList = new ArrayList<>();
+    List<Button> MetroButtonList = new ArrayList<>();
+    List<Label> MetroLabelList = new ArrayList<>();
+    List<Button> BusButtonList = new ArrayList<>();
+    List<Label> BusLabelList = new ArrayList<>();
+    List<Button> TramButtonList = new ArrayList<>();
+    List<Label> TramLabelList = new ArrayList<>();
+    List<Button> AllButtons = new ArrayList<>();
+    List<Label> AllLabels = new ArrayList<>();
       
-    public static void main(String[] args) {        launch(args);       }
+    public static void main(String[] args) {        
+        launch(args);       
+    }
 
     @Override
     public void start(Stage primaryStage) throws InterruptedException{

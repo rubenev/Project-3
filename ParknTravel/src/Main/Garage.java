@@ -16,7 +16,7 @@ public class Garage implements IStations {
     double Position_x;// longitude, latitude
     double Position_y;
     boolean isClicked = false;
-    List<Garage> GarageList = new ArrayList();
+    List<Garage> GarageList = new ArrayList<>();
     
     public Garage (Image Garage_Img, String Name, String Description,String Type, double longitude,double latitude)
     {

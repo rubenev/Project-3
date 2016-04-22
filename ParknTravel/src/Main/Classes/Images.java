@@ -6,7 +6,7 @@ import javafx.scene.image.ImageView;
 
 public class Images {
     public static Image logo = new Image("Images/Halfvol.png");
-    public static Image background = new Image("Images/mapRotterdam.png");
+    public static Image background = new Image("Images/mapRotterdam.png",10563,10159,false,false);
     public static Image up_image = new Image("Images/up_button.png");
     public static Image down_image = new Image("Images/down_button.png");
     public static Image left_image = new Image("Images/left_button.png");
