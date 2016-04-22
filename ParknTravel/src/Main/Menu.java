@@ -19,13 +19,18 @@ import javafx.scene.control.Label;
 
 public class Menu implements IComponents {
     
+    public ImageView M_image = new ImageView("Images/M-location_imagen.png");
+    public ImageView T_image = new ImageView("Images/T-location_imagen.png");
+    public ImageView B_image = new ImageView("Images/B-location_imagen.png");  
+    
+    
     Image menu_image = new Image("Images/menuimg.png");
-    Image metro_image = new Image("Images/metrolabeln.png");
-    Image tram_image = new Image("Images/tramlabeln.png");
-    Image tram_image_c = new Image("Images/tramlabel_checkn.png");
-    Image bus_image_c = new Image("Images/buslabel_checkn.png");
-    Image metro_image_c = new Image("Images/metrolabel_checkn.png");
-    Image bus_image = new Image("Images/buslabeln.png");
+    ImageView metro_image = new ImageView("Images/metrolabeln.png");
+    ImageView tram_image = new ImageView("Images/tramlabeln.png");
+    ImageView tram_image_c = new ImageView("Images/tramlabel_checkn.png");
+    ImageView bus_image_c = new ImageView("Images/buslabel_checkn.png");
+    ImageView metro_image_c = new ImageView("Images/metrolabel_checkn.png");
+    ImageView bus_image = new ImageView("Images/buslabeln.png");
     Image looptijd_image = new Image("Images/looptijd.png");
     Image loopafstand_image = new Image("Images/loopafstand.png");  
     double selected_garX;
@@ -44,10 +49,10 @@ public class Menu implements IComponents {
     
         Bus.setLayoutX(-21); Bus.setLayoutY(200);
     if (Bus.isSelected())
-        {Bus.setGraphic(new ImageView(bus_image_c));
+        {Bus.setGraphic(bus_image_c);
         for (Button busbutt :  BusbList){busbutt.setVisible(true);}
         }
-    else{Bus.setGraphic(new ImageView(bus_image));
+    else{Bus.setGraphic(bus_image);
     for (Button busbutt :  BusbList){busbutt.setVisible(false);for (Label buslab :  BuslList){buslab.setVisible(false);}}}
     
         
@@ -55,17 +60,17 @@ public class Menu implements IComponents {
     
     Metro.setLayoutX(-21); Metro.setLayoutY(80);  
     if (Metro.isSelected())
-        {Metro.setGraphic(new ImageView(metro_image_c)); 
+        {Metro.setGraphic(metro_image_c); 
         for (Button metrobutt : MetrobList){metrobutt.setVisible(true);}}
-    else{Metro.setGraphic(new ImageView(metro_image));
+    else{Metro.setGraphic(metro_image);
         for (Button metrobutt : MetrobList){metrobutt.setVisible(false);}for (Label metlab :  MetrolList){metlab.setVisible(false);}}
     
     
     Tram.setLayoutX(-21); Tram.setLayoutY(140);
     if (Tram.isSelected())
-        {Tram.setGraphic(new ImageView(tram_image_c));
+        {Tram.setGraphic(tram_image_c);
         for (Button trambutt : TrambList){trambutt.setVisible(true);}}
-    else{Tram.setGraphic(new ImageView(tram_image));
+    else{Tram.setGraphic(tram_image);
         for (Button trambutt : TrambList){trambutt.setVisible(false);}for (Label tralab :  TramlList){tralab.setVisible(false);}}
     
     primaryStage.setScene( theScene );
@@ -115,5 +120,5 @@ public class Menu implements IComponents {
     bus.setPositionY(Y);
     }
     }
-    
+
 }
