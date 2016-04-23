@@ -320,22 +320,41 @@ public class Main extends Application {
                                
                 for (Button metroo : MetroButtonList){
                     if(metro.isSelected()){
+                                            
+                        if(Math.sqrt(Math.pow(((menu.getgarY()) - metroo.getLayoutY()),2) + Math.pow(((menu.getgarX())- metroo.getLayoutX()),2)) <= 1500)
+                        {   
                         if(((Math.sqrt(Math.pow(((menu.getgarY()) - metroo.getLayoutY()),2) + Math.pow(((menu.getgarX())- metroo.getLayoutX()),2))) <= slider_loopafstand.getValue())
                             &&((Math.sqrt(Math.pow(((menu.getgarY()) - metroo.getLayoutY()),2) + Math.pow(((menu.getgarX())- metroo.getLayoutX()),2))) <= slider_looptijd.getValue()))                           
                         {metroo.setStyle("-fx-background-color: transparent;-fx-background-image: url('/Images/M-location_imagen.png');-fx-background-repeat: no-repeat;");}
-                        else{metroo.setStyle("-fx-background-color: transparent;-fx-background-image: url('/Images/M-location_imagebw.png');-fx-background-repeat: no-repeat;");}}}
+                        else{metroo.setStyle("-fx-background-color: transparent;-fx-background-image: url('/Images/M-location_imagebw.png');-fx-background-repeat: no-repeat;");}}
+                        else{ metroo.setVisible(false);}
+                    }}
                 for (Button tramm : TramButtonList){
                     if(tram.isSelected()) 
+                    {
+                        if(Math.sqrt(Math.pow(((menu.getgarY()) - tramm.getLayoutY()),2) + Math.pow(((menu.getgarX())- tramm.getLayoutX()),2)) <= 1500)
+                        {
                         if(((Math.sqrt(Math.pow(((menu.getgarY()) - tramm.getLayoutY()),2) + Math.pow(((menu.getgarX())- tramm.getLayoutX()),2))) <= slider_loopafstand.getValue())
                             &&((Math.sqrt(Math.pow(((menu.getgarY()) - tramm.getLayoutY()),2) + Math.pow(((menu.getgarX())- tramm.getLayoutX()),2))) <= slider_looptijd.getValue()))
                         {tramm.setStyle("-fx-background-color: transparent;-fx-background-image: url('/Images/T-location_imagen.png');-fx-background-repeat: no-repeat;");}
                         else{tramm.setStyle("-fx-background-color: transparent;-fx-background-image: url('/Images/T-location_imagebw.png');-fx-background-repeat: no-repeat;");}}
+                        else{ tramm.setVisible(false);}
+                    }
+                
+                }
                 for (Button buss : BusButtonList){
                     if(bus.isSelected())
+                    {
+                        if(Math.sqrt(Math.pow(((menu.getgarY()) - buss.getLayoutY()),2) + Math.pow(((menu.getgarX())- buss.getLayoutX()),2)) <= 1500)
+                        {                        
                         if(((Math.sqrt(Math.pow(((menu.getgarY()) - buss.getLayoutY()),2) + Math.pow(((menu.getgarX())- buss.getLayoutX()),2))) <= slider_loopafstand.getValue())
                             &&((Math.sqrt(Math.pow(((menu.getgarY()) - buss.getLayoutY()),2) + Math.pow(((menu.getgarX())- buss.getLayoutX()),2))) <= slider_looptijd.getValue()))
                         {buss.setStyle("-fx-background-color: transparent;-fx-background-image: url('/Images/B-location_imagen.png');-fx-background-repeat: no-repeat;");}
                         else{buss.setStyle("-fx-background-color: transparent;-fx-background-image: url('/Images/B-location_imagebw.png');-fx-background-repeat: no-repeat;");}}
+                        else{ buss.setVisible(false);}
+                    }
+                    }
+                    
                 for (Garage garage : new_list){
                     if(comboBox.getValue() == garage.getName() || comboBox.getValue() == "Select Garage" || comboBox.getValue() == "Show All"){    
                         garage.Draw(gc);}
